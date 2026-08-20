@@ -1,7 +1,214 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-[x-cloak] {
-    display: none;
+/* 1. OBRIGATÓRIO PARA TAILWIND v4: Força o modo escuro a funcionar via classe (.dark) */
+@variant dark (&:where(.dark, .dark *));
+@variant black (&:where(.black, .black *));
+
+@variant hc-light (&:where(.hc-light, .hc-light *));
+@variant hc-dark (&:where(.hc-dark, .hc-dark *));
+@variant hc-black (&:where(.hc-black, .hc-black *));
+
+/* Variáveis de tema do Flowbite */
+@import "flowbite/src/themes/default";
+
+/* Plugin do Flowbite e fontes */
+@plugin "flowbite/plugin";
+@source "../../node_modules/flowbite";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+/* =========================================================
+   MAPEAMENTO DAS FONTES LOCAIS (ARIAL)
+   ========================================================= */
+@font-face {
+    font-family: 'Arial Custom';
+    src: url('./fonts/ARIAL.TTF') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
+
+@font-face {
+    font-family: 'Arial Custom';
+    src: url('./fonts/ARIALBD.TTF') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arial Custom';
+    src: url('./fonts/ARIALI.TTF') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arial Custom';
+    src: url('./fonts/ARIALBI.TTF') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arial Black Custom';
+    src: url('./fonts/ARIBLK.TTF') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Compatibilidade com classes legadas como font-['Arial_Roman'].
+   Os aliases continuam usando os arquivos locais, nunca a fonte do sistema. */
+@font-face {
+    font-family: 'Arial';
+    src: url('./fonts/ARIAL.TTF') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arial Roman';
+    src: url('./fonts/ARIAL.TTF') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arial Black';
+    src: url('./fonts/ARIBLK.TTF') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* =========================================================
+   CONFIGURAÇÃO GLOBAL DE FONTES (TAILWIND V4)
+   ========================================================= */
+@theme {
+  --font-sans: "Instrument Sans", "Arial Custom", ui-sans-serif, system-ui, sans-serif;
+  --font-title: "Instrument Sans", "Arial Black Custom", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, ui-serif, serif;
+
+  --color-brand-wine: #750D37;
+  --color-brand-plum: #210124;
+  --color-brand-mint: #E5FCF5;
+  --color-brand-sage: #B3DEC1;
+  --color-brand-teal: #14B8A6;
+}
+
+@layer base {
+  /* Aplicação explícita para não depender apenas do Preflight do Tailwind. */
+  html, body {
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6, b, strong {
+    font-family: var(--font-title);
+  }
+
+}
+
+/* =========================================================
+   REGRAS ESTRITAS DE ALTO CONTRASTE (PRETO, BRANCO, AMARELO)
+   ========================================================= */
+@layer base {
+  body:has([data-scroll-lock]:not(.hidden)) {overflow: hidden;}
+
+  .hc,
+  .hc * {
+    background-image: none !important;
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  /* 2. ELEMENTOS INTERATIVOS GOV.BR (Amarelo) */
+  .hc a,
+  .hc a *,
+  .hc button,
+  .hc button * {
+    color: #ffff00 !important;
+    border-color: #ffff00 !important;
+  }
+
+  /* 3. BOTÕES PRIMÁRIOS SÓLIDOS (Fundo Amarelo, Texto Preto) */
+  .hc button.bg-blue-600,
+  .hc button.bg-blue-700,
+  .hc button.bg-sky-500,
+  .hc button.bg-sky-600,
+  .hc .bg-blue-600 {
+    background-color: #ffff00 !important;
+    color: #000000 !important;
+  }
+
+  .hc button.bg-blue-600 *,
+  .hc button.bg-blue-700 *,
+  .hc button.bg-sky-500 *,
+  .hc button.bg-sky-600 *,
+  .hc .bg-blue-600 * {
+    background-color: transparent !important;
+    color: #000000 !important;
+  }
+
+  /* 4. EXCEÇÃO: CAMPOS DE FORMULÁRIO */
+  .hc input,
+  .hc select,
+  .hc textarea {
+    background-color: #000000 !important;
+    color: #ffff00 !important;
+    border: 2px solid #ffffff !important;
+  }
+
+  /* 5. AUMENTO DE FONTE */
+  .hc p,
+  .hc span,
+  .hc li {
+    font-size: 1.125rem !important;
+    line-height: 1.75rem !important;
+  }
+}
+/* =========================================================
+   SCROLLBAR E SWEETALERT
+   ========================================================= */
+.swal2-popup { border-radius: 1rem; }
+html.dark .swal2-popup { background: #0f172a; color: #e2e8f0; }
+html.dark .swal2-title, html.dark .swal2-html-container { color: #e2e8f0; }
+html.dark .swal2-timer-progress-bar { background: #38bdf8; }
+
+*:not(.popover-flowbite)::-webkit-scrollbar { width: 0 !important; height: 0 !important; }
+*:not(.popover-flowbite) { scrollbar-width: none; -ms-overflow-style: none; }
+
+.popover-flowbite {
+  --popover-scroll-thumb: rgba(148, 163, 184, 0.55);
+  --popover-scroll-thumb-hover: rgba(100, 116, 139, 0.78);
+  overscroll-behavior: contain;
+  scrollbar-width: thin !important;
+  -ms-overflow-style: none !important;
+  scrollbar-color: var(--popover-scroll-thumb) transparent !important;
+}
+
+html.dark .popover-flowbite {
+  --popover-scroll-thumb: rgba(100, 116, 139, 0.72);
+  --popover-scroll-thumb-hover: rgba(148, 163, 184, 0.9);
+}
+
+html.black .popover-flowbite {
+  --popover-scroll-thumb: rgba(82, 82, 91, 0.9);
+  --popover-scroll-thumb-hover: rgba(113, 113, 122, 1);
+}
+
+.popover-flowbite::-webkit-scrollbar { width: 3px !important; height: 3px !important; }
+.popover-flowbite::-webkit-scrollbar-track { background: transparent !important; }
+.popover-flowbite::-webkit-scrollbar-button { display: none !important; width: 0 !important; height: 0 !important; }
+.popover-flowbite::-webkit-scrollbar-thumb { background: var(--popover-scroll-thumb) !important; border-radius: 9999px !important; }
+.popover-flowbite::-webkit-scrollbar-thumb:hover { background: var(--popover-scroll-thumb-hover) !important; }
+.popover-flowbite [data-popper-arrow] { display: none !important; }

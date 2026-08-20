@@ -3,55 +3,43 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Fortify\TwoFactorAuthenticatable;
-use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use NotificationChannels\WebPush\HasPushSubscriptions;
+use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens;
-
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory;
-    use HasProfilePhoto;
-    use HasTeams;
-    use Notifiable;
-    use TwoFactorAuthenticatable;
+    /** @use HasFactory<UserFactory> */
+    use AuthenticationLoggable, HasApiTokens, HasFactory, HasPushSubscriptions, Notifiable;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var list<string>
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
+        'password_verify',
+        'is_active',
+        'role_id',
+        'profile_photo_url',
     ];
 
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var array<int, string>
+     * @var list<string>
      */
     protected $hidden = [
         'password',
         'remember_token',
-        'two_factor_recovery_codes',
-        'two_factor_secret',
-    ];
-
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array<int, string>
-     */
-    protected $appends = [
-        'profile_photo_url',
     ];
 
     /**
@@ -64,6 +52,39 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'password_verify' => 'boolean',
+            'is_active' => 'boolean',
         ];
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id', 'id');
+    }
+
+    public function hasPermission(string $permission): bool
+    {
+        if (! $this->is_active || ! $this->role) {
+            return false;
+        }
+
+        if ($this->role->sigla === 'ADMIN') {
+            return true;
+        }
+
+        return $this->role->permissions->contains('slug', $permission);
+    }
+
+    public function deliveriesNotifications()
+    {
+        return $this->hasMany(NotificationDeliveries::class, 'user_id', 'id');
+    }
+
+    public function unreadNotifications()
+    {
+        return $this->deliveriesNotifications()
+            ->whereNull('read_at')
+            ->with('notification')
+            ->with('notification.creator:id,name,username,email');
     }
 }

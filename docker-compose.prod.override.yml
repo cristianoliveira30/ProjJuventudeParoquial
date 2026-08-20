@@ -1,0 +1,10 @@
+services:
+  app:
+    environment:
+      DB_HOST: mysql
+  queue:
+    environment:
+      DB_HOST: mysql
+  scheduler:
+    environment:
+      DB_HOST: mysql

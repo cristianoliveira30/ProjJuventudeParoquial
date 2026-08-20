@@ -1,0 +1,108 @@
+services:
+  mysql:
+    image: mysql:8.4
+    restart: unless-stopped
+    env_file:
+      - path: .env.production
+        required: false
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE:-laravel}
+      MYSQL_USER: ${DB_USERNAME:-sail}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-password}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-password}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p${DB_PASSWORD:-password}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    image: ${IMAGE_FULL:-paroquia-app:latest}
+    build:
+      context: .
+      dockerfile: docker/prod/Dockerfile
+    restart: unless-stopped
+    env_file:
+      - path: .env.production
+        required: false
+    volumes:
+      # The app keeps its image-baked public directory visible and publishes a
+      # fresh copy to this shared volume from the production entrypoint.
+      - public_build:/var/www/shared-public
+      - ./storage:/var/www/html/storage
+    expose:
+      - "9000"
+    networks:
+      - app-network
+    depends_on:
+      mysql:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "php-fpm -t || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 50s
+
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-80}:80"
+      - "${APP_HTTPS_PORT:-443}:443"
+    networks:
+      - app-network
+    volumes:
+      - ./docker/prod/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./docker/prod/certs:/etc/nginx/certs:ro
+      - public_build:/var/www/html/public:ro
+    depends_on:
+      app:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  queue:
+    image: ${IMAGE_FULL:-paroquia-app:latest}
+    restart: unless-stopped
+    env_file:
+      - path: .env.production
+        required: false
+    command: php artisan queue:work --sleep=3 --tries=3 --timeout=90
+    depends_on:
+      app:
+        condition: service_healthy
+    volumes:
+      - ./storage:/var/www/html/storage
+    networks:
+      - app-network
+
+  scheduler:
+    image: ${IMAGE_FULL:-paroquia-app:latest}
+    restart: unless-stopped
+    env_file:
+      - path: .env.production
+        required: false
+    command: php artisan schedule:work
+    depends_on:
+      app:
+        condition: service_healthy
+    volumes:
+      - ./storage:/var/www/html/storage
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  mysql_data:
+  public_build:
+    name: paroquia_public_build

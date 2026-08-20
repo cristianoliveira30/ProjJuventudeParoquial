@@ -1,23 +1,17 @@
-import './bootstrap';
-import '../css/app.css';
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "./accessibility";
+import { api } from "./api/useApi.js";
+import "./bootstrap";
+import { useAlerts } from "./composables/useAlerts.js";
+import { ensureFlowbite } from "./lib/lazyVendors.js";
+import { loadPageScripts } from "./page-loader.js";
 
-import { createApp, h } from 'vue';
-import { createInertiaApp } from '@inertiajs/vue3';
-import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import { ZiggyVue } from '../../vendor/tightenco/ziggy';
+window.Api = api;
+window.Alerts = useAlerts();
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+loadPageScripts();
 
-createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
-    resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
-    setup({ el, App, props, plugin }) {
-        return createApp({ render: () => h(App, props) })
-            .use(plugin)
-            .use(ZiggyVue)
-            .mount(el);
-    },
-    progress: {
-        color: '#4B5563',
-    },
+document.addEventListener("DOMContentLoaded", async () => {
+    const { initFlowbite } = await ensureFlowbite();
+    initFlowbite?.();
 });
