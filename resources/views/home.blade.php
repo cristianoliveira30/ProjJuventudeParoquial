@@ -1,18 +1,13 @@
 <x-layouts.app :title="__('Início — Gestão Paroquial')">
     @php
-        $encounters = [
-            ['day' => '24', 'month' => 'MAI', 'title' => 'Encontro de oração', 'time' => 'Sábado, 19h30', 'place' => 'Salão paroquial', 'icon' => 'calendar-heart'],
-            ['day' => '31', 'month' => 'MAI', 'title' => 'Formação de servos', 'time' => 'Sábado, 15h', 'place' => 'Sala de formação', 'icon' => 'heart'],
-            ['day' => '07', 'month' => 'JUN', 'title' => 'Encontro das equipes', 'time' => 'Sábado, 16h', 'place' => 'Salão paroquial', 'icon' => 'people'],
-        ];
-
         $quickActions = [
             ['label' => 'Adicionar usuário', 'icon' => 'person-plus', 'route' => 'user.create', 'permission' => 'users.create'],
-            ['label' => 'Nova equipe', 'icon' => 'person-hearts', 'route' => '#'],
-            ['label' => 'Novo evento', 'icon' => 'calendar-plus', 'route' => '#'],
-            ['label' => 'Novo retiro', 'icon' => 'heart', 'route' => '#'],
+            ['label' => 'Nova publicação', 'icon' => 'newspaper', 'route' => 'posts.create', 'permission' => 'posts.create'],
+            ['label' => 'Nova pastoral', 'icon' => 'person-hearts', 'route' => 'groups.create', 'permission' => 'groups.create'],
+            ['label' => 'Novo evento', 'icon' => 'calendar-plus', 'route' => 'events.create', 'permission' => 'events.create'],
+            ['label' => 'Novo retiro', 'icon' => 'heart', 'route' => 'retreats.create', 'permission' => 'retreats.create'],
             ['label' => 'Gerar relatório', 'icon' => 'file-earmark-text', 'route' => 'report.default'],
-            ['label' => 'Enviar foto', 'icon' => 'image', 'route' => '#'],
+            ['label' => 'Novo álbum', 'icon' => 'image', 'route' => 'gallery.create', 'permission' => 'gallery.create'],
         ];
     @endphp
 
@@ -40,9 +35,11 @@
                             <x-bi-plus-lg class="size-4" /> Adicionar usuário
                         </a>
                     @endcan
-                    <a href="{{ safe_route('#') }}" class="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[#14B8A6] bg-white px-5 text-sm font-semibold text-[#0f9688] transition hover:bg-white/70 focus:outline-none focus:ring-2 focus:ring-[#14B8A6]/35 dark:bg-slate-900 dark:text-[#5eead4]">
-                        <x-bi-calendar-plus class="size-4" /> Criar evento
-                    </a>
+                    @can('events.create')
+                        <a href="{{ route('events.create') }}" class="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[#14B8A6] bg-white px-5 text-sm font-semibold text-[#0f9688] transition hover:bg-white/70 focus:outline-none focus:ring-2 focus:ring-[#14B8A6]/35 dark:bg-slate-900 dark:text-[#5eead4]">
+                            <x-bi-calendar-plus class="size-4" /> Criar evento
+                        </a>
+                    @endcan
                 </div>
             </div>
         </section>
@@ -51,29 +48,31 @@
             <section class="overflow-hidden rounded-[1.25rem] border border-slate-200 bg-white shadow-[0_10px_35px_rgba(33,1,36,.05)] dark:border-slate-800 dark:bg-slate-900">
                 <div class="flex items-center justify-between border-b border-slate-100 px-5 py-4 sm:px-6 dark:border-slate-800">
                     <h2 class="text-lg font-bold text-[#210124] dark:text-white">Próximos encontros</h2>
-                    <a href="{{ safe_route('#') }}" class="inline-flex items-center gap-2 text-xs font-semibold text-[#0f9688] hover:text-[#750D37]">Ver agenda <x-bi-arrow-right class="size-3.5" /></a>
+                    @can('events.view')<a href="{{ route('events.index') }}" class="inline-flex items-center gap-2 text-xs font-semibold text-[#0f9688] hover:text-[#750D37]">Ver agenda <x-bi-arrow-right class="size-3.5" /></a>@endcan
                 </div>
 
                 <div class="divide-y divide-slate-100 px-5 sm:px-6 dark:divide-slate-800">
-                    @foreach($encounters as $encounter)
-                        <a href="{{ safe_route('#') }}" class="group grid grid-cols-[3.25rem_3rem_minmax(0,1fr)_auto] items-center gap-3 py-4 transition sm:grid-cols-[3.5rem_4rem_minmax(0,1fr)_auto] sm:gap-4">
+                    @forelse($encounters as $encounter)
+                        <a href="{{ auth()->user()->can('events.update') ? route('events.edit', $encounter) : route('events.index') }}" class="group grid grid-cols-[3.25rem_3rem_minmax(0,1fr)_auto] items-center gap-3 py-4 transition sm:grid-cols-[3.5rem_4rem_minmax(0,1fr)_auto] sm:gap-4">
                             <span class="flex size-12 items-center justify-center rounded-full bg-[#E5FCF5] text-[#14B8A6] sm:size-13 dark:bg-emerald-950/50">
-                                <x-dynamic-component :component="'bi-' . $encounter['icon']" class="size-5" />
+                                <x-bi-calendar-heart class="size-5" />
                             </span>
                             <span class="text-center leading-none">
-                                <span class="block text-xl font-bold text-[#750D37] dark:text-rose-300">{{ $encounter['day'] }}</span>
-                                <span class="mt-1 block text-[10px] font-semibold text-slate-500">{{ $encounter['month'] }}</span>
+                                <span class="block text-xl font-bold text-[#750D37] dark:text-rose-300">{{ $encounter->starts_at->format('d') }}</span>
+                                <span class="mt-1 block text-[10px] font-semibold text-slate-500">{{ Str::upper($encounter->starts_at->translatedFormat('M')) }}</span>
                             </span>
                             <span class="min-w-0">
-                                <span class="block truncate text-sm font-semibold text-[#210124] dark:text-white">{{ $encounter['title'] }}</span>
-                                <span class="mt-1 block text-xs text-slate-500 dark:text-slate-400">{{ $encounter['time'] }} · {{ $encounter['place'] }}</span>
+                                <span class="block truncate text-sm font-semibold text-[#210124] dark:text-white">{{ $encounter->title }}</span>
+                                <span class="mt-1 block text-xs text-slate-500 dark:text-slate-400">{{ $encounter->starts_at->translatedFormat('l, H\\hi') }}{{ $encounter->location ? ' · ' . $encounter->location : '' }}</span>
                             </span>
                             <x-bi-chevron-right class="size-4 text-slate-300 transition group-hover:translate-x-1 group-hover:text-[#14B8A6]" />
                         </a>
-                    @endforeach
+                    @empty
+                        <div class="py-10 text-center text-sm text-slate-500">Nenhum evento futuro cadastrado.</div>
+                    @endforelse
                 </div>
 
-                <a href="{{ safe_route('#') }}" class="flex items-center justify-center gap-2 border-t border-slate-100 py-4 text-xs font-semibold text-[#0f9688] hover:bg-[#E5FCF5]/50 dark:border-slate-800 dark:hover:bg-slate-800">Ver todos os encontros <x-bi-arrow-right class="size-3.5" /></a>
+                @can('events.view')<a href="{{ route('events.index') }}" class="flex items-center justify-center gap-2 border-t border-slate-100 py-4 text-xs font-semibold text-[#0f9688] hover:bg-[#E5FCF5]/50 dark:border-slate-800 dark:hover:bg-slate-800">Ver todos os eventos <x-bi-arrow-right class="size-3.5" /></a>@endcan
             </section>
 
             <div class="space-y-6">
@@ -92,17 +91,15 @@
 
                 <section class="overflow-hidden rounded-[1.25rem] border border-slate-200 bg-white shadow-[0_10px_35px_rgba(33,1,36,.05)] dark:border-slate-800 dark:bg-slate-900">
                     <div class="flex items-center justify-between border-b border-slate-100 px-5 py-4 sm:px-6 dark:border-slate-800">
-                        <h2 class="text-lg font-bold text-[#210124] dark:text-white">Retiro Vide e Vede</h2>
-                        <a href="{{ safe_route('#') }}" class="inline-flex items-center gap-2 text-xs font-semibold text-[#0f9688]">Ver detalhes <x-bi-arrow-right class="size-3.5" /></a>
+                        <h2 class="text-lg font-bold text-[#210124] dark:text-white">{{ $nextRetreat?->title ?? 'Próximo retiro' }}</h2>
+                        @can('retreats.view')<a href="{{ route('retreats.index') }}" class="inline-flex items-center gap-2 text-xs font-semibold text-[#0f9688]">Ver retiros <x-bi-arrow-right class="size-3.5" /></a>@endcan
                     </div>
-                    <div class="flex flex-col gap-5 p-5 sm:flex-row sm:items-center sm:p-6">
-                        <div class="flex size-24 shrink-0 items-center justify-center rounded-full bg-[#E5FCF5] text-[#750D37] dark:bg-rose-950/30 dark:text-rose-200"><x-bi-heart class="size-10" /></div>
-                        <div>
-                            <p class="text-sm leading-6 text-slate-600 dark:text-slate-300">Um espaço de encontro, serviço e descoberta do propósito de Deus para a vida dos nossos jovens.</p>
-                            <p class="mt-3 flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400"><x-bi-geo-alt class="size-3.5" /> Paróquia São Domingos de Gusmão</p>
-                        </div>
-                    </div>
-                    <a href="{{ safe_route('#') }}" class="m-5 mt-0 flex min-h-11 items-center justify-center rounded-xl bg-[#E5FCF5] text-xs font-semibold text-[#0f9688] transition hover:bg-[#B3DEC1]/60 dark:bg-emerald-950/30 dark:text-emerald-200 sm:m-6 sm:mt-0">Acompanhar organização</a>
+                    @if($nextRetreat)
+                        <div class="flex flex-col gap-5 p-5 sm:flex-row sm:items-center sm:p-6"><div class="flex size-24 shrink-0 items-center justify-center rounded-full bg-[#E5FCF5] text-[#750D37] dark:bg-rose-950/30 dark:text-rose-200"><x-bi-heart class="size-10" /></div><div><p class="text-sm leading-6 text-slate-600 dark:text-slate-300">{{ $nextRetreat->summary }}</p><p class="mt-3 flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400"><x-bi-calendar3 class="size-3.5" /> {{ $nextRetreat->starts_at->format('d/m/Y H:i') }}{{ $nextRetreat->location ? ' · ' . $nextRetreat->location : '' }}</p><p class="mt-2 text-xs text-slate-400">{{ $nextRetreat->registrations_count }} inscrições recebidas</p></div></div>
+                        @can('retreats.registrations')<a href="{{ route('retreats.registrations.index', $nextRetreat) }}" class="m-5 mt-0 flex min-h-11 items-center justify-center rounded-xl bg-[#E5FCF5] text-xs font-semibold text-[#0f9688] transition hover:bg-[#B3DEC1]/60 dark:bg-emerald-950/30 dark:text-emerald-200 sm:m-6 sm:mt-0">Acompanhar inscrições</a>@endcan
+                    @else
+                        <div class="p-8 text-center text-sm text-slate-500">Nenhum retiro futuro cadastrado.</div>
+                    @endif
                 </section>
             </div>
         </div>

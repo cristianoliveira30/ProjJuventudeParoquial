@@ -4,11 +4,12 @@
         ['label' => 'Usuários', 'icon' => 'people', 'route' => 'user.search', 'permission' => 'users.view'],
         ['label' => 'Perfis de acesso', 'icon' => 'shield-check', 'route' => 'roles.index', 'permission' => 'roles.manage'],
         ['label' => 'Notificações', 'icon' => 'bell', 'route' => 'notifications.dashboard', 'permission' => 'notifications.send'],
-        ['label' => 'Retiros', 'icon' => 'heart', 'route' => '#'],
-        ['label' => 'Eventos', 'icon' => 'calendar-event', 'route' => '#'],
-        ['label' => 'Equipes', 'icon' => 'person-hearts', 'route' => '#'],
+        ['label' => 'Publicações', 'icon' => 'newspaper', 'route' => 'posts.index', 'permission' => 'posts.view'],
+        ['label' => 'Retiros', 'icon' => 'heart', 'route' => 'retreats.index', 'permission' => 'retreats.view'],
+        ['label' => 'Eventos', 'icon' => 'calendar-event', 'route' => 'events.index', 'permission' => 'events.view'],
+        ['label' => 'Pastorais', 'icon' => 'person-hearts', 'route' => 'groups.index', 'permission' => 'groups.view'],
         ['label' => 'Relatórios', 'icon' => 'bar-chart', 'route' => 'report.default'],
-        ['label' => 'Galeria', 'icon' => 'images', 'route' => '#'],
+        ['label' => 'Galeria', 'icon' => 'images', 'route' => 'gallery.index', 'permission' => 'gallery.view'],
     ];
 @endphp
 

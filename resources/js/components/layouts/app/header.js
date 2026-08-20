@@ -1,13 +1,19 @@
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
 
-document.addEventListener("DOMContentLoaded", () => {
+function initHeaderInteractions() {
     initNotifications();
     initPasswordToggles();
     initProfilePreview();
     initSettingsModal();
     initSettingsSubmit();
-});
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initHeaderInteractions, { once: true });
+} else {
+    initHeaderInteractions();
+}
 
 function initNotifications() {
     const list = $("#notifications-list");

@@ -5,6 +5,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\NoStoreHtml;
 use App\Http\Middleware\TrackPageAccess;
+use App\Models\ParishEvent;
+use App\Models\Retreat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,8 +29,30 @@ Route::middleware(['auth', 'active.user', 'first.access.lock', TrackPageAccess::
 
     require __DIR__.'/modules/user.php';
     require __DIR__.'/modules/notifications.php';
+    require __DIR__.'/modules/posts.php';
+    require __DIR__.'/modules/events.php';
+    require __DIR__.'/modules/groups.php';
+    require __DIR__.'/modules/retreats.php';
+    require __DIR__.'/modules/gallery.php';
 
-    Route::get('/home', fn () => view('home', ['page' => 'home']))->name('home');
+    Route::get('/home', function (Request $request) {
+        $nextRetreat = $request->user()->can('retreats.view')
+            ? Retreat::query()
+                ->when($request->user()->role?->sigla === 'COORD', fn ($query) => $query->where('coordinator_id', $request->user()->id))
+                ->upcoming()
+                ->withCount('registrations')
+                ->orderBy('starts_at')
+                ->first()
+            : null;
+
+        return view('home', [
+            'page' => 'home',
+            'encounters' => $request->user()->can('events.view')
+                ? ParishEvent::query()->upcoming()->orderBy('starts_at')->take(3)->get()
+                : collect(),
+            'nextRetreat' => $nextRetreat,
+        ]);
+    })->name('home');
     Route::get('/conta/seguranca', [UserController::class, 'showSecurity'])->name('account.security');
     Route::put('/conta/senha', [UserController::class, 'updatePassword'])->name('account.password.update');
     Route::get('/perfis-de-acesso', [RoleController::class, 'index'])->middleware('can:roles.manage')->name('roles.index');

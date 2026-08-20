@@ -142,11 +142,54 @@ it('seeds one initial administrator and remains idempotent', function () {
     $seeder->run();
 
     $admin = User::query()->where('username', config('parish.admin.username'))->firstOrFail();
+    $secretary = Role::query()->where('sigla', 'SEC')->firstOrFail();
+    $editor = Role::query()->where('sigla', 'EDITOR')->firstOrFail();
+    $administrator = Role::query()->where('sigla', 'ADMIN')->firstOrFail();
 
     expect(User::query()->where('username', config('parish.admin.username'))->count())->toBe(1)
         ->and($admin->role?->sigla)->toBe('ADMIN')
         ->and($admin->password_verify)->toBeFalse()
-        ->and($admin->is_active)->toBeTrue();
+        ->and($admin->is_active)->toBeTrue()
+        ->and($administrator->permissions->pluck('slug')->sort()->values()->all())->toBe(Permission::query()->pluck('slug')->sort()->values()->all())
+        ->and($secretary->permissions->pluck('slug')->contains('retreats.registrations'))->toBeTrue()
+        ->and($editor->permissions->pluck('slug')->sort()->values()->all())->toBe([
+            'events.create',
+            'events.publish',
+            'events.update',
+            'events.view',
+            'gallery.create',
+            'gallery.photos',
+            'gallery.update',
+            'gallery.view',
+            'groups.create',
+            'groups.publish',
+            'groups.update',
+            'groups.view',
+            'posts.create',
+            'posts.publish',
+            'posts.update',
+            'posts.view',
+            'retreats.create',
+            'retreats.publish',
+            'retreats.registrations',
+            'retreats.update',
+            'retreats.view',
+        ])
+        ->and(Role::query()->where('sigla', 'COORD')->firstOrFail()->permissions->pluck('slug')->sort()->values()->all())->toBe([
+            'events.create',
+            'events.update',
+            'events.view',
+            'gallery.create',
+            'gallery.photos',
+            'gallery.update',
+            'gallery.view',
+            'groups.update',
+            'groups.view',
+            'retreats.create',
+            'retreats.registrations',
+            'retreats.update',
+            'retreats.view',
+        ]);
 });
 
 it('allows an administrator to create a user with mandatory first access', function () {

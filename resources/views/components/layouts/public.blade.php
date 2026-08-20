@@ -18,10 +18,12 @@
     @php
         $portalNav = [
             ['label' => 'Início', 'route' => 'portal.home'],
-            ['label' => 'A Paróquia', 'route' => 'portal.paroquia'],
-            ['label' => 'Pastorais', 'route' => 'portal.paroquia', 'fragment' => '#pastorais'],
+            ['label' => 'A Paróquia', 'route' => 'portal.paroquia', 'active' => 'portal.paroquia'],
+            ['label' => 'Pastorais', 'route' => 'portal.paroquia', 'fragment' => '#pastorais', 'active' => 'portal.pastorais.*'],
             ['label' => 'Juventude', 'route' => 'portal.juventude'],
             ['label' => 'Notícias', 'route' => 'portal.noticias'],
+            ['label' => 'Agenda', 'route' => 'portal.agenda'],
+            ['label' => 'Galeria', 'route' => 'portal.galeria'],
         ];
         $adminUrl = auth()->check() ? route('home') : route('login');
         $adminLabel = auth()->check() ? 'Painel administrativo' : 'Área administrativa';
@@ -36,11 +38,12 @@
 
             <div class="hidden items-center gap-1 xl:flex">
                 @foreach(array_slice($portalNav, 0, 2) as $item)
+                    @php($isPortalActive = request()->routeIs($item['active'] ?? $item['route'], ...(!isset($item['active']) ? [$item['route'] . '.*'] : [])))
                     <a href="{{ route($item['route']) }}{{ $item['fragment'] ?? '' }}"
                         @class([
                             'rounded-lg px-3 py-2 text-sm font-medium transition hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#14B8A6]',
-                            'bg-[#750D37] text-white' => request()->routeIs($item['route']),
-                            'text-white/80' => !request()->routeIs($item['route']),
+                            'bg-[#750D37] text-white' => $isPortalActive,
+                            'text-white/80' => !$isPortalActive,
                         ])>{{ $item['label'] }}</a>
                 @endforeach
 
@@ -50,11 +53,12 @@
                 </button>
 
                 @foreach(array_slice($portalNav, 2) as $item)
+                    @php($isPortalActive = request()->routeIs($item['active'] ?? $item['route'], ...(!isset($item['active']) ? [$item['route'] . '.*'] : [])))
                     <a href="{{ route($item['route']) }}{{ $item['fragment'] ?? '' }}"
                         @class([
                             'rounded-lg px-3 py-2 text-sm font-medium transition hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#14B8A6]',
-                            'bg-[#750D37] text-white' => request()->routeIs($item['route']),
-                            'text-white/80' => !request()->routeIs($item['route']),
+                            'bg-[#750D37] text-white' => $isPortalActive,
+                            'text-white/80' => !$isPortalActive,
                         ])>{{ $item['label'] }}</a>
                 @endforeach
             </div>
@@ -150,6 +154,7 @@
                     <a href="{{ route('portal.paroquia') }}#pastorais" class="hover:text-[#B3DEC1]">Pastorais</a>
                     <a href="{{ route('portal.juventude') }}" class="hover:text-[#B3DEC1]">Juventude</a>
                     <a href="{{ route('portal.dizimo') }}" class="hover:text-[#B3DEC1]">Dízimo</a>
+                    <a href="{{ route('portal.galeria') }}" class="hover:text-[#B3DEC1]">Galeria</a>
                 </div>
             </div>
             <div>
@@ -162,9 +167,18 @@
             </div>
         </div>
         <div class="border-t border-white/10">
-            <div class="mx-auto flex max-w-[1440px] flex-col gap-2 px-5 py-5 text-xs text-white/45 sm:px-8 md:flex-row md:items-center md:justify-between xl:px-12">
+            <div class="mx-auto flex max-w-[1440px] flex-col gap-3 px-5 py-5 text-xs text-white/45 sm:px-8 md:flex-row md:items-center md:justify-between xl:px-12">
                 <p>© {{ date('Y') }} Paróquia São Domingos de Gusmão.</p>
-                <p>Uma comunidade de fé, encontro e missão.</p>
+                <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
+                    <p>Uma comunidade de fé, encontro e missão.</p>
+                    <span class="hidden h-3 w-px bg-white/15 sm:block" aria-hidden="true"></span>
+                    <div class="flex items-center gap-2 text-white/30 transition hover:text-white/60 focus-within:text-white/70">
+                        <span>Trabalho voluntário feito por {{ config('parish.volunteer_author.name') }}</span>
+                        <a href="{{ config('parish.volunteer_author.github_url') }}" target="_blank" rel="noopener noreferrer" class="rounded p-1 transition hover:text-[#B3DEC1] focus:outline-none focus:ring-2 focus:ring-[#B3DEC1]/50" aria-label="GitHub de {{ config('parish.volunteer_author.name') }}"><x-bi-github class="size-3.5" /></a>
+                        <a href="{{ config('parish.volunteer_author.linkedin_url') }}" target="_blank" rel="noopener noreferrer" class="rounded p-1 transition hover:text-[#B3DEC1] focus:outline-none focus:ring-2 focus:ring-[#B3DEC1]/50" aria-label="LinkedIn de {{ config('parish.volunteer_author.name') }}"><x-bi-linkedin class="size-3.5" /></a>
+                        <a href="{{ route('portal.apoio') }}" class="rounded p-1 transition hover:text-rose-300 focus:outline-none focus:ring-2 focus:ring-rose-300/50" aria-label="Apoiar o trabalho voluntário"><x-bi-heart-fill class="size-3.5" /></a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>

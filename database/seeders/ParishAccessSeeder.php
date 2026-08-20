@@ -27,7 +27,7 @@ class ParishAccessSeeder extends Seeder
         }
 
         $secretary = Role::where('sigla', 'SEC')->firstOrFail();
-        $secretary->permissions()->sync(
+        $secretary->permissions()->syncWithoutDetaching(
             Permission::whereIn('slug', [
                 'users.view',
                 'users.create',
@@ -35,10 +35,59 @@ class ParishAccessSeeder extends Seeder
                 'users.status',
                 'users.reset-password',
                 'notifications.send',
+                'retreats.view',
+                'retreats.registrations',
+            ])->pluck('id')
+        );
+
+        $editor = Role::where('sigla', 'EDITOR')->firstOrFail();
+        $editor->permissions()->syncWithoutDetaching(
+            Permission::whereIn('slug', [
+                'posts.view',
+                'posts.create',
+                'posts.update',
+                'posts.publish',
+                'events.view',
+                'events.create',
+                'events.update',
+                'events.publish',
+                'groups.view',
+                'groups.create',
+                'groups.update',
+                'groups.publish',
+                'retreats.view',
+                'retreats.create',
+                'retreats.update',
+                'retreats.publish',
+                'retreats.registrations',
+                'gallery.view',
+                'gallery.create',
+                'gallery.update',
+                'gallery.photos',
+            ])->pluck('id')
+        );
+
+        $coordinator = Role::where('sigla', 'COORD')->firstOrFail();
+        $coordinator->permissions()->syncWithoutDetaching(
+            Permission::whereIn('slug', [
+                'events.view',
+                'events.create',
+                'events.update',
+                'groups.view',
+                'groups.update',
+                'retreats.view',
+                'retreats.create',
+                'retreats.update',
+                'retreats.registrations',
+                'gallery.view',
+                'gallery.create',
+                'gallery.update',
+                'gallery.photos',
             ])->pluck('id')
         );
 
         $admin = Role::where('sigla', 'ADMIN')->firstOrFail();
+        $admin->permissions()->syncWithoutDetaching(Permission::query()->pluck('id'));
         $adminUser = User::query()->firstOrCreate(
             ['username' => config('parish.admin.username')],
             [
@@ -53,9 +102,9 @@ class ParishAccessSeeder extends Seeder
 
         $adminUser->update([
             'role_id' => $admin->id,
+            'is_active' => true,
             ...(! $adminUser->password_verify ? [
                 'password' => config('parish.admin.password'),
-                'is_active' => true,
             ] : []),
         ]);
     }

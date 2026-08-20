@@ -62,6 +62,21 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class, 'role_id', 'id');
     }
 
+    public function pastoralGroups()
+    {
+        return $this->belongsToMany(PastoralGroup::class)->withTimestamps();
+    }
+
+    public function coordinatedPastoralGroups()
+    {
+        return $this->hasMany(PastoralGroup::class, 'coordinator_id');
+    }
+
+    public function coordinatedRetreats()
+    {
+        return $this->hasMany(Retreat::class, 'coordinator_id');
+    }
+
     public function hasPermission(string $permission): bool
     {
         if (! $this->is_active || ! $this->role) {

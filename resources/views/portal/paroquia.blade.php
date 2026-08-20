@@ -23,14 +23,16 @@
     <section id="pastorais" class="scroll-mt-28 border-t border-slate-100 bg-[#fbfbfb] py-16 sm:py-20">
         <div class="mx-auto max-w-6xl px-5 sm:px-8">
             <h2 class="font-serif text-4xl font-semibold">Pastorais e movimentos</h2>
-            <p class="mt-4 max-w-3xl text-lg leading-8 text-slate-600">A estrutura visual já está preparada para apresentar cada serviço da comunidade e orientar novos participantes.</p>
-            <div class="mt-10 grid gap-x-10 gap-y-0 border-y border-slate-200 md:grid-cols-2">
-                @foreach(['Catequese', 'Pastoral da Liturgia', 'Pastoral Familiar', 'Ação Social', 'Ministros da Eucaristia', 'Grupos de Oração'] as $pastoral)
-                    <div class="flex items-center gap-4 border-b border-slate-200 py-5 last:border-b-0 md:[&:nth-last-child(-n+2)]:border-b-0">
-                        <x-bi-arrow-right-circle class="size-5 shrink-0 text-[#008f83]" /><span class="font-serif text-xl font-semibold">{{ $pastoral }}</span>
-                    </div>
-                @endforeach
-            </div>
+            <p class="mt-4 max-w-3xl text-lg leading-8 text-slate-600">Conheça os serviços da comunidade e encontre um espaço para participar da missão paroquial.</p>
+            @forelse($groups as $group)
+                <a href="{{ route('portal.pastorais.show', $group) }}" class="group grid gap-3 border-b border-slate-200 py-6 first:mt-8 sm:grid-cols-[10rem_minmax(0,1fr)_auto] sm:items-center">
+                    <span class="text-sm font-semibold text-[#008f83]">{{ $group->typeLabel() }}</span>
+                    <span><span class="block font-serif text-2xl font-semibold transition group-hover:text-[#750D37]">{{ $group->name }}</span><span class="mt-2 block leading-7 text-slate-600">{{ $group->summary }}</span></span>
+                    <x-bi-arrow-right-circle class="size-5 text-[#008f83] transition group-hover:translate-x-1" />
+                </a>
+            @empty
+                <div class="mt-10 rounded-2xl border border-dashed border-slate-300 px-6 py-12 text-center"><x-bi-person-hearts class="mx-auto size-9 text-[#008f83]" /><p class="mt-4 text-slate-600">As pastorais e movimentos serão apresentados aqui em breve.</p></div>
+            @endforelse
         </div>
     </section>
 </x-layouts.public>

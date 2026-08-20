@@ -100,6 +100,7 @@ COPY --from=node-build /app/public/build ./public/build
 
 # Nginx config
 COPY docker/prod/nginx.conf /etc/nginx/http.d/default.conf
+COPY docker/prod/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 COPY docker/prod/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 

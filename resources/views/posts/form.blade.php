@@ -1,0 +1,33 @@
+<x-layouts.app :title="($post->exists ? 'Editar publicação' : 'Nova publicação') . ' — Gestão Paroquial'">
+    <div class="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+        <div class="flex items-center justify-between gap-4">
+            <div><p class="text-sm font-semibold text-[#008f83]">Portal público</p><h1 class="mt-1 text-3xl font-bold tracking-[-.035em] text-[#210124] dark:text-white">{{ $post->exists ? 'Editar publicação' : 'Nova publicação' }}</h1></div>
+            <a href="{{ route('posts.index') }}" class="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 px-4 text-sm font-semibold text-slate-600 transition hover:bg-white dark:border-slate-700 dark:text-slate-300"><x-bi-arrow-left class="size-4" /> Voltar</a>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data" action="{{ $post->exists ? route('posts.update', $post) : route('posts.store') }}" class="mt-6 rounded-[1.25rem] border border-slate-200 bg-white p-5 shadow-[0_10px_35px_rgba(33,1,36,.05)] dark:border-slate-800 dark:bg-slate-900 sm:p-7">
+            @csrf
+            @if ($post->exists) @method('PUT') @endif
+            <div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_18rem]">
+                <div class="space-y-6">
+                    <label class="block"><span class="text-sm font-semibold text-[#210124] dark:text-white">Título</span><input name="title" value="{{ old('title', $post->title) }}" required maxlength="180" class="mt-2 min-h-12 w-full rounded-xl border-slate-200 text-sm focus:border-[#14B8A6] focus:ring-[#14B8A6]/25 dark:border-slate-700 dark:bg-slate-800"><x-input-error :messages="$errors->get('title')" class="mt-2" /></label>
+                    <div class="grid gap-5 sm:grid-cols-2">
+                        <label class="block"><span class="text-sm font-semibold text-[#210124] dark:text-white">Categoria <span class="font-normal text-slate-400">(opcional)</span></span><input name="category" value="{{ old('category', $post->category) }}" maxlength="80" placeholder="Ex.: Avisos" class="mt-2 min-h-12 w-full rounded-xl border-slate-200 text-sm focus:border-[#14B8A6] focus:ring-[#14B8A6]/25 dark:border-slate-700 dark:bg-slate-800"><x-input-error :messages="$errors->get('category')" class="mt-2" /></label>
+                        <label class="block"><span class="text-sm font-semibold text-[#210124] dark:text-white">Endereço da notícia <span class="font-normal text-slate-400">(opcional)</span></span><input name="slug" value="{{ old('slug', $post->slug) }}" maxlength="190" placeholder="Gerado pelo título" class="mt-2 min-h-12 w-full rounded-xl border-slate-200 text-sm focus:border-[#14B8A6] focus:ring-[#14B8A6]/25 dark:border-slate-700 dark:bg-slate-800"><x-input-error :messages="$errors->get('slug')" class="mt-2" /></label>
+                    </div>
+                    <label class="block"><span class="text-sm font-semibold text-[#210124] dark:text-white">Resumo <span class="font-normal text-slate-400">(opcional)</span></span><textarea name="excerpt" rows="3" maxlength="500" class="mt-2 w-full rounded-xl border-slate-200 text-sm leading-6 focus:border-[#14B8A6] focus:ring-[#14B8A6]/25 dark:border-slate-700 dark:bg-slate-800" placeholder="Um breve texto para a lista de notícias">{{ old('excerpt', $post->excerpt) }}</textarea><x-input-error :messages="$errors->get('excerpt')" class="mt-2" /></label>
+                    <label class="block"><span class="text-sm font-semibold text-[#210124] dark:text-white">Conteúdo</span><textarea name="content" rows="14" required maxlength="30000" class="mt-2 w-full rounded-xl border-slate-200 text-sm leading-7 focus:border-[#14B8A6] focus:ring-[#14B8A6]/25 dark:border-slate-700 dark:bg-slate-800" placeholder="Escreva a notícia ou o aviso para a comunidade">{{ old('content', $post->content) }}</textarea><x-input-error :messages="$errors->get('content')" class="mt-2" /></label>
+                </div>
+                <aside class="space-y-6">
+                    <div class="rounded-xl bg-[#E5FCF5]/55 p-5"><p class="text-sm font-semibold text-[#210124]">Imagem de capa</p>@if ($post->coverImageUrl())<img src="{{ $post->coverImageUrl() }}" class="mt-4 aspect-[4/3] w-full rounded-lg object-cover" alt="Capa atual">@endif<label class="mt-4 block cursor-pointer rounded-xl border border-dashed border-[#76bfb4] bg-white/60 p-4 text-center text-sm font-semibold text-[#008f83] transition hover:bg-white"><x-bi-image class="mx-auto size-5" /><span class="mt-2 block">{{ $post->cover_image ? 'Trocar imagem' : 'Selecionar imagem' }}</span><input name="cover_image" type="file" accept="image/jpeg,image/png,image/webp" class="sr-only"></label><p class="mt-3 text-xs leading-5 text-slate-500">JPG, PNG ou WebP, até 5 MB.</p><x-input-error :messages="$errors->get('cover_image')" class="mt-2" /></div>
+                    @can('posts.publish')
+                        <label class="block"><span class="text-sm font-semibold text-[#210124] dark:text-white">Publicação</span><input name="published_at" type="datetime-local" value="{{ old('published_at', $post->published_at?->format('Y-m-d\\TH:i')) }}" class="mt-2 min-h-12 w-full rounded-xl border-slate-200 text-sm focus:border-[#14B8A6] focus:ring-[#14B8A6]/25 dark:border-slate-700 dark:bg-slate-800"><span class="mt-2 block text-xs leading-5 text-slate-500">Deixe em branco para salvar como rascunho. Informe uma data futura para agendar.</span><x-input-error :messages="$errors->get('published_at')" class="mt-2" /></label>
+                    @else
+                        <div class="rounded-xl border border-slate-200 p-4 text-sm leading-6 text-slate-500 dark:border-slate-700">Você pode salvar este conteúdo como rascunho. A publicação no portal será feita por uma pessoa autorizada.</div>
+                    @endcan
+                </aside>
+            </div>
+            <div class="mt-7 flex flex-col-reverse gap-3 border-t border-slate-100 pt-5 sm:flex-row sm:justify-end dark:border-slate-800"><a href="{{ route('posts.index') }}" class="inline-flex min-h-12 items-center justify-center rounded-xl px-5 text-sm font-semibold text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800">Cancelar</a><button class="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#750D37] px-5 text-sm font-semibold text-white shadow-[0_8px_20px_rgba(117,13,55,.2)] transition hover:bg-[#8d1042] focus:outline-none focus:ring-2 focus:ring-[#750D37]/45"><x-bi-check-lg class="size-4" /> {{ $post->exists ? 'Salvar alterações' : 'Salvar publicação' }}</button></div>
+        </form>
+    </div>
+</x-layouts.app>

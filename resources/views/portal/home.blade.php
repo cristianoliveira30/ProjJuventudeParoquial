@@ -45,35 +45,41 @@
                 <a href="{{ route('portal.noticias') }}" class="hidden items-center gap-2 text-sm font-semibold text-[#008f83] sm:inline-flex">Ver todas as notícias <x-bi-arrow-right class="size-4" /></a>
             </div>
 
-            <div class="mt-12 grid gap-12 lg:grid-cols-[1.55fr_.85fr]">
-                <article class="grid gap-7 sm:grid-cols-[1.05fr_.95fr] sm:items-center">
-                    <a href="{{ route('portal.noticias') }}" class="block overflow-hidden rounded-2xl">
-                        <img src="{{ asset('assets/img/portal/igreja.jpeg') }}" class="aspect-[4/3] h-full w-full object-cover transition duration-500 hover:scale-[1.025]" alt="Paroquianos reunidos em frente à igreja">
-                    </a>
-                    <div>
-                        <p class="text-sm font-medium text-[#008f83]">16 de agosto de 2026</p>
-                        <h3 class="mt-3 font-serif text-3xl font-semibold leading-tight sm:text-4xl">Festa de São Domingos reúne nossa comunidade</h3>
-                        <p class="mt-5 leading-7 text-slate-600">Um dia de fé, alegria e união, com celebração, convivência e atividades para todas as idades.</p>
-                        <a href="{{ route('portal.noticias') }}" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#008f83]">Ler notícia <x-bi-arrow-right class="size-4" /></a>
-                    </div>
-                </article>
-
-                <div class="divide-y divide-slate-200 border-y border-slate-200 lg:border-y-0 lg:border-l lg:pl-10">
-                    @foreach([
-                        ['title' => 'Inscrições abertas para a catequese', 'date' => '14 de agosto de 2026', 'icon' => 'people'],
-                        ['title' => 'Mutirão solidário neste sábado', 'date' => '12 de agosto de 2026', 'icon' => 'heart'],
-                        ['title' => 'Encontro de preparação para o batismo', 'date' => '10 de agosto de 2026', 'icon' => 'droplet'],
-                    ] as $news)
-                        <a href="{{ route('portal.noticias') }}" class="group flex items-center gap-5 py-7 first:pt-0 last:pb-0">
-                            <span class="flex size-14 shrink-0 items-center justify-center rounded-full bg-[#E5FCF5] text-[#008f83]">
-                                <x-dynamic-component :component="'bi-' . $news['icon']" class="size-6" />
-                            </span>
-                            <span class="min-w-0"><span class="block font-serif text-xl font-semibold leading-snug group-hover:text-[#750D37]">{{ $news['title'] }}</span><span class="mt-2 block text-sm text-slate-500">{{ $news['date'] }}</span></span>
-                            <x-bi-arrow-right class="ml-auto size-4 shrink-0 text-slate-300 transition group-hover:translate-x-1 group-hover:text-[#008f83]" />
+            @if ($featuredPost)
+                <div class="mt-12 grid gap-12 lg:grid-cols-[1.55fr_.85fr]">
+                    <article class="grid gap-7 sm:grid-cols-[1.05fr_.95fr] sm:items-center">
+                        <a href="{{ route('portal.noticias.show', $featuredPost) }}" class="block overflow-hidden rounded-2xl">
+                            @if ($featuredPost->coverImageUrl())
+                                <img src="{{ $featuredPost->coverImageUrl() }}" class="aspect-[4/3] h-full w-full object-cover transition duration-500 hover:scale-[1.025]" alt="Imagem de capa: {{ $featuredPost->title }}">
+                            @else
+                                <div class="flex aspect-[4/3] items-center justify-center bg-[#E5FCF5] text-[#008f83]"><x-bi-newspaper class="size-14" /></div>
+                            @endif
                         </a>
-                    @endforeach
+                        <div>
+                            <p class="text-sm font-medium text-[#008f83]">{{ $featuredPost->published_at->translatedFormat('d \\d\\e F \\d\\e Y') }}</p>
+                            <h3 class="mt-3 font-serif text-3xl font-semibold leading-tight sm:text-4xl">{{ $featuredPost->title }}</h3>
+                            <p class="mt-5 leading-7 text-slate-600">{{ $featuredPost->excerpt }}</p>
+                            <a href="{{ route('portal.noticias.show', $featuredPost) }}" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#008f83]">Ler notícia <x-bi-arrow-right class="size-4" /></a>
+                        </div>
+                    </article>
+
+                    <div class="divide-y divide-slate-200 border-y border-slate-200 lg:border-y-0 lg:border-l lg:pl-10">
+                        @foreach($recentPosts as $post)
+                            <a href="{{ route('portal.noticias.show', $post) }}" class="group flex items-center gap-5 py-7 first:pt-0 last:pb-0">
+                                <span class="flex size-14 shrink-0 items-center justify-center rounded-full bg-[#E5FCF5] text-[#008f83]"><x-bi-newspaper class="size-6" /></span>
+                                <span class="min-w-0"><span class="block font-serif text-xl font-semibold leading-snug group-hover:text-[#750D37]">{{ $post->title }}</span><span class="mt-2 block text-sm text-slate-500">{{ $post->published_at->translatedFormat('d \\d\\e F \\d\\e Y') }}</span></span>
+                                <x-bi-arrow-right class="ml-auto size-4 shrink-0 text-slate-300 transition group-hover:translate-x-1 group-hover:text-[#008f83]" />
+                            </a>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
+            @else
+                <div class="mt-12 rounded-2xl border border-dashed border-[#B3DEC1] bg-[#E5FCF5]/45 px-6 py-12 text-center sm:px-12">
+                    <x-bi-newspaper class="mx-auto size-10 text-[#008f83]" />
+                    <h3 class="mt-4 font-serif text-3xl font-semibold">As notícias da comunidade chegarão aqui</h3>
+                    <p class="mx-auto mt-3 max-w-xl leading-7 text-slate-600">A equipe pastoral poderá publicar celebrações, avisos e encontros pelo painel de gestão.</p>
+                </div>
+            @endif
 
             <a href="{{ route('portal.noticias') }}" class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[#008f83] sm:hidden">Ver todas as notícias <x-bi-arrow-right class="size-4" /></a>
         </div>
@@ -86,18 +92,16 @@
                 <x-bi-calendar3 class="size-6 text-[#008f83]" />
             </div>
             <div class="mt-9 grid divide-y divide-[#B3DEC1] lg:grid-cols-4 lg:divide-x lg:divide-y-0">
-                @foreach([
-                    ['day' => '18', 'week' => 'TER', 'time' => '19h', 'title' => 'Terço dos Homens'],
-                    ['day' => '19', 'week' => 'QUA', 'time' => '19h30', 'title' => 'Adoração ao Santíssimo'],
-                    ['day' => '20', 'week' => 'QUI', 'time' => '19h30', 'title' => 'Grupo de oração'],
-                    ['day' => '23', 'week' => 'DOM', 'time' => '10h30', 'title' => 'Missa com as famílias'],
-                ] as $event)
+                @forelse($upcomingEvents as $event)
                     <div class="flex gap-5 py-6 lg:px-7 lg:py-2 lg:first:pl-0 lg:last:pr-0">
-                        <div class="shrink-0 text-center"><span class="block font-serif text-4xl font-semibold text-[#008f83]">{{ $event['day'] }}</span><span class="text-xs font-semibold tracking-wider text-[#008f83]">{{ $event['week'] }}</span></div>
-                        <div class="border-l border-[#76bfb4] pl-5"><p class="flex items-center gap-2 text-sm font-semibold text-[#008f83]"><x-bi-clock class="size-4" />{{ $event['time'] }}</p><p class="mt-3 font-medium">{{ $event['title'] }}</p></div>
+                        <div class="shrink-0 text-center"><span class="block font-serif text-4xl font-semibold text-[#008f83]">{{ $event->starts_at->format('d') }}</span><span class="text-xs font-semibold tracking-wider text-[#008f83]">{{ Str::upper($event->starts_at->translatedFormat('D')) }}</span></div>
+                        <div class="border-l border-[#76bfb4] pl-5"><p class="flex items-center gap-2 text-sm font-semibold text-[#008f83]"><x-bi-clock class="size-4" />{{ $event->starts_at->format('H\\hi') }}</p><a href="{{ route('portal.agenda.show', $event) }}" class="mt-3 block font-medium hover:text-[#750D37]">{{ $event->title }}</a></div>
                     </div>
-                @endforeach
+                @empty
+                    <div class="py-5 text-sm text-slate-500 lg:col-span-4">A agenda da comunidade será publicada em breve.</div>
+                @endforelse
             </div>
+            <a href="{{ route('portal.agenda') }}" class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[#008f83]">Ver agenda completa <x-bi-arrow-right class="size-4" /></a>
         </div>
     </section>
 

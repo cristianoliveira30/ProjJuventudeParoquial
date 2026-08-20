@@ -29,4 +29,22 @@
             </div>
         </div>
     </section>
+
+    <section class="border-t border-slate-100 bg-[#fbfbfb] py-16 sm:py-20">
+        <div class="mx-auto max-w-6xl px-5 sm:px-8">
+            <h2 class="font-serif text-4xl font-semibold">Próximos retiros</h2>
+            <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-600">Experiências preparadas para fortalecer a fé, a amizade e o serviço.</p>
+            <div class="mt-10 divide-y divide-slate-200 border-y border-slate-200">
+                @forelse($retreats as $retreat)
+                    <a href="{{ route('portal.retiros.show', $retreat) }}" class="group grid gap-5 py-7 sm:grid-cols-[8rem_minmax(0,1fr)_auto] sm:items-center">
+                        <div><span class="block font-serif text-3xl font-semibold text-[#008f83]">{{ $retreat->starts_at->format('d') }}</span><span class="text-sm font-semibold uppercase text-[#008f83]">{{ $retreat->starts_at->translatedFormat('M Y') }}</span></div>
+                        <div><h3 class="font-serif text-2xl font-semibold group-hover:text-[#750D37]">{{ $retreat->title }}</h3><p class="mt-2 leading-7 text-slate-600">{{ $retreat->summary }}</p><p class="mt-2 text-sm text-slate-500">{{ $retreat->location ?: 'Local a confirmar' }}@if($retreat->capacity) · {{ max(0, $retreat->capacity - $retreat->occupied_count) }} vagas disponíveis @endif</p></div>
+                        <x-bi-arrow-right-circle class="size-6 text-[#008f83] transition group-hover:translate-x-1" />
+                    </a>
+                @empty
+                    <div class="py-12 text-center text-slate-500">Os próximos retiros serão anunciados aqui.</div>
+                @endforelse
+            </div>
+        </div>
+    </section>
 </x-layouts.public>

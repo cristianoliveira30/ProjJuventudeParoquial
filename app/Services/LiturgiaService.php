@@ -2,47 +2,72 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Exception;
+use Throwable;
 
 class LiturgiaService
 {
-    // URL base da API comunitária estável
     private const API_URL = 'https://liturgia.up.railway.app/';
 
-    public function getLiturgiaDoDia()
+    public function getLiturgiaDoDia(): array
     {
         try {
-            return Cache::remember('liturgia_diaria', now()->endOfDay(), function () {
-                // Formata o dia atual no padrão aceito pela API (Ex: "19-08")
+            return Cache::remember('liturgia_diaria_'.now()->format('Ymd'), now()->endOfDay(), function (): array {
                 $dataFormatoApi = now()->format('d-m');
-                
-                $response = Http::timeout(5)
-                    ->withoutVerifying()
-                    ->get(self::API_URL . $dataFormatoApi);
+                $response = Http::acceptJson()
+                    ->timeout(5)
+                    ->get(self::API_URL.$dataFormatoApi);
 
-                if ($response->successful()) {
-                    return $response->json();
+                if ($response->successful() && is_array($response->json())) {
+                    return $this->normalizar($response->json());
                 }
 
-                return $this->getDadosFicticios();
+                return $this->dadosIndisponiveis();
             });
-        } catch (Exception $e) {
-            Log::warning('Falha ao conectar na API de Liturgia: ' . $e->getMessage());
-            return $this->getDadosFicticios();
+        } catch (Throwable $e) {
+            Log::warning('Falha ao conectar na API de Liturgia: '.$e->getMessage());
+
+            return $this->dadosIndisponiveis();
         }
     }
 
-    private function getDadosFicticios(): array
+    private function normalizar(array $liturgia): array
     {
+        $normalizada = $this->dadosIndisponiveis();
+
+        foreach (['data', 'dia', 'liturgia', 'cor', 'oferendas', 'comunhao'] as $campo) {
+            if (isset($liturgia[$campo]) && is_string($liturgia[$campo]) && trim($liturgia[$campo]) !== '') {
+                $normalizada[$campo] = $liturgia[$campo];
+            }
+        }
+
+        foreach (['primeiraLeitura', 'salmo', 'segundaLeitura', 'evangelho', 'antifonas'] as $campo) {
+            if (isset($liturgia[$campo]) && (is_string($liturgia[$campo]) || is_array($liturgia[$campo]))) {
+                $normalizada[$campo] = $liturgia[$campo];
+            }
+        }
+
+        return $normalizada;
+    }
+
+    private function dadosIndisponiveis(): array
+    {
+        $aviso = 'Não foi possível carregar esta leitura automaticamente. Tente recarregar a página em alguns instantes.';
+
         return [
-            'liturgia' => 'Tempo Comum (Modo de Segurança)',
+            'data' => now()->translatedFormat('d \\d\\e F \\d\\e Y'),
+            'dia' => 'A liturgia diária está temporariamente indisponível.',
+            'liturgia' => 'Liturgia diária',
             'cor' => 'Verde',
-            'leitura1' => 'Não foi possível carregar as leituras automaticamente.',
-            'salmo' => 'Verifique sua conexão.',
-            'evangelho' => 'Tente recarregar a página.'
+            'oferendas' => 'Informação indisponível no momento.',
+            'comunhao' => 'Informação indisponível no momento.',
+            'primeiraLeitura' => $aviso,
+            'salmo' => $aviso,
+            'segundaLeitura' => $aviso,
+            'evangelho' => $aviso,
+            'antifonas' => $aviso,
         ];
     }
 }
