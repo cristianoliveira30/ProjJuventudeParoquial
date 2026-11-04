@@ -2,7 +2,7 @@ $ErrorActionPreference = 'Stop'
 
 $Remote = 'u401198718@149.62.37.88'
 $Port = '65002'
-$RemoteDir = 'public_html/paroquiasaodomingos'
+$RemoteDir = 'domains/sistemasapex.com.br/public_html/paroquiasaodomingos'
 $ProjectRoot = Resolve-Path (Join-Path $PSScriptRoot '..')
 $ArchiveDir = Join-Path $ProjectRoot 'artifacts'
 $Archive = Join-Path $ArchiveDir 'hostinger-deploy.zip'
@@ -33,7 +33,7 @@ try {
     Write-Host 'A senha SSH será solicitada para o envio e para os comandos remotos.'
     scp -P $Port $Archive "${Remote}:/tmp/paroquiasaodomingos-deploy.zip"
     if ($LASTEXITCODE -ne 0) { throw "Falha no envio (scp: $LASTEXITCODE)." }
-    $remoteCommand = "set -eu; mkdir -p '$RemoteDir'; unzip -oq /tmp/paroquiasaodomingos-deploy.zip -d '$RemoteDir'; rm -f /tmp/paroquiasaodomingos-deploy.zip; cd '$RemoteDir'; php artisan migrate --force; php artisan optimize"
+    $remoteCommand = "set -eu; mkdir -p '$RemoteDir' '$RemoteDir/storage/app/public' '$RemoteDir/storage/framework/cache/data' '$RemoteDir/storage/framework/sessions' '$RemoteDir/storage/framework/views' '$RemoteDir/storage/logs' '$RemoteDir/bootstrap/cache'; unzip -oq /tmp/paroquiasaodomingos-deploy.zip -d '$RemoteDir'; rm -f /tmp/paroquiasaodomingos-deploy.zip; cd '$RemoteDir'; php artisan optimize:clear; php artisan migrate --force; php artisan optimize"
     ssh -p $Port $Remote $remoteCommand
     if ($LASTEXITCODE -ne 0) { throw "Falha no deploy remoto (ssh: $LASTEXITCODE)." }
 

@@ -2,6 +2,10 @@
 
 return [
 
+    'liturgia' => [
+        'client_fetch' => env('LITURGIA_CLIENT_FETCH', true),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Third Party Services

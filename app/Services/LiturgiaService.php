@@ -13,19 +13,36 @@ class LiturgiaService
 
     public function getLiturgiaDoDia(): array
     {
+        if (config('services.liturgia.client_fetch')) {
+            return $this->dadosIndisponiveis();
+        }
+
+        $cacheKey = 'liturgia_diaria_v2_'.now()->format('Ymd');
+
         try {
-            return Cache::remember('liturgia_diaria_'.now()->format('Ymd'), now()->endOfDay(), function (): array {
-                $dataFormatoApi = now()->format('d-m');
-                $response = Http::acceptJson()
-                    ->timeout(5)
-                    ->get(self::API_URL.$dataFormatoApi);
+            $cached = Cache::get($cacheKey);
+            if (is_array($cached)) {
+                return $cached;
+            }
 
-                if ($response->successful() && is_array($response->json())) {
-                    return $this->normalizar($response->json());
-                }
+            $response = Http::acceptJson()
+                ->timeout(5)
+                ->get(self::API_URL.now()->format('d-m'));
 
-                return $this->dadosIndisponiveis();
-            });
+            $payload = $response->json();
+            if (
+                ! $response->successful()
+                || ! is_array($payload)
+                || blank($payload['liturgia'] ?? null)
+                || ! $this->possuiLeiturasEssenciais($payload)
+            ) {
+                throw new \RuntimeException('A API de liturgia retornou uma resposta inválida.');
+            }
+
+            $liturgia = $this->normalizar($payload);
+            Cache::put($cacheKey, $liturgia, now()->endOfDay());
+
+            return $liturgia;
         } catch (Throwable $e) {
             Log::warning('Falha ao conectar na API de Liturgia: '.$e->getMessage());
 
@@ -50,6 +67,17 @@ class LiturgiaService
         }
 
         return $normalizada;
+    }
+
+    private function possuiLeiturasEssenciais(array $liturgia): bool
+    {
+        foreach (['primeiraLeitura', 'salmo', 'evangelho'] as $campo) {
+            if (! isset($liturgia[$campo]) || (! is_string($liturgia[$campo]) && ! is_array($liturgia[$campo]))) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private function dadosIndisponiveis(): array

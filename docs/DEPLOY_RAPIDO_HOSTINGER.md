@@ -1,6 +1,6 @@
 # Deploy rápido na Hostinger
 
-Os scripts compilam o JavaScript, criam `artifacts/hostinger-deploy.zip`, enviam o arquivo para `u401198718@149.62.37.88:65002`, descompactam em `public_html/paroquiasaodomingos` e executam as migrations e o cache do Laravel.
+Os scripts compilam o JavaScript, criam `artifacts/hostinger-deploy.zip`, enviam o arquivo para `u401198718@149.62.37.88:65002`, descompactam em `$HOME/domains/sistemasapex.com.br/public_html/paroquiasaodomingos` e executam as migrations e o cache do Laravel.
 
 Ubuntu ou WSL:
 

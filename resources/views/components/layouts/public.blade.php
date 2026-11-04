@@ -135,9 +135,9 @@
                     <p class="font-serif text-xl font-semibold leading-tight">Paróquia São Domingos<br>de Gusmão</p>
                 </div>
                 <div class="mt-6 space-y-2 text-sm leading-6 text-white/65">
-                    <p>Endereço da paróquia será informado aqui.</p>
-                    <p>Telefone e atendimento da secretaria.</p>
-                    <p>contato@saodomingos.org.br</p>
+                    <p>Av. Celso Malcher, 733 — Terra Firme, Belém - PA, CEP: 66077-000</p>
+                    <p>(91) 3274-4746 / (91) 4104-8553</p>
+                    <p>paroquiasdg@hotmail.com</p>
                 </div>
             </div>
             <div>
