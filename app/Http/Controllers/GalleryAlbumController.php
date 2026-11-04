@@ -100,7 +100,7 @@ class GalleryAlbumController extends Controller
 
     private function ensureCanManage(Request $request, GalleryAlbum $album): void
     {
-        abort_if($request->user()->role?->sigla === 'COORD' && $album->author_id !== $request->user()->id, 403, 'Você só pode gerenciar os álbuns que criou.');
+        abort_unless($album->isManagedBy($request->user()), 403, 'Você só pode gerenciar os álbuns que criou.');
     }
 
     private function storeCover(Request $request, GalleryAlbum $album): void

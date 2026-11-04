@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Retreat;
 use App\Models\RetreatRegistration;
 use Carbon\Carbon;
+use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
 class RetreatRegistrationController extends Controller
 {
@@ -43,7 +45,21 @@ class RetreatRegistrationController extends Controller
             'guardian_phone.required' => 'Informe o telefone do responsável legal para participantes menores de 18 anos.',
         ]);
 
-        $status = DB::transaction(function () use ($retreat, $validated) {
+        try {
+            $status = $this->createRegistration($retreat, $validated);
+        } catch (UniqueConstraintViolationException) {
+            // Dois envios simultâneos passam juntos pela regra unique; o índice do banco barra o segundo.
+            throw ValidationException::withMessages(['email' => 'Já existe uma inscrição com este e-mail para o retiro.']);
+        }
+
+        return back()->with('registration_success', $status === 'waitlist'
+            ? 'Inscrição recebida. No momento você está na lista de espera.'
+            : 'Inscrição recebida com sucesso. A equipe entrará em contato com as próximas orientações.');
+    }
+
+    private function createRegistration(Retreat $retreat, array $validated): string
+    {
+        return DB::transaction(function () use ($retreat, $validated) {
             $lockedRetreat = Retreat::query()->lockForUpdate()->findOrFail($retreat->id);
             $occupied = $lockedRetreat->registrations()->whereIn('status', ['pending', 'confirmed'])->count();
             $status = $lockedRetreat->capacity && $occupied >= $lockedRetreat->capacity ? 'waitlist' : 'pending';
@@ -58,10 +74,6 @@ class RetreatRegistrationController extends Controller
 
             return $status;
         });
-
-        return back()->with('registration_success', $status === 'waitlist'
-            ? 'Inscrição recebida. No momento você está na lista de espera.'
-            : 'Inscrição recebida com sucesso. A equipe entrará em contato com as próximas orientações.');
     }
 
     public function index(Request $request, Retreat $retreat)
@@ -102,8 +114,8 @@ class RetreatRegistrationController extends Controller
 
     private function ensureCanManage(Request $request, Retreat $retreat): void
     {
-        abort_if(
-            $request->user()->role?->sigla === 'COORD' && $retreat->coordinator_id !== $request->user()->id,
+        abort_unless(
+            $retreat->isManagedBy($request->user()),
             403,
             'Você só pode acessar inscrições de retiros sob sua responsabilidade.'
         );

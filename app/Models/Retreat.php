@@ -83,6 +83,12 @@ class Retreat extends Model
         return $query->where('starts_at', '>=', now());
     }
 
+    // Coordenadores só gerenciam os retiros que coordenam; demais perfis seguem as permissões das rotas.
+    public function isManagedBy(User $user): bool
+    {
+        return $user->role?->sigla !== 'COORD' || $this->coordinator_id === $user->id;
+    }
+
     public function isRegistrationOpen(): bool
     {
         return $this->registrationStatus() === self::REGISTRATION_OPEN;

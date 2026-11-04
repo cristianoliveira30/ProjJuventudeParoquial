@@ -156,8 +156,8 @@ class RetreatController extends Controller
 
     private function ensureCanManage(Request $request, Retreat $retreat): void
     {
-        abort_if(
-            $request->user()->role?->sigla === 'COORD' && $retreat->coordinator_id !== $request->user()->id,
+        abort_unless(
+            $retreat->isManagedBy($request->user()),
             403,
             'Você só pode gerenciar retiros sob sua responsabilidade.'
         );

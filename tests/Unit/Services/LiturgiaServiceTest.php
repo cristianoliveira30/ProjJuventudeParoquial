@@ -17,6 +17,23 @@ it('keeps the liturgy view data complete when the provider is unavailable', func
     ]);
 });
 
+it('caches a provider failure for a few minutes only', function () {
+    config(['cache.default' => 'array']);
+    Cache::forget('liturgia_diaria_'.now()->format('Ymd'));
+    Http::fakeSequence('https://liturgia.up.railway.app/*')
+        ->push([], 503)
+        ->push(['liturgia' => 'Tempo Comum']);
+
+    app(LiturgiaService::class)->getLiturgiaDoDia();
+    $duranteFalha = app(LiturgiaService::class)->getLiturgiaDoDia();
+    $this->travel(6)->minutes();
+    $depois = app(LiturgiaService::class)->getLiturgiaDoDia();
+
+    expect($duranteFalha['liturgia'])->toBe('Liturgia diária')
+        ->and($depois['liturgia'])->toBe('Tempo Comum');
+    Http::assertSentCount(2);
+});
+
 it('uses the daily provider response when it is available', function () {
     config(['cache.default' => 'array']);
     Cache::forget('liturgia_diaria_'.now()->format('Ymd'));

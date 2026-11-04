@@ -60,6 +60,8 @@ services:
       - ./docker/prod/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./docker/prod/certs:/etc/nginx/certs:ro
       - public_build:/var/www/html/public:ro
+      # Uploads (disk "public") servidos em /storage, sem depender de storage:link.
+      - ./storage/app/public:/var/www/html/public/storage:ro
     depends_on:
       app:
         condition: service_healthy

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Retreat;
 use App\Models\RetreatServant;
 use Carbon\Carbon;
+use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
 class RetreatServantController extends Controller
 {
@@ -54,12 +56,17 @@ class RetreatServantController extends Controller
             'guardian_phone.required' => 'Informe o telefone do responsável legal para menores de 18 anos.',
         ]);
 
-        $retreat->servants()->create([
-            ...collect($validated)->except(['consent', 'health_data_consent'])->all(),
-            'status' => 'pending',
-            'consented_at' => now(),
-            'health_data_consented_at' => now(),
-        ]);
+        try {
+            $retreat->servants()->create([
+                ...collect($validated)->except(['consent', 'health_data_consent'])->all(),
+                'status' => 'pending',
+                'consented_at' => now(),
+                'health_data_consented_at' => now(),
+            ]);
+        } catch (UniqueConstraintViolationException) {
+            // Dois envios simultâneos passam juntos pela regra unique; o índice do banco barra o segundo.
+            throw ValidationException::withMessages(['email' => 'Já existe uma inscrição com este e-mail para servir neste retiro.']);
+        }
 
         return back()->with('servant_registration_success', 'Inscrição recebida. A equipe responsável analisará seus dados e entrará em contato.');
     }
@@ -126,8 +133,8 @@ class RetreatServantController extends Controller
 
     private function ensureCanManage(Request $request, Retreat $retreat): void
     {
-        abort_if(
-            $request->user()->role?->sigla === 'COORD' && $retreat->coordinator_id !== $request->user()->id,
+        abort_unless(
+            $retreat->isManagedBy($request->user()),
             403,
             'Você só pode acessar servos de retiros sob sua responsabilidade.'
         );

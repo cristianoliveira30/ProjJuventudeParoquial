@@ -30,6 +30,12 @@ class GalleryAlbum extends Model
         return $this->belongsTo(User::class, 'author_id');
     }
 
+    // Coordenadores só gerenciam os álbuns que criaram.
+    public function isManagedBy(User $user): bool
+    {
+        return $user->role?->sigla !== 'COORD' || $this->author_id === $user->id;
+    }
+
     public function scopePublished(Builder $query): Builder
     {
         return $query->whereNotNull('published_at')->where('published_at', '<=', now());

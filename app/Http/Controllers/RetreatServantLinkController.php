@@ -57,6 +57,6 @@ class RetreatServantLinkController extends Controller
 
     private function ensureCanManage(Request $request, Retreat $retreat): void
     {
-        abort_if($request->user()->role?->sigla === 'COORD' && $retreat->coordinator_id !== $request->user()->id, 403);
+        abort_unless($retreat->isManagedBy($request->user()), 403);
     }
 }

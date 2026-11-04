@@ -12,36 +12,6 @@ use Illuminate\Support\Facades\DB;
 
 class NotificationController extends Controller
 {
-    public function index(Request $request)
-    {
-        $userId = $request->user()->id;
-
-        $query = NotificationDeliveries::query()
-            ->where('user_id', $userId)
-            ->with('notification')
-            ->orderByDesc('created_at');
-
-        $notifications = $query->get();
-
-        return response()->json([
-            'notifications' => $notifications,
-        ]);
-    }
-
-    public function countUnread(Request $request)
-    {
-        $userId = $request->user()->id;
-
-        $count = NotificationDeliveries::query()
-            ->where('user_id', $userId)
-            ->whereNull('read_at')
-            ->count();
-
-        return response()->json([
-            'unread_count' => $count,
-        ]);
-    }
-
     public function create(Request $request)
     {
         $input = $request->validate([
@@ -124,8 +94,10 @@ class NotificationController extends Controller
                 });
             });
         } catch (\Throwable $e) {
+            report($e);
+
             return back()
-                ->withErrors(['error' => 'Erro ao criar notificação: ' . $e->getMessage()])
+                ->withErrors(['error' => 'Erro ao criar notificação. Tente novamente.'])
                 ->withInput();
         }
 

@@ -43,7 +43,8 @@ class SendWebPushForUser implements ShouldQueue
             'title' => $this->payload['title'] ?? 'Nova notificação',
             'body'  => $this->payload['message'] ?? '',
             'notification_id' => $this->notificationId,
-            'url' => url('/notifications/dashboard') . '?open=' . $this->notificationId,
+            // dashboard exige notifications.send; a home abre para qualquer destinatário
+            'url' => route('home'),
         ];
 
         $json = json_encode($data, JSON_UNESCAPED_UNICODE);

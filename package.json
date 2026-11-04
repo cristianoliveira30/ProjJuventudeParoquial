@@ -20,16 +20,8 @@
         "vite": "^7.0.7"
     },
     "dependencies": {
-        "ag-grid-community": "^35.1.0",
-        "apexcharts": "^5.3.6",
         "bootstrap-icons": "^1.13.1",
-        "dexie": "^4.2.1",
         "flowbite": "^4.0.1",
-        "jspdf": "^4.0.0",
-        "jspdf-autotable": "^5.0.2",
-        "marked": "^17.0.1",
-        "simple-datatables": "^10.2.0",
-        "sweetalert2": "^11.26.10",
-        "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
+        "sweetalert2": "^11.26.10"
     }
 }

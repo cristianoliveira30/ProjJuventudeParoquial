@@ -24,12 +24,16 @@ class LiturgiaService
                     return $this->normalizar($response->json());
                 }
 
-                return $this->dadosIndisponiveis();
+                // Lança para não cachear a falha o dia inteiro; o catch abaixo devolve o aviso.
+                throw new \RuntimeException('API de Liturgia respondeu '.$response->status());
             });
         } catch (Throwable $e) {
             Log::warning('Falha ao conectar na API de Liturgia: '.$e->getMessage());
 
-            return $this->dadosIndisponiveis();
+            // Guarda o aviso por pouco tempo: evita esperar o timeout a cada visita enquanto a API está fora.
+            Cache::put('liturgia_diaria_'.now()->format('Ymd'), $aviso = $this->dadosIndisponiveis(), now()->addMinutes(5));
+
+            return $aviso;
         }
     }
 

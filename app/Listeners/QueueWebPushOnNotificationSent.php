@@ -13,6 +13,6 @@ class QueueWebPushOnNotificationSent
             userId: $event->userId,
             notificationId: $event->notificationId,
             payload: $event->payload
-        )->onQueue('push');
+        );
     }
 }
