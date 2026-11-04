@@ -137,6 +137,7 @@ it('ends an already open session when the user is deactivated', function () {
 });
 
 it('seeds one initial administrator and remains idempotent', function () {
+    config()->set('parish.admin.password', 'SenhaInicial@123');
     $seeder = app(ParishAccessSeeder::class);
     $seeder->run();
     $seeder->run();
@@ -190,6 +191,13 @@ it('seeds one initial administrator and remains idempotent', function () {
             'retreats.update',
             'retreats.view',
         ]);
+});
+
+it('requires an explicit initial administrator password', function () {
+    config()->set('parish.admin.password', null);
+
+    expect(fn () => app(ParishAccessSeeder::class)->run())
+        ->toThrow(LogicException::class, 'Defina PARISH_ADMIN_PASSWORD');
 });
 
 it('allows an administrator to create a user with mandatory first access', function () {

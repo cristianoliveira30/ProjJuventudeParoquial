@@ -23,10 +23,15 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('components.layouts.app.header', function ($view) {
-            $notifications = Auth::user()
-                ? Auth::user()->unreadNotifications()->get()->toArray()
+            $user = Auth::user();
+            $notifications = $user
+                ? $user->unreadNotifications()->latest('created_at')->limit(10)->get()->toArray()
                 : [];
-            $view->with('notifications', $notifications);
+
+            $view->with([
+                'notifications' => $notifications,
+                'unreadCount' => $user ? $user->unreadNotifications()->count() : 0,
+            ]);
         });
     }
 }

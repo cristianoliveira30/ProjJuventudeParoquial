@@ -15,6 +15,7 @@ class EnsureFirstAccessPassword
         if (Auth::check() && !Auth::user()->password_verify) {
             if (
                 !$request->routeIs('first.access') &&
+                !$request->routeIs('email.verify*') &&
                 !$request->routeIs('user.profile.password.update') &&
                 !$request->routeIs('logout')
             ) {

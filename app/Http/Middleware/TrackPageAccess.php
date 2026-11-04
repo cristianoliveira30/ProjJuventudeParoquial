@@ -64,7 +64,7 @@ class TrackPageAccess
                 'method' => $request->method(),
                 'path' => '/' . ltrim($request->path(), '/'),
                 'route_name' => $request->route()?->getName(),
-                'full_url' => $request->fullUrl(),
+                'full_url' => $request->url(),
                 'ip_address' => $request->ip(),
                 'user_agent' => (string) $request->userAgent(),
                 'referer' => (string) $request->headers->get('referer'),

@@ -52,6 +52,10 @@
                     <p class="mt-3 text-sm leading-6 text-slate-500">Entre com sua conta para acessar o painel administrativo.</p>
                 </div>
 
+                @if (session('status'))
+                    <p class="mb-5 rounded-xl bg-emerald-50 px-4 py-3 text-sm text-emerald-700">{{ session('status') }}</p>
+                @endif
+
                 <form action="{{ route('login.post') }}" method="post" class="space-y-5" id="login-form">
                     @csrf
                     <div>
@@ -65,7 +69,7 @@
                     <div>
                         <div class="mb-2 flex items-center justify-between">
                             <label for="password" class="text-sm font-semibold text-[#210124]">Senha</label>
-                            <span class="text-xs font-medium text-slate-400" title="Um administrador pode gerar uma nova senha temporária">Esqueceu? Procure a secretaria</span>
+                            <a href="{{ route('password.request') }}" class="text-xs font-medium text-[#008f83]">Esqueceu?</a>
                         </div>
                         <div class="relative">
                             <input id="password" name="password" type="password" autocomplete="current-password" required placeholder="Digite sua senha"

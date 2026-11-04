@@ -1,4 +1,6 @@
-## CI/CD (GitHub Actions) — Visão Geral
+## Fluxo Docker legado
+
+> Para o deploy atual na Hostinger, use [HOSTINGER_DEPLOY.md](HOSTINGER_DEPLOY.md). O workflow ativo compila os assets e publica a branch `deploy`, sem secrets ou Environments no GitHub.
 
 Este documento explica o pipeline de CI/CD usado neste repositório e como testá-lo localmente.
 

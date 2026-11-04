@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Support\Facades\Hash;
+use App\Notifications\EmailVerificationCode;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -15,6 +17,27 @@ class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
     use AuthenticationLoggable, HasApiTokens, HasFactory, HasPushSubscriptions, Notifiable;
+
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new ResetPassword($token));
+    }
+
+    public function sendEmailVerificationCode(): void
+    {
+        $code = (string) random_int(100000, 999999);
+        $this->emailVerificationCodes()->delete();
+        $this->emailVerificationCodes()->create([
+            'code' => Hash::make($code),
+            'expires_at' => now()->addMinutes(10),
+        ]);
+        $this->notify(new EmailVerificationCode($code));
+    }
+
+    public function emailVerificationCodes()
+    {
+        return $this->hasMany(\App\Models\EmailVerificationCode::class);
+    }
 
     /**
      * The attributes that are mass assignable.

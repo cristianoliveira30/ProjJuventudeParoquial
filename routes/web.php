@@ -17,6 +17,18 @@ Route::middleware([NoStoreHtml::class, 'guest'])->group(function () {
 });
 
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::middleware('guest')->group(function () {
+    Route::get('/esqueci-a-senha', [AuthController::class, 'showForgotPassword'])->name('password.request');
+    Route::post('/esqueci-a-senha', [AuthController::class, 'sendResetLink'])->name('password.email');
+    Route::get('/redefinir-senha/{token}', [AuthController::class, 'showResetPassword'])->name('password.reset');
+    Route::post('/redefinir-senha', [AuthController::class, 'resetPassword'])->name('password.update');
+});
+
+Route::middleware(['auth', 'active.user'])->group(function () {
+    Route::get('/verificar-email', [AuthController::class, 'showEmailVerification'])->name('email.verify');
+    Route::post('/verificar-email', [AuthController::class, 'verifyEmail'])->name('email.verify.submit');
+    Route::post('/verificar-email/reenviar', [AuthController::class, 'resendEmailVerification'])->name('email.verify.resend');
+});
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 Route::middleware(['auth', 'active.user'])->group(function () {

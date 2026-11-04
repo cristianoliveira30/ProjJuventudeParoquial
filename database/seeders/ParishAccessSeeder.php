@@ -11,6 +11,12 @@ class ParishAccessSeeder extends Seeder
 {
     public function run(): void
     {
+        $adminPassword = config('parish.admin.password');
+
+        if (! is_string($adminPassword) || $adminPassword === '') {
+            throw new \LogicException('Defina PARISH_ADMIN_PASSWORD antes de executar o seeder.');
+        }
+
         $roles = [
             'ADMIN' => ['name' => 'Administrador', 'description' => 'Acesso completo ao sistema paroquial'],
             'SEC' => ['name' => 'Secretaria', 'description' => 'Atendimento e gestão de usuários'],
@@ -93,7 +99,7 @@ class ParishAccessSeeder extends Seeder
             [
                 'name' => config('parish.admin.name'),
                 'email' => config('parish.admin.email'),
-                'password' => config('parish.admin.password'),
+                'password' => $adminPassword,
                 'password_verify' => false,
                 'is_active' => true,
                 'role_id' => $admin->id,
@@ -104,7 +110,7 @@ class ParishAccessSeeder extends Seeder
             'role_id' => $admin->id,
             'is_active' => true,
             ...(! $adminUser->password_verify ? [
-                'password' => config('parish.admin.password'),
+                'password' => $adminPassword,
             ] : []),
         ]);
     }

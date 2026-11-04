@@ -1,6 +1,6 @@
 @php
     $notifications = $notifications ?? [];
-    $unreadCount = collect($notifications)->whereNull('read_at')->count();
+    $unreadCount = $unreadCount ?? collect($notifications)->whereNull('read_at')->count();
 @endphp
 
 <header id="app-header" class="fixed left-0 right-0 top-0 z-[7999] h-18 border-b border-slate-200/80 bg-white/95 backdrop-blur transition-[left] duration-300 lg:left-[17rem] dark:border-slate-800 dark:bg-slate-950/95">

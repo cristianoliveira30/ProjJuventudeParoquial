@@ -5,7 +5,7 @@ return [
         'name' => env('PARISH_ADMIN_NAME', 'Administrador Paroquial'),
         'username' => env('PARISH_ADMIN_USERNAME', 'admin'),
         'email' => env('PARISH_ADMIN_EMAIL', 'admin@paroquia.local'),
-        'password' => env('PARISH_ADMIN_PASSWORD', 'Paroquia@2026'),
+        'password' => env('PARISH_ADMIN_PASSWORD'),
     ],
     'volunteer_author' => [
         'name' => env('VOLUNTEER_AUTHOR_NAME', 'Cristian Oliveira'),

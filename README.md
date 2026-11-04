@@ -183,24 +183,26 @@ composer test
 
 ### 🐳 Deploy usando Docker (produção)
 
-1. Copie o exemplo de ambiente e ajuste as variáveis (especialmente `APP_KEY`, `APP_URL`, `DB_*`):
+1. Copie o exemplo de ambiente e ajuste todas as variáveis. `APP_KEY`, `DB_*` e `PARISH_ADMIN_PASSWORD` são obrigatórias:
 
 ```bash
 cp .env.production.example .env.production
 ```
 
+Instale certificados TLS reais em `docker/prod/certs/server.crt` e `docker/prod/certs/server.key`. Esses arquivos não são versionados. O Nginx não inicia sem eles.
+
 2. Construa e rode os containers:
 
 ```bash
-docker compose -f docker-compose.prod.yml build
+docker compose --env-file .env.production -f docker-compose.prod.yml build
 
-docker compose -f docker-compose.prod.yml up -d
+docker compose --env-file .env.production -f docker-compose.prod.yml up -d
 ```
 
 3. Execute migrações (se necessário):
 
 ```bash
-docker compose -f docker-compose.prod.yml exec app php artisan migrate --force
+docker compose --env-file .env.production -f docker-compose.prod.yml exec app php artisan migrate --force
 ```
 
 A aplicação ficará disponível em `http://localhost`.

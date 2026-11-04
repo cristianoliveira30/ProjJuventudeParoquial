@@ -5,17 +5,14 @@ services:
     env_file:
       - path: .env.production
         required: false
-    environment:
-      MYSQL_DATABASE: ${DB_DATABASE:-laravel}
-      MYSQL_USER: ${DB_USERNAME:-sail}
-      MYSQL_PASSWORD: ${DB_PASSWORD:-password}
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-password}
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./docker/mysql/production-entrypoint.sh:/usr/local/bin/production-entrypoint.sh:ro
+    entrypoint: ["/bin/sh", "/usr/local/bin/production-entrypoint.sh"]
     networks:
       - app-network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p${DB_PASSWORD:-password}"]
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -p\"$${DB_PASSWORD:?DB_PASSWORD is required}\""]
       interval: 5s
       timeout: 5s
       retries: 10
