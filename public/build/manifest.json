@@ -1,0 +1,81 @@
+{
+  "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff": {
+    "file": "assets/bootstrap-icons-BeopsB42.woff",
+    "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff"
+  },
+  "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2": {
+    "file": "assets/bootstrap-icons-mSm7cUeB.woff2",
+    "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
+  },
+  "node_modules/flowbite/lib/esm/index.js": {
+    "file": "assets/index-CVgr6Ajb.js",
+    "name": "index",
+    "src": "node_modules/flowbite/lib/esm/index.js",
+    "isDynamicEntry": true
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-DUF_RK4F.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/css/fonts/ARIAL.TTF": {
+    "file": "assets/ARIAL-D6EXhACG.TTF",
+    "src": "resources/css/fonts/ARIAL.TTF"
+  },
+  "resources/css/fonts/ARIALBD.TTF": {
+    "file": "assets/ARIALBD-FEHhJQl7.TTF",
+    "src": "resources/css/fonts/ARIALBD.TTF"
+  },
+  "resources/css/fonts/ARIALBI.TTF": {
+    "file": "assets/ARIALBI-BY5QjsP-.TTF",
+    "src": "resources/css/fonts/ARIALBI.TTF"
+  },
+  "resources/css/fonts/ARIALI.TTF": {
+    "file": "assets/ARIALI-CP0ONpi0.TTF",
+    "src": "resources/css/fonts/ARIALI.TTF"
+  },
+  "resources/css/fonts/ARIBLK.TTF": {
+    "file": "assets/ARIBLK-BiUCaY-n.TTF",
+    "src": "resources/css/fonts/ARIBLK.TTF"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-01p4E4qT.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "node_modules/flowbite/lib/esm/index.js",
+      "resources/js/webpush-client.js",
+      "resources/js/components/layouts/app/header.js"
+    ],
+    "css": [
+      "assets/app-tpo6NNe0.css"
+    ],
+    "assets": [
+      "assets/bootstrap-icons-mSm7cUeB.woff2",
+      "assets/bootstrap-icons-BeopsB42.woff"
+    ]
+  },
+  "resources/js/components/layouts/app/header.js": {
+    "file": "assets/header-BlOI8jOD.js",
+    "name": "header",
+    "src": "resources/js/components/layouts/app/header.js",
+    "isDynamicEntry": true
+  },
+  "resources/js/liturgia.js": {
+    "file": "assets/liturgia-C5ZEb4hb.js",
+    "name": "liturgia",
+    "src": "resources/js/liturgia.js",
+    "isEntry": true
+  },
+  "resources/js/webpush-client.js": {
+    "file": "assets/webpush-client-DSNXNU70.js",
+    "name": "webpush-client",
+    "src": "resources/js/webpush-client.js",
+    "isDynamicEntry": true
+  }
+}
