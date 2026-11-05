@@ -1,6 +1,6 @@
 <x-layouts.public :title="'Servir no ' . $retreat->title">
     @push('head')<meta name="robots" content="noindex,nofollow,noarchive">@endpush
-    <main id="conteudo" class="bg-[#E5FCF5]/35 px-5 py-12 sm:px-8 sm:py-20">
+    <section class="bg-[#E5FCF5]/35 px-5 py-12 sm:px-8 sm:py-20">
         <div class="mx-auto max-w-4xl">
             <header class="text-center">
                 <img src="{{ asset('assets/img/Ativo 2.svg') }}" class="mx-auto h-16 w-16 sm:h-20 sm:w-20" alt="">
@@ -40,5 +40,5 @@
                 <section class="mx-auto mt-10 max-w-2xl rounded-2xl border border-slate-200 bg-white p-7 text-center"><h2 class="font-serif text-2xl font-semibold">Acesso indisponível</h2><p class="mt-2 text-slate-600">Este link está desativado ou o período de inscrições dos servos foi encerrado.</p></section>
             @endif
         </div>
-    </main>
+    </section>
 </x-layouts.public>

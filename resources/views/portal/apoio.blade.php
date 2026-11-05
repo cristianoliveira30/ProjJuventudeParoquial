@@ -1,5 +1,5 @@
 <x-layouts.public title="Apoie o trabalho voluntário — Paróquia São Domingos de Gusmão">
-    <main id="conteudo" class="bg-[#E5FCF5]/45 px-5 py-16 sm:px-8 sm:py-24">
+    <section class="bg-[#E5FCF5]/45 px-5 py-16 sm:px-8 sm:py-24">
         <div class="mx-auto max-w-3xl overflow-hidden rounded-[1.5rem] border border-[#B3DEC1] bg-white shadow-[0_24px_70px_rgba(33,1,36,.08)]">
             <div class="grid md:grid-cols-[minmax(0,1fr)_18rem]">
                 <div class="p-7 sm:p-10">
@@ -19,5 +19,5 @@
                 </aside>
             </div>
         </div>
-    </main>
+    </section>
 </x-layouts.public>

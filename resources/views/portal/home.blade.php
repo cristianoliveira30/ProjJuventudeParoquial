@@ -20,7 +20,7 @@
             <div class="grid overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_18px_55px_rgba(33,1,36,.12)] md:grid-cols-3">
                 <a href="{{ route('portal.missas') }}" class="group flex items-center gap-4 border-b border-slate-200 p-6 transition hover:bg-[#E5FCF5]/55 md:border-b-0 md:border-r">
                     <span class="flex size-14 shrink-0 items-center justify-center rounded-full bg-[#E5FCF5] text-[#006f67]"><x-bi-clock class="size-6" /></span>
-                    <span class="min-w-0 flex-1"><span class="block break-words font-serif text-lg font-semibold">Próxima missa</span><span class="mt-1 block text-sm font-semibold text-[#008f83]">Hoje, 19h</span></span>
+                    <span class="min-w-0 flex-1"><span class="block break-words font-serif text-lg font-semibold">Horários de missa</span><span class="mt-1 block text-sm font-semibold text-[#008f83]">Consulte a programação</span></span>
                     <x-bi-chevron-right class="ml-auto size-4 shrink-0 text-slate-400 transition group-hover:translate-x-1" />
                 </a>
                 <a href="{{ route('portal.liturgia') }}" class="group flex items-center gap-4 border-b border-slate-200 p-6 transition hover:bg-[#E5FCF5]/55 md:border-b-0 md:border-r">

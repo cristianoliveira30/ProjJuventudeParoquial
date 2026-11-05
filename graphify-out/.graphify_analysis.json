@@ -1,0 +1,1948 @@
+{
+  "communities": {
+    "0": [
+      "app_http_controllers_retreatministrycontroller_retreatministrycontroller",
+      "app_http_controllers_retreatministrycontroller_retreatministrycontroller_destroy",
+      "app_http_controllers_retreatministrycontroller_retreatministrycontroller_ensurebelongstoretreat",
+      "app_http_controllers_retreatministrycontroller_retreatministrycontroller_ensurecanmanage",
+      "app_http_controllers_retreatministrycontroller_retreatministrycontroller_index",
+      "app_http_controllers_retreatministrycontroller_retreatministrycontroller_store",
+      "app_http_controllers_retreatministrycontroller_retreatministrycontroller_toggle",
+      "app_http_controllers_retreatministrycontroller_retreatministrycontroller_uniqueslug",
+      "app_http_controllers_retreatministrycontroller_retreatministrycontroller_update",
+      "app_http_controllers_retreatministrycontroller_retreatministrycontroller_validateddata",
+      "app_http_controllers_retreatregistrationcontroller_retreatregistrationcontroller",
+      "app_http_controllers_retreatregistrationcontroller_retreatregistrationcontroller_ensurecanmanage",
+      "app_http_controllers_retreatregistrationcontroller_retreatregistrationcontroller_index",
+      "app_http_controllers_retreatregistrationcontroller_retreatregistrationcontroller_isminor",
+      "app_http_controllers_retreatregistrationcontroller_retreatregistrationcontroller_storepublic",
+      "app_http_controllers_retreatregistrationcontroller_retreatregistrationcontroller_update",
+      "app_http_controllers_retreatservantcontroller_retreatservantcontroller",
+      "app_http_controllers_retreatservantcontroller_retreatservantcontroller_ensurecanmanage",
+      "app_http_controllers_retreatservantcontroller_retreatservantcontroller_index",
+      "app_http_controllers_retreatservantcontroller_retreatservantcontroller_isminor",
+      "app_http_controllers_retreatservantcontroller_retreatservantcontroller_storepublic",
+      "app_http_controllers_retreatservantcontroller_retreatservantcontroller_update",
+      "app_http_controllers_retreatservantlinkcontroller",
+      "app_http_controllers_retreatservantlinkcontroller_closure_1",
+      "app_http_controllers_retreatservantlinkcontroller_retreatservantlinkcontroller",
+      "app_http_controllers_retreatservantlinkcontroller_retreatservantlinkcontroller_ensurecanmanage",
+      "app_http_controllers_retreatservantlinkcontroller_retreatservantlinkcontroller_ensuretoken",
+      "app_http_controllers_retreatservantlinkcontroller_retreatservantlinkcontroller_publicshow",
+      "app_http_controllers_retreatservantlinkcontroller_retreatservantlinkcontroller_regenerate",
+      "app_http_controllers_retreatservantlinkcontroller_retreatservantlinkcontroller_show",
+      "app_http_controllers_retreatservantlinkcontroller_retreatservantlinkcontroller_update",
+      "app_models_retreat_retreat",
+      "app_models_retreat_retreat_attendancesessions",
+      "app_models_retreat_retreat_author",
+      "app_models_retreat_retreat_casts",
+      "app_models_retreat_retreat_coordinator",
+      "app_models_retreat_retreat_coverimageurl",
+      "app_models_retreat_retreat_isregistrationopen",
+      "app_models_retreat_retreat_ministries",
+      "app_models_retreat_retreat_registrations",
+      "app_models_retreat_retreat_registrationstatus",
+      "app_models_retreat_retreat_servantregistrationstatus",
+      "app_models_retreat_retreat_servants",
+      "app_models_retreatministry",
+      "app_models_retreatministry_retreatministry",
+      "app_models_retreatministry_retreatministry_assignedservants",
+      "app_models_retreatministry_retreatministry_casts",
+      "app_models_retreatministry_retreatministry_ensuredefaultsfor",
+      "app_models_retreatministry_retreatministry_preferredservants",
+      "app_models_retreatministry_retreatministry_retreat",
+      "routes_modules_retreats",
+      "routes_modules_retreats_closure_1",
+      "tests_feature_models_retreatoperationstest_closure_1",
+      "tests_feature_retreatministrymanagementtest",
+      "tests_feature_retreatministrymanagementtest_closure_1",
+      "tests_feature_retreatservantregistrationtest",
+      "tests_feature_retreatservantregistrationtest_closure_1",
+      "tests_feature_retreatservantregistrationtest_closure_2",
+      "tests_feature_retreatservantregistrationtest_closure_3",
+      "tests_feature_retreatservantregistrationtest_closure_4",
+      "tests_feature_retreatservantregistrationtest_closure_5",
+      "tests_feature_retreatservantregistrationtest_closure_6",
+      "tests_feature_retreatservantregistrationtest_closure_7",
+      "tests_feature_retreatservantregistrationtest_closure_8",
+      "tests_feature_retreatservantregistrationtest_stagefouradmin",
+      "tests_feature_retreatservantregistrationtest_stagefourpayload",
+      "tests_feature_retreatservantregistrationtest_stagefourretreat"
+    ],
+    "1": [
+      "app_events_notificationsent",
+      "app_events_notificationsent_notificationsent",
+      "app_events_notificationsent_notificationsent_broadcastas",
+      "app_events_notificationsent_notificationsent_broadcaston",
+      "app_events_notificationsent_notificationsent_broadcastwith",
+      "app_events_notificationsent_notificationsent_construct",
+      "app_http_controllers_notificationcontroller",
+      "app_http_controllers_notificationcontroller_closure_1",
+      "app_http_controllers_notificationcontroller_closure_2",
+      "app_listeners_createnotificationdeliveries",
+      "app_listeners_createnotificationdeliveries_closure_1",
+      "app_listeners_createnotificationdeliveries_createnotificationdeliveries",
+      "app_listeners_createnotificationdeliveries_createnotificationdeliveries_construct",
+      "app_listeners_createnotificationdeliveries_createnotificationdeliveries_handle",
+      "app_listeners_queuewebpushonnotificationsent",
+      "app_listeners_queuewebpushonnotificationsent_queuewebpushonnotificationsent",
+      "app_listeners_queuewebpushonnotificationsent_queuewebpushonnotificationsent_handle",
+      "app_models_notification",
+      "app_models_notification_notification",
+      "app_models_notification_notification_creator",
+      "app_models_notificationdeliveries",
+      "app_models_notificationdeliveries_notificationdeliveries",
+      "app_models_notificationdeliveries_notificationdeliveries_notification",
+      "app_models_notificationdeliveries_notificationdeliveries_user",
+      "app_notifications_events_notificationcreated",
+      "app_notifications_events_notificationcreated_notificationcreated",
+      "app_notifications_events_notificationcreated_notificationcreated_construct",
+      "app_notifications_services_notificationrecipientresolver",
+      "app_notifications_services_notificationrecipientresolver_closure_1",
+      "app_notifications_services_notificationrecipientresolver_notificationrecipientresolver",
+      "app_notifications_services_notificationrecipientresolver_notificationrecipientresolver_resolve",
+      "illuminate_broadcasting_channel",
+      "illuminate_broadcasting_interactswithsockets",
+      "illuminate_broadcasting_privatechannel",
+      "illuminate_contracts_broadcasting_shouldbroadcastnow",
+      "illuminate_foundation_events_dispatchable",
+      "illuminate_queue_serializesmodels",
+      "illuminate_support_collection",
+      "illuminate_support_facades_event",
+      "tests_feature_notifications_createnotificationdeliveriestest",
+      "tests_feature_notifications_createnotificationdeliveriestest_closure_1",
+      "tests_feature_notifications_createnotificationdeliveriestest_closure_2",
+      "tests_feature_notifications_notificationmodelstest",
+      "tests_feature_notifications_notificationmodelstest_closure_1",
+      "tests_feature_notifications_notificationmodelstest_closure_2",
+      "tests_feature_notifications_notificationmodelstest_closure_3",
+      "tests_unit_notifications_events_notificationcreatedtest",
+      "tests_unit_notifications_events_notificationcreatedtest_closure_1",
+      "tests_unit_notifications_events_notificationsenttest",
+      "tests_unit_notifications_events_notificationsenttest_closure_1"
+    ],
+    "2": [
+      "app_http_controllers_authcontroller",
+      "app_http_controllers_authcontroller_closure_1",
+      "app_http_controllers_retreatministrycontroller",
+      "app_http_controllers_retreatministrycontroller_closure_1",
+      "app_http_controllers_retreatministrycontroller_closure_2",
+      "app_http_controllers_retreatregistrationcontroller",
+      "app_http_controllers_retreatregistrationcontroller_closure_1",
+      "app_http_controllers_retreatregistrationcontroller_closure_2",
+      "app_http_controllers_retreatregistrationcontroller_closure_3",
+      "app_http_controllers_retreatregistrationcontroller_closure_4",
+      "app_http_controllers_retreatservantcontroller",
+      "app_http_controllers_retreatservantcontroller_closure_1",
+      "app_http_controllers_retreatservantcontroller_closure_2",
+      "app_http_controllers_retreatservantcontroller_closure_3",
+      "app_http_controllers_retreatservantcontroller_closure_4",
+      "app_http_controllers_retreatservantcontroller_closure_5",
+      "app_http_controllers_retreatservantcontroller_closure_6",
+      "app_http_controllers_retreatservantcontroller_closure_7",
+      "app_http_controllers_usercontroller",
+      "app_http_controllers_usercontroller_closure_1",
+      "app_http_controllers_usercontroller_closure_2",
+      "app_http_controllers_usercontroller_closure_3",
+      "app_http_controllers_usercontroller_closure_4",
+      "app_http_controllers_usercontroller_closure_5",
+      "app_http_controllers_usercontroller_closure_6",
+      "app_http_controllers_usercontroller_closure_7",
+      "carbon_carbon",
+      "config_cache",
+      "config_database",
+      "config_session",
+      "database_migrations_2026_08_20_200000_generate_retreat_servant_tokens",
+      "database_migrations_2026_08_20_200000_generate_retreat_servant_tokens_closure_1",
+      "database_migrations_2026_08_20_200000_generate_retreat_servant_tokens_down",
+      "database_migrations_2026_08_20_200000_generate_retreat_servant_tokens_up",
+      "illuminate_foundation_inspiring",
+      "illuminate_support_facades_artisan",
+      "illuminate_support_facades_db",
+      "illuminate_support_facades_password",
+      "illuminate_support_facades_ratelimiter",
+      "illuminate_support_facades_schedule",
+      "illuminate_support_str",
+      "illuminate_validation_rule",
+      "illuminate_validation_rules_password",
+      "illuminate_validation_validationexception",
+      "pdo_mysql",
+      "routes_console",
+      "routes_console_closure_1",
+      "routes_console_closure_2"
+    ],
+    "3": [
+      "compose",
+      "compose_args_wwwgroup",
+      "compose_build_args",
+      "compose_build_context",
+      "compose_build_dockerfile",
+      "compose_environment_ignition_local_sites_path",
+      "compose_environment_laravel_sail",
+      "compose_environment_mysql_allow_empty_password",
+      "compose_environment_mysql_database",
+      "compose_environment_mysql_extra_options",
+      "compose_environment_mysql_password",
+      "compose_environment_mysql_root_host",
+      "compose_environment_mysql_root_password",
+      "compose_environment_mysql_user",
+      "compose_environment_wwwuser",
+      "compose_environment_xdebug_mode",
+      "compose_healthcheck_retries",
+      "compose_healthcheck_test",
+      "compose_healthcheck_timeout",
+      "compose_laravel_test_build",
+      "compose_laravel_test_depends_on",
+      "compose_laravel_test_environment",
+      "compose_laravel_test_extra_hosts",
+      "compose_laravel_test_image",
+      "compose_laravel_test_networks",
+      "compose_laravel_test_ports",
+      "compose_laravel_test_volumes",
+      "compose_mysql_environment",
+      "compose_mysql_healthcheck",
+      "compose_mysql_image",
+      "compose_mysql_networks",
+      "compose_mysql_ports",
+      "compose_mysql_volumes",
+      "compose_networks",
+      "compose_networks_sail",
+      "compose_nginx_depends_on",
+      "compose_nginx_image",
+      "compose_nginx_networks",
+      "compose_nginx_ports",
+      "compose_nginx_volumes",
+      "compose_sail_driver",
+      "compose_sail_mysql_driver",
+      "compose_services",
+      "compose_services_laravel_test",
+      "compose_services_mysql",
+      "compose_services_nginx",
+      "compose_volumes",
+      "compose_volumes_sail_mysql"
+    ],
+    "4": [
+      "app_http_controllers_rolecontroller",
+      "app_http_controllers_rolecontroller_closure_1",
+      "app_http_controllers_rolecontroller_rolecontroller",
+      "app_http_controllers_rolecontroller_rolecontroller_index",
+      "app_http_controllers_rolecontroller_rolecontroller_update",
+      "app_models_permission",
+      "app_models_permission_permission",
+      "app_models_permission_permission_roles",
+      "app_models_role",
+      "app_models_role_role",
+      "app_models_role_role_permissions",
+      "app_models_role_role_users",
+      "database_seeders_databaseseeder",
+      "database_seeders_databaseseeder_databaseseeder",
+      "database_seeders_databaseseeder_databaseseeder_run",
+      "database_seeders_parishaccessseeder",
+      "database_seeders_parishaccessseeder_parishaccessseeder",
+      "database_seeders_parishaccessseeder_parishaccessseeder_run",
+      "illuminate_database_console_seeds_withoutmodelevents",
+      "illuminate_database_eloquent_relations_hasmany",
+      "illuminate_database_seeder",
+      "tests_feature_auth_useraccessmanagementtest",
+      "tests_feature_auth_useraccessmanagementtest_closure_1",
+      "tests_feature_auth_useraccessmanagementtest_closure_10",
+      "tests_feature_auth_useraccessmanagementtest_closure_11",
+      "tests_feature_auth_useraccessmanagementtest_closure_12",
+      "tests_feature_auth_useraccessmanagementtest_closure_13",
+      "tests_feature_auth_useraccessmanagementtest_closure_14",
+      "tests_feature_auth_useraccessmanagementtest_closure_15",
+      "tests_feature_auth_useraccessmanagementtest_closure_2",
+      "tests_feature_auth_useraccessmanagementtest_closure_3",
+      "tests_feature_auth_useraccessmanagementtest_closure_4",
+      "tests_feature_auth_useraccessmanagementtest_closure_5",
+      "tests_feature_auth_useraccessmanagementtest_closure_6",
+      "tests_feature_auth_useraccessmanagementtest_closure_7",
+      "tests_feature_auth_useraccessmanagementtest_closure_8",
+      "tests_feature_auth_useraccessmanagementtest_closure_9",
+      "tests_feature_auth_useraccessmanagementtest_parishuser",
+      "tests_feature_auth_useraccessmanagementtest_prepareparishaccessschema",
+      "tests_feature_models_roletest",
+      "tests_feature_models_roletest_closure_1",
+      "tests_feature_models_roletest_closure_2"
+    ],
+    "5": [
+      "app_class_daterange",
+      "app_class_daterange_daterange",
+      "app_class_daterange_daterange_construct",
+      "app_class_daterange_daterange_days",
+      "app_class_daterange_daterange_todatearray",
+      "app_class_daterange_daterange_totimestamparray",
+      "app_enums_periodkey",
+      "app_enums_periodkey_periodkey",
+      "app_enums_periodkey_periodkey_hoje",
+      "app_enums_periodkey_periodkey_mes_atual",
+      "app_enums_periodkey_periodkey_mes_passado",
+      "app_enums_periodkey_periodkey_ontem",
+      "app_enums_periodkey_periodkey_periodo",
+      "app_enums_periodkey_periodkey_semana_atual",
+      "app_enums_periodkey_periodkey_semana_passada",
+      "app_interfaces_daterange",
+      "app_interfaces_daterange_daterange",
+      "app_interfaces_daterange_daterange_construct",
+      "app_interfaces_daterange_daterange_days",
+      "app_interfaces_daterange_daterange_todatearray",
+      "app_interfaces_daterange_daterange_totimestamparray",
+      "app_services_timerangeservice",
+      "app_services_timerangeservice_timerangeservice",
+      "app_services_timerangeservice_timerangeservice_resolve",
+      "carbon_carbonimmutable",
+      "generator",
+      "tests_unit_class_daterangetest",
+      "tests_unit_class_daterangetest_closure_1",
+      "tests_unit_class_daterangetest_closure_2",
+      "tests_unit_class_daterangetest_closure_3",
+      "tests_unit_class_daterangetest_closure_4",
+      "tests_unit_services_timerangeservicetest",
+      "tests_unit_services_timerangeservicetest_closure_1",
+      "tests_unit_services_timerangeservicetest_closure_2",
+      "tests_unit_services_timerangeservicetest_closure_3",
+      "tests_unit_services_timerangeservicetest_closure_4",
+      "tests_unit_services_timerangeservicetest_closure_5",
+      "tests_unit_services_timerangeservicetest_closure_6",
+      "tests_unit_services_timerangeservicetest_closure_7",
+      "tests_unit_services_timerangeservicetest_closure_8"
+    ],
+    "6": [
+      "app_http_controllers_parisheventcontroller",
+      "app_http_controllers_parisheventcontroller_closure_1",
+      "app_http_controllers_parisheventcontroller_closure_2",
+      "app_http_controllers_parisheventcontroller_closure_3",
+      "app_http_controllers_parisheventcontroller_closure_4",
+      "app_http_controllers_parisheventcontroller_closure_5",
+      "app_http_controllers_parisheventcontroller_closure_6",
+      "app_http_controllers_parisheventcontroller_closure_7",
+      "app_http_controllers_parisheventcontroller_parisheventcontroller",
+      "app_http_controllers_parisheventcontroller_parisheventcontroller_create",
+      "app_http_controllers_parisheventcontroller_parisheventcontroller_destroy",
+      "app_http_controllers_parisheventcontroller_parisheventcontroller_edit",
+      "app_http_controllers_parisheventcontroller_parisheventcontroller_index",
+      "app_http_controllers_parisheventcontroller_parisheventcontroller_store",
+      "app_http_controllers_parisheventcontroller_parisheventcontroller_storecoverimage",
+      "app_http_controllers_parisheventcontroller_parisheventcontroller_togglepublication",
+      "app_http_controllers_parisheventcontroller_parisheventcontroller_uniqueslug",
+      "app_http_controllers_parisheventcontroller_parisheventcontroller_update",
+      "app_http_controllers_parisheventcontroller_parisheventcontroller_validateddata",
+      "app_http_controllers_portalcontroller",
+      "app_http_controllers_portalcontroller_closure_1",
+      "app_http_controllers_portalcontroller_closure_2",
+      "app_http_controllers_portalcontroller_portalcontroller",
+      "app_http_controllers_portalcontroller_portalcontroller_agenda",
+      "app_http_controllers_portalcontroller_portalcontroller_agendashow",
+      "app_http_controllers_portalcontroller_portalcontroller_gallery",
+      "app_http_controllers_portalcontroller_portalcontroller_galleryshow",
+      "app_http_controllers_portalcontroller_portalcontroller_home",
+      "app_http_controllers_portalcontroller_portalcontroller_newsindex",
+      "app_http_controllers_portalcontroller_portalcontroller_parish",
+      "app_http_controllers_portalcontroller_portalcontroller_pastoralshow",
+      "app_http_controllers_portalcontroller_portalcontroller_retreatshow",
+      "app_http_controllers_portalcontroller_portalcontroller_youth",
+      "app_models_parishevent_parishevent",
+      "app_models_parishevent_parishevent_author",
+      "app_models_parishevent_parishevent_casts",
+      "app_models_parishevent_parishevent_coverimageurl"
+    ],
+    "7": [
+      "app_jobs_sendwebpushforuser",
+      "app_jobs_sendwebpushforuser_sendwebpushforuser",
+      "app_jobs_sendwebpushforuser_sendwebpushforuser_construct",
+      "app_jobs_sendwebpushforuser_sendwebpushforuser_handle",
+      "app_notifications_emailverificationcode",
+      "app_notifications_emailverificationcode_emailverificationcode",
+      "app_notifications_emailverificationcode_emailverificationcode_construct",
+      "app_notifications_emailverificationcode_emailverificationcode_tomail",
+      "app_notifications_emailverificationcode_emailverificationcode_via",
+      "app_services_liturgiaservice",
+      "app_services_liturgiaservice_liturgiaservice",
+      "app_services_liturgiaservice_liturgiaservice_dadosindisponiveis",
+      "app_services_liturgiaservice_liturgiaservice_getliturgiadodia",
+      "app_services_liturgiaservice_liturgiaservice_normalizar",
+      "app_services_liturgiaservice_liturgiaservice_possuileiturasessenciais",
+      "illuminate_bus_queueable",
+      "illuminate_contracts_queue_shouldqueue",
+      "illuminate_foundation_bus_dispatchable",
+      "illuminate_notifications_messages_mailmessage",
+      "illuminate_notifications_notification",
+      "illuminate_queue_interactswithqueue",
+      "illuminate_support_facades_cache",
+      "illuminate_support_facades_http",
+      "illuminate_support_facades_log",
+      "minishlink_webpush_subscription",
+      "minishlink_webpush_webpush",
+      "routes_modules_public",
+      "routes_modules_public_get_liturgia_diaria",
+      "tests_unit_services_liturgiaservicetest",
+      "tests_unit_services_liturgiaservicetest_closure_1",
+      "tests_unit_services_liturgiaservicetest_closure_2",
+      "tests_unit_services_liturgiaservicetest_closure_3",
+      "throwable"
+    ],
+    "8": [
+      "app_http_controllers_pastoralgroupcontroller",
+      "app_http_controllers_pastoralgroupcontroller_closure_1",
+      "app_http_controllers_pastoralgroupcontroller_closure_2",
+      "app_http_controllers_pastoralgroupcontroller_closure_3",
+      "app_http_controllers_pastoralgroupcontroller_closure_4",
+      "app_http_controllers_pastoralgroupcontroller_closure_5",
+      "app_http_controllers_pastoralgroupcontroller_closure_6",
+      "app_http_controllers_pastoralgroupcontroller_closure_7",
+      "app_http_controllers_pastoralgroupcontroller_closure_8",
+      "app_http_controllers_pastoralgroupcontroller_pastoralgroupcontroller",
+      "app_http_controllers_pastoralgroupcontroller_pastoralgroupcontroller_activeusers",
+      "app_http_controllers_pastoralgroupcontroller_pastoralgroupcontroller_create",
+      "app_http_controllers_pastoralgroupcontroller_pastoralgroupcontroller_destroy",
+      "app_http_controllers_pastoralgroupcontroller_pastoralgroupcontroller_edit",
+      "app_http_controllers_pastoralgroupcontroller_pastoralgroupcontroller_ensurecanmanage",
+      "app_http_controllers_pastoralgroupcontroller_pastoralgroupcontroller_groupattributes",
+      "app_http_controllers_pastoralgroupcontroller_pastoralgroupcontroller_index",
+      "app_http_controllers_pastoralgroupcontroller_pastoralgroupcontroller_memberids",
+      "app_http_controllers_pastoralgroupcontroller_pastoralgroupcontroller_store",
+      "app_http_controllers_pastoralgroupcontroller_pastoralgroupcontroller_storecoverimage",
+      "app_http_controllers_pastoralgroupcontroller_pastoralgroupcontroller_togglepublication",
+      "app_http_controllers_pastoralgroupcontroller_pastoralgroupcontroller_uniqueslug",
+      "app_http_controllers_pastoralgroupcontroller_pastoralgroupcontroller_update",
+      "app_http_controllers_pastoralgroupcontroller_pastoralgroupcontroller_validateddata",
+      "app_http_controllers_pastoralgroupcontroller_pastoralgroupcontroller_visiblegroups",
+      "app_models_pastoralgroup_pastoralgroup",
+      "app_models_pastoralgroup_pastoralgroup_author",
+      "app_models_pastoralgroup_pastoralgroup_casts",
+      "app_models_pastoralgroup_pastoralgroup_coordinator",
+      "app_models_pastoralgroup_pastoralgroup_coverimageurl",
+      "app_models_pastoralgroup_pastoralgroup_members",
+      "app_models_pastoralgroup_pastoralgroup_typelabel"
+    ],
+    "9": [
+      "app_helpers_custom_helpers",
+      "app_helpers_custom_helpers_safe_route",
+      "app_http_requests_timerangerequest",
+      "app_http_requests_timerangerequest_timerangerequest",
+      "app_http_requests_timerangerequest_timerangerequest_authorize",
+      "app_http_requests_timerangerequest_timerangerequest_prepareforvalidation",
+      "app_http_requests_timerangerequest_timerangerequest_rules",
+      "illuminate_foundation_http_formrequest",
+      "illuminate_support_facades_route",
+      "routes_modules_events",
+      "routes_modules_events_closure_1",
+      "routes_modules_groups",
+      "routes_modules_groups_closure_1",
+      "routes_modules_posts",
+      "routes_modules_posts_closure_1",
+      "routes_modules_user",
+      "routes_modules_user_closure_1",
+      "tests_feature_http_requests_timerangerequesttest",
+      "tests_feature_http_requests_timerangerequesttest_closure_1",
+      "tests_feature_http_requests_timerangerequesttest_closure_2",
+      "tests_feature_http_requests_timerangerequesttest_closure_3",
+      "tests_feature_http_requests_timerangerequesttest_closure_4",
+      "tests_feature_http_requests_timerangerequesttest_closure_5",
+      "tests_feature_http_requests_timerangerequesttest_closure_6",
+      "tests_feature_http_requests_timerangerequesttest_closure_7",
+      "tests_feature_http_requests_timerangerequesttest_closure_8",
+      "tests_feature_http_requests_timerangerequesttest_get_testing_time_range_request",
+      "tests_unit_helpers_saferoutetest",
+      "tests_unit_helpers_saferoutetest_closure_1",
+      "tests_unit_helpers_saferoutetest_closure_2"
+    ],
+    "10": [
+      "database_migrations_2026_03_03_162055_add_new_features_to_authentication_log_table",
+      "database_migrations_2026_03_03_162055_add_new_features_to_authentication_log_table_closure_1",
+      "database_migrations_2026_03_03_162055_add_new_features_to_authentication_log_table_closure_2",
+      "database_migrations_2026_03_03_162055_add_new_features_to_authentication_log_table_closure_3",
+      "database_migrations_2026_03_03_162055_add_new_features_to_authentication_log_table_closure_4",
+      "database_migrations_2026_03_03_162055_add_new_features_to_authentication_log_table_closure_5",
+      "database_migrations_2026_03_03_162055_add_new_features_to_authentication_log_table_closure_6",
+      "database_migrations_2026_03_03_162055_add_new_features_to_authentication_log_table_closure_7",
+      "database_migrations_2026_03_03_162055_add_new_features_to_authentication_log_table_down",
+      "database_migrations_2026_03_03_162055_add_new_features_to_authentication_log_table_up",
+      "database_migrations_2026_08_20_180000_create_retreat_service_and_attendance_structure",
+      "database_migrations_2026_08_20_180000_create_retreat_service_and_attendance_structure_closure_1",
+      "database_migrations_2026_08_20_180000_create_retreat_service_and_attendance_structure_closure_2",
+      "database_migrations_2026_08_20_180000_create_retreat_service_and_attendance_structure_closure_3",
+      "database_migrations_2026_08_20_180000_create_retreat_service_and_attendance_structure_closure_4",
+      "database_migrations_2026_08_20_180000_create_retreat_service_and_attendance_structure_closure_5",
+      "database_migrations_2026_08_20_180000_create_retreat_service_and_attendance_structure_closure_6",
+      "database_migrations_2026_08_20_180000_create_retreat_service_and_attendance_structure_down",
+      "database_migrations_2026_08_20_180000_create_retreat_service_and_attendance_structure_up",
+      "get",
+      "illuminate_database_schema_blueprint",
+      "tests_feature_exampletest",
+      "tests_feature_exampletest_closure_1",
+      "tests_feature_exampletest_closure_2",
+      "tests_feature_exampletest_closure_3",
+      "tests_feature_exampletest_closure_4",
+      "tests_feature_exampletest_closure_5",
+      "tests_feature_exampletest_closure_6",
+      "tests_feature_exampletest_closure_7"
+    ],
+    "11": [
+      "app_models_user",
+      "app_models_user_user",
+      "app_models_user_user_casts",
+      "app_models_user_user_coordinatedpastoralgroups",
+      "app_models_user_user_coordinatedretreats",
+      "app_models_user_user_deliveriesnotifications",
+      "app_models_user_user_emailverificationcodes",
+      "app_models_user_user_pastoralgroups",
+      "app_models_user_user_role",
+      "app_models_user_user_sendemailverificationcode",
+      "app_models_user_user_sendpasswordresetnotification",
+      "app_models_user_user_unreadnotifications",
+      "illuminate_auth_notifications_resetpassword",
+      "illuminate_database_eloquent_factories_hasfactory",
+      "illuminate_database_eloquent_relations_belongsto",
+      "illuminate_foundation_auth_user",
+      "illuminate_notifications_notifiable",
+      "laravel_sanctum_hasapitokens",
+      "notificationchannels_webpush_haspushsubscriptions",
+      "rappasoft_laravelauthenticationlog_traits_authenticationloggable",
+      "tests_feature_models_usertest",
+      "tests_feature_models_usertest_closure_1",
+      "tests_feature_models_usertest_closure_2",
+      "tests_feature_notifications_notificationcontrollertest",
+      "tests_feature_notifications_notificationcontrollertest_closure_1",
+      "tests_feature_notifications_notificationcontrollertest_closure_2",
+      "tests_feature_notifications_notificationcontrollertest_closure_3",
+      "tests_feature_notifications_notificationcontrollertest_closure_4"
+    ],
+    "12": [
+      "app_http_controllers_authcontroller_authcontroller",
+      "app_http_controllers_authcontroller_authcontroller_login",
+      "app_http_controllers_authcontroller_authcontroller_logout",
+      "app_http_controllers_authcontroller_authcontroller_resendemailverification",
+      "app_http_controllers_authcontroller_authcontroller_resetpassword",
+      "app_http_controllers_authcontroller_authcontroller_sendresetlink",
+      "app_http_controllers_authcontroller_authcontroller_showemailverification",
+      "app_http_controllers_authcontroller_authcontroller_showforgotpassword",
+      "app_http_controllers_authcontroller_authcontroller_showresetpassword",
+      "app_http_controllers_authcontroller_authcontroller_verifyemail",
+      "app_http_controllers_controller",
+      "app_http_controllers_controller_controller",
+      "app_http_controllers_notificationcontroller_notificationcontroller",
+      "app_http_controllers_notificationcontroller_notificationcontroller_countunread",
+      "app_http_controllers_notificationcontroller_notificationcontroller_create",
+      "app_http_controllers_notificationcontroller_notificationcontroller_dashboard",
+      "app_http_controllers_notificationcontroller_notificationcontroller_index",
+      "app_http_controllers_notificationcontroller_notificationcontroller_markasread",
+      "app_http_controllers_webpushcontroller",
+      "app_http_controllers_webpushcontroller_webpushcontroller",
+      "app_http_controllers_webpushcontroller_webpushcontroller_subscribe",
+      "app_http_controllers_webpushcontroller_webpushcontroller_unsubscribe",
+      "illuminate_http_request",
+      "routes_api",
+      "routes_api_get_user",
+      "routes_modules_notifications",
+      "routes_modules_notifications_closure_1"
+    ],
+    "13": [
+      "package",
+      "package_dependencies",
+      "package_dependencies_ag_grid_community",
+      "package_dependencies_apexcharts",
+      "package_dependencies_bootstrap_icons",
+      "package_dependencies_dexie",
+      "package_dependencies_flowbite",
+      "package_dependencies_jspdf",
+      "package_dependencies_jspdf_autotable",
+      "package_dependencies_marked",
+      "package_dependencies_simple_datatables",
+      "package_dependencies_sweetalert2",
+      "package_dependencies_xlsx",
+      "package_private",
+      "package_schema",
+      "package_type",
+      "ref_ag_grid_community",
+      "ref_apexcharts",
+      "ref_bootstrap_icons",
+      "ref_dexie",
+      "ref_flowbite",
+      "ref_jspdf",
+      "ref_jspdf_autotable",
+      "ref_marked",
+      "ref_simple_datatables",
+      "ref_sweetalert2",
+      "ref_xlsx"
+    ],
+    "14": [
+      "app_http_controllers_portalcontroller_portalcontroller_newsshow",
+      "app_http_controllers_postcontroller",
+      "app_http_controllers_postcontroller_closure_1",
+      "app_http_controllers_postcontroller_closure_2",
+      "app_http_controllers_postcontroller_closure_3",
+      "app_http_controllers_postcontroller_closure_4",
+      "app_http_controllers_postcontroller_closure_5",
+      "app_http_controllers_postcontroller_closure_6",
+      "app_http_controllers_postcontroller_postcontroller",
+      "app_http_controllers_postcontroller_postcontroller_create",
+      "app_http_controllers_postcontroller_postcontroller_destroy",
+      "app_http_controllers_postcontroller_postcontroller_edit",
+      "app_http_controllers_postcontroller_postcontroller_index",
+      "app_http_controllers_postcontroller_postcontroller_store",
+      "app_http_controllers_postcontroller_postcontroller_storecoverimage",
+      "app_http_controllers_postcontroller_postcontroller_togglepublication",
+      "app_http_controllers_postcontroller_postcontroller_uniqueslug",
+      "app_http_controllers_postcontroller_postcontroller_update",
+      "app_http_controllers_postcontroller_postcontroller_validateddata",
+      "app_models_post_post",
+      "app_models_post_post_author",
+      "app_models_post_post_casts",
+      "app_models_post_post_coverimageurl",
+      "app_models_post_post_scopepublished"
+    ],
+    "15": [
+      "app_http_controllers_galleryalbumcontroller_galleryalbumcontroller",
+      "app_http_controllers_galleryalbumcontroller_galleryalbumcontroller_create",
+      "app_http_controllers_galleryalbumcontroller_galleryalbumcontroller_destroy",
+      "app_http_controllers_galleryalbumcontroller_galleryalbumcontroller_edit",
+      "app_http_controllers_galleryalbumcontroller_galleryalbumcontroller_ensurecanmanage",
+      "app_http_controllers_galleryalbumcontroller_galleryalbumcontroller_index",
+      "app_http_controllers_galleryalbumcontroller_galleryalbumcontroller_store",
+      "app_http_controllers_galleryalbumcontroller_galleryalbumcontroller_storecover",
+      "app_http_controllers_galleryalbumcontroller_galleryalbumcontroller_togglepublication",
+      "app_http_controllers_galleryalbumcontroller_galleryalbumcontroller_uniqueslug",
+      "app_http_controllers_galleryalbumcontroller_galleryalbumcontroller_update",
+      "app_http_controllers_galleryalbumcontroller_galleryalbumcontroller_validateddata",
+      "app_http_controllers_galleryalbumcontroller_galleryalbumcontroller_visiblealbums",
+      "app_http_controllers_galleryphotocontroller_galleryphotocontroller_store",
+      "app_models_galleryalbum_galleryalbum",
+      "app_models_galleryalbum_galleryalbum_author",
+      "app_models_galleryalbum_galleryalbum_casts",
+      "app_models_galleryalbum_galleryalbum_coverimageurl",
+      "app_models_galleryalbum_galleryalbum_firstphoto",
+      "app_models_galleryalbum_galleryalbum_photos",
+      "app_models_galleryalbum_galleryalbum_scopepublished"
+    ],
+    "16": [
+      "app_http_middleware_ensurefirstaccesspassword",
+      "app_http_middleware_ensurefirstaccesspassword_ensurefirstaccesspassword",
+      "app_http_middleware_ensurefirstaccesspassword_ensurefirstaccesspassword_handle",
+      "app_http_middleware_ensureuserisactive",
+      "app_http_middleware_ensureuserisactive_ensureuserisactive",
+      "app_http_middleware_ensureuserisactive_ensureuserisactive_handle",
+      "app_http_middleware_nostorehtml",
+      "app_http_middleware_nostorehtml_nostorehtml",
+      "app_http_middleware_nostorehtml_nostorehtml_handle",
+      "app_http_middleware_trackpageaccess",
+      "app_http_middleware_trackpageaccess_trackpageaccess",
+      "app_http_middleware_trackpageaccess_trackpageaccess_handle",
+      "app_http_middleware_trackpageaccess_trackpageaccess_shouldtrack",
+      "app_http_middleware_trackpageaccess_trackpageaccess_storelog",
+      "closure",
+      "illuminate_auth_middleware_authenticate",
+      "illuminate_support_facades_auth",
+      "symfony_component_httpfoundation_response",
+      "tests_feature_auth_logouttest",
+      "tests_feature_auth_logouttest_closure_1"
+    ],
+    "17": [
+      "github_workflows_build_hostinger_deploy",
+      "github_workflows_build_hostinger_deploy_build_runs_on",
+      "github_workflows_build_hostinger_deploy_build_steps",
+      "github_workflows_build_hostinger_deploy_jobs",
+      "github_workflows_build_hostinger_deploy_jobs_build",
+      "github_workflows_build_hostinger_deploy_name",
+      "github_workflows_build_hostinger_deploy_on",
+      "github_workflows_build_hostinger_deploy_on_push",
+      "github_workflows_build_hostinger_deploy_permissions",
+      "github_workflows_build_hostinger_deploy_permissions_contents",
+      "github_workflows_build_hostinger_deploy_push_branches",
+      "github_workflows_build_hostinger_deploy_steps_name",
+      "github_workflows_build_hostinger_deploy_steps_run",
+      "github_workflows_build_hostinger_deploy_steps_uses",
+      "github_workflows_build_hostinger_deploy_steps_with",
+      "github_workflows_build_hostinger_deploy_with_cache",
+      "github_workflows_build_hostinger_deploy_with_fetch_depth",
+      "github_workflows_build_hostinger_deploy_with_node_version"
+    ],
+    "18": [
+      "app_http_controllers_usercontroller_usercontroller",
+      "app_http_controllers_usercontroller_usercontroller_allowedrolesiglas",
+      "app_http_controllers_usercontroller_usercontroller_create",
+      "app_http_controllers_usercontroller_usercontroller_ensurecanmanage",
+      "app_http_controllers_usercontroller_usercontroller_parishroles",
+      "app_http_controllers_usercontroller_usercontroller_resetpassword",
+      "app_http_controllers_usercontroller_usercontroller_revokeuseraccess",
+      "app_http_controllers_usercontroller_usercontroller_search",
+      "app_http_controllers_usercontroller_usercontroller_showfirstaccess",
+      "app_http_controllers_usercontroller_usercontroller_showsecurity",
+      "app_http_controllers_usercontroller_usercontroller_store",
+      "app_http_controllers_usercontroller_usercontroller_temporarypassword",
+      "app_http_controllers_usercontroller_usercontroller_togglestatus",
+      "app_http_controllers_usercontroller_usercontroller_updateadmin",
+      "app_http_controllers_usercontroller_usercontroller_updatefirstaccesspassword",
+      "app_http_controllers_usercontroller_usercontroller_updatepassword",
+      "app_http_controllers_usercontroller_usercontroller_updateprofile"
+    ],
+    "19": [
+      "database_factories_userfactory",
+      "database_factories_userfactory_closure_1",
+      "database_factories_userfactory_userfactory",
+      "database_factories_userfactory_userfactory_definition",
+      "database_factories_userfactory_userfactory_unverified",
+      "illuminate_database_eloquent_factories_factory",
+      "illuminate_support_facades_hash",
+      "static",
+      "tests_feature_auth_firstaccesspasswordtest",
+      "tests_feature_auth_firstaccesspasswordtest_closure_1",
+      "tests_feature_auth_firstaccesspasswordtest_closure_2",
+      "tests_feature_auth_firstaccesspasswordtest_closure_3",
+      "tests_feature_auth_firstaccesspasswordtest_closure_4",
+      "tests_feature_auth_firstaccesspasswordtest_closure_5",
+      "tests_feature_auth_firstaccesspasswordtest_createfirstaccessuser"
+    ],
+    "20": [
+      "app_http_controllers_retreatcontroller_retreatcontroller",
+      "app_http_controllers_retreatcontroller_retreatcontroller_activeusers",
+      "app_http_controllers_retreatcontroller_retreatcontroller_create",
+      "app_http_controllers_retreatcontroller_retreatcontroller_destroy",
+      "app_http_controllers_retreatcontroller_retreatcontroller_edit",
+      "app_http_controllers_retreatcontroller_retreatcontroller_ensurecanmanage",
+      "app_http_controllers_retreatcontroller_retreatcontroller_index",
+      "app_http_controllers_retreatcontroller_retreatcontroller_store",
+      "app_http_controllers_retreatcontroller_retreatcontroller_storecoverimage",
+      "app_http_controllers_retreatcontroller_retreatcontroller_togglepublication",
+      "app_http_controllers_retreatcontroller_retreatcontroller_uniqueslug",
+      "app_http_controllers_retreatcontroller_retreatcontroller_update",
+      "app_http_controllers_retreatcontroller_retreatcontroller_validateddata",
+      "app_http_controllers_retreatcontroller_retreatcontroller_visibleretreats"
+    ],
+    "21": [
+      "docker_compose_prod",
+      "docker_compose_prod_networks",
+      "docker_compose_prod_networks_app_network",
+      "docker_compose_prod_public_build_name",
+      "docker_compose_prod_scheduler_command",
+      "docker_compose_prod_scheduler_image",
+      "docker_compose_prod_scheduler_networks",
+      "docker_compose_prod_scheduler_restart",
+      "docker_compose_prod_scheduler_volumes",
+      "docker_compose_prod_services",
+      "docker_compose_prod_services_scheduler",
+      "docker_compose_prod_volumes",
+      "docker_compose_prod_volumes_mysql_data",
+      "docker_compose_prod_volumes_public_build"
+    ],
+    "22": [
+      "resources_js_components_layouts_app_header",
+      "resources_js_components_layouts_app_header_initheaderinteractions",
+      "resources_js_components_layouts_app_header_initnotifications",
+      "resources_js_components_layouts_app_header_initpasswordtoggles",
+      "resources_js_components_layouts_app_header_initprofilepreview",
+      "resources_js_components_layouts_app_header_initsettingsmodal",
+      "resources_js_components_layouts_app_header_initsettingssubmit",
+      "resources_js_components_layouts_app_header_setbuttonloading",
+      "resources_js_components_layouts_app_header_setuptoggle",
+      "resources_js_page_loader",
+      "resources_js_page_loader_loadpagescripts",
+      "resources_js_webpush_client",
+      "resources_js_webpush_client_subscribewebpush",
+      "resources_js_webpush_client_urlbase64touint8array"
+    ],
+    "23": [
+      "resources_js_composables_usealerts",
+      "resources_js_composables_usealerts_isblack",
+      "resources_js_composables_usealerts_isdark",
+      "resources_js_composables_usealerts_normalizeerror",
+      "resources_js_composables_usealerts_themeoptions",
+      "resources_js_composables_usealerts_usealerts",
+      "resources_js_composables_usealerts_usealerts_bindthemesync",
+      "resources_js_composables_usealerts_usealerts_close",
+      "resources_js_composables_usealerts_usealerts_confirm",
+      "resources_js_composables_usealerts_usealerts_firetoast",
+      "resources_js_composables_usealerts_usealerts_loading",
+      "resources_js_composables_usealerts_usealerts_showerror",
+      "resources_js_composables_usealerts_usealerts_showinfo",
+      "resources_js_composables_usealerts_usealerts_showsuccess"
+    ],
+    "24": [
+      "composer_require",
+      "composer_require_davidhsianturi_blade_bootstrap_icons",
+      "composer_require_laravel_framework",
+      "composer_require_laravel_notification_channels_webpush",
+      "composer_require_laravel_reverb",
+      "composer_require_laravel_sanctum",
+      "composer_require_laravel_tinker",
+      "composer_require_minishlink_web_push",
+      "composer_require_php",
+      "composer_require_rappasoft_laravel_authentication_log",
+      "composer_require_stevebauman_location",
+      "composer_require_torann_geoip",
+      "composer_require_twbs_bootstrap_icons"
+    ],
+    "25": [
+      "database_migrations_2026_02_02_175334_notifications_table",
+      "database_migrations_2026_02_02_175334_notifications_table_closure_1",
+      "database_migrations_2026_02_02_175334_notifications_table_down",
+      "database_migrations_2026_02_02_175334_notifications_table_up",
+      "database_migrations_2026_02_09_143231_create_push_subscriptions_table",
+      "database_migrations_2026_02_09_143231_create_push_subscriptions_table_closure_1",
+      "database_migrations_2026_02_09_143231_create_push_subscriptions_table_down",
+      "database_migrations_2026_02_09_143231_create_push_subscriptions_table_up",
+      "database_migrations_2026_08_20_190000_seed_default_retreat_ministries",
+      "database_migrations_2026_08_20_190000_seed_default_retreat_ministries_closure_1",
+      "database_migrations_2026_08_20_190000_seed_default_retreat_ministries_down",
+      "database_migrations_2026_08_20_190000_seed_default_retreat_ministries_up",
+      "illuminate_database_migrations_migration"
+    ],
+    "26": [
+      "app_http_controllers_galleryalbumcontroller",
+      "app_http_controllers_galleryalbumcontroller_closure_1",
+      "app_http_controllers_galleryalbumcontroller_closure_2",
+      "app_http_controllers_galleryalbumcontroller_closure_3",
+      "app_http_controllers_galleryalbumcontroller_closure_4",
+      "app_http_controllers_galleryalbumcontroller_closure_5",
+      "app_models_parishevent_parishevent_scopepublished",
+      "app_models_parishevent_parishevent_scopeupcoming",
+      "app_models_pastoralgroup_pastoralgroup_scopepublished",
+      "app_models_retreat_retreat_scopepublished",
+      "app_models_retreat_retreat_scopeupcoming",
+      "illuminate_database_eloquent_builder"
+    ],
+    "27": [
+      "app_http_controllers_galleryphotocontroller",
+      "app_http_controllers_galleryphotocontroller_galleryphotocontroller",
+      "app_http_controllers_galleryphotocontroller_galleryphotocontroller_destroy",
+      "app_http_controllers_galleryphotocontroller_galleryphotocontroller_ensurecanmanage",
+      "app_http_controllers_galleryphotocontroller_galleryphotocontroller_index",
+      "app_http_controllers_galleryphotocontroller_galleryphotocontroller_update",
+      "app_models_galleryphoto_galleryphoto",
+      "app_models_galleryphoto_galleryphoto_album",
+      "app_models_galleryphoto_galleryphoto_imageurl",
+      "app_models_galleryphoto_galleryphoto_uploader",
+      "routes_modules_gallery",
+      "routes_modules_gallery_closure_1"
+    ],
+    "28": [
+      "app_models_user_user_haspermission",
+      "app_providers_appserviceprovider_appserviceprovider",
+      "app_providers_appserviceprovider_appserviceprovider_boot",
+      "app_providers_appserviceprovider_appserviceprovider_register",
+      "app_providers_permissionserviceprovider",
+      "app_providers_permissionserviceprovider_closure_1",
+      "app_providers_permissionserviceprovider_closure_2",
+      "app_providers_permissionserviceprovider_permissionserviceprovider",
+      "app_providers_permissionserviceprovider_permissionserviceprovider_boot",
+      "app_providers_permissionserviceprovider_permissionserviceprovider_register",
+      "illuminate_support_facades_gate",
+      "illuminate_support_serviceprovider"
+    ],
+    "29": [
+      "app_providers_appserviceprovider",
+      "app_providers_appserviceprovider_closure_1",
+      "database_migrations_2026_02_02_175821_notifications_targets_table",
+      "database_migrations_2026_02_02_175821_notifications_targets_table_closure_1",
+      "database_migrations_2026_02_02_175821_notifications_targets_table_down",
+      "database_migrations_2026_02_02_175821_notifications_targets_table_up",
+      "database_migrations_2026_02_23_143437_permission_role",
+      "database_migrations_2026_02_23_143437_permission_role_closure_1",
+      "database_migrations_2026_02_23_143437_permission_role_down",
+      "database_migrations_2026_02_23_143437_permission_role_up",
+      "illuminate_support_facades_schema",
+      "illuminate_support_facades_view"
+    ],
+    "30": [
+      "composer",
+      "composer_description",
+      "composer_extra",
+      "composer_extra_laravel",
+      "composer_keywords",
+      "composer_laravel_dont_discover",
+      "composer_license",
+      "composer_minimum_stability",
+      "composer_name",
+      "composer_prefer_stable",
+      "composer_schema",
+      "composer_type"
+    ],
+    "31": [
+      "docker_compose_prod_app_build",
+      "docker_compose_prod_app_depends_on",
+      "docker_compose_prod_app_expose",
+      "docker_compose_prod_app_image",
+      "docker_compose_prod_app_networks",
+      "docker_compose_prod_app_restart",
+      "docker_compose_prod_app_volumes",
+      "docker_compose_prod_build_context",
+      "docker_compose_prod_build_dockerfile",
+      "docker_compose_prod_depends_on_mysql",
+      "docker_compose_prod_mysql_condition",
+      "docker_compose_prod_services_app"
+    ],
+    "32": [
+      "illuminate_foundation_testing_refreshdatabase",
+      "illuminate_support_facades_notification",
+      "tests_feature_auth_emailandpasswordrecoverytest",
+      "tests_feature_auth_emailandpasswordrecoverytest_closure_1",
+      "tests_feature_auth_emailandpasswordrecoverytest_closure_2",
+      "tests_feature_pageaccesslogtest",
+      "tests_feature_pageaccesslogtest_closure_1",
+      "tests_feature_retreatservantlinktest",
+      "tests_feature_retreatservantlinktest_closure_1",
+      "tests_feature_retreatservantlinktest_closure_2",
+      "tests_feature_retreatservantlinktest_servantlinkadmin",
+      "tests_feature_retreatservantlinktest_servantlinkretreat"
+    ],
+    "33": [
+      "package_devdependencies",
+      "package_devdependencies_concurrently",
+      "package_devdependencies_laravel_vite_plugin",
+      "package_devdependencies_tailwindcss",
+      "package_devdependencies_tailwindcss_vite",
+      "package_devdependencies_vite",
+      "ref_concurrently",
+      "ref_laravel_vite_plugin",
+      "ref_tailwindcss",
+      "ref_tailwindcss_vite",
+      "ref_vite",
+      "vite_config"
+    ],
+    "34": [
+      "app_models_emailverificationcode",
+      "app_models_emailverificationcode_emailverificationcode",
+      "app_models_emailverificationcode_emailverificationcode_casts",
+      "app_models_galleryalbum",
+      "app_models_galleryphoto",
+      "app_models_parishevent",
+      "app_models_pastoralgroup",
+      "app_models_post",
+      "app_models_retreat",
+      "illuminate_database_eloquent_model",
+      "illuminate_support_facades_storage"
+    ],
+    "35": [
+      "app_models_retreatregistration",
+      "app_models_retreatregistration_closure_1",
+      "app_models_retreatregistration_retreatregistration",
+      "app_models_retreatregistration_retreatregistration_ageat",
+      "app_models_retreatregistration_retreatregistration_attendancerecords",
+      "app_models_retreatregistration_retreatregistration_casts",
+      "app_models_retreatregistration_retreatregistration_hashealthinformation",
+      "app_models_retreatregistration_retreatregistration_retreat",
+      "app_models_retreatregistration_retreatregistration_statuslabel",
+      "app_models_retreatservant_retreatservant_ageat",
+      "carbon_carboninterface"
+    ],
+    "36": [
+      "docker_compose_prod_app_condition",
+      "docker_compose_prod_depends_on_app",
+      "docker_compose_prod_nginx_depends_on",
+      "docker_compose_prod_nginx_image",
+      "docker_compose_prod_nginx_networks",
+      "docker_compose_prod_nginx_ports",
+      "docker_compose_prod_nginx_restart",
+      "docker_compose_prod_nginx_volumes",
+      "docker_compose_prod_queue_depends_on",
+      "docker_compose_prod_scheduler_depends_on",
+      "docker_compose_prod_services_nginx"
+    ],
+    "37": [
+      "routes_web",
+      "routes_web_closure_1",
+      "routes_web_closure_2",
+      "routes_web_closure_3",
+      "routes_web_closure_4",
+      "routes_web_closure_5",
+      "routes_web_closure_6",
+      "routes_web_closure_7",
+      "routes_web_closure_8",
+      "routes_web_get_home",
+      "routes_web_match_em_construcao"
+    ],
+    "38": [
+      "app_models_retreatattendancesession",
+      "app_models_retreatattendancesession_retreatattendancesession",
+      "app_models_retreatattendancesession_retreatattendancesession_casts",
+      "app_models_retreatattendancesession_retreatattendancesession_closer",
+      "app_models_retreatattendancesession_retreatattendancesession_opener",
+      "app_models_retreatattendancesession_retreatattendancesession_records",
+      "app_models_retreatattendancesession_retreatattendancesession_retreat",
+      "illuminate_database_eloquent_relations_morphmany",
+      "tests_feature_models_retreatoperationstest",
+      "tests_feature_models_retreatoperationstest_closure_2"
+    ],
+    "39": [
+      "app_models_retreatservant",
+      "app_models_retreatservant_closure_1",
+      "app_models_retreatservant_retreatservant",
+      "app_models_retreatservant_retreatservant_approver",
+      "app_models_retreatservant_retreatservant_assignedministry",
+      "app_models_retreatservant_retreatservant_attendancerecords",
+      "app_models_retreatservant_retreatservant_casts",
+      "app_models_retreatservant_retreatservant_hashealthinformation",
+      "app_models_retreatservant_retreatservant_preferredministry",
+      "app_models_retreatservant_retreatservant_retreat"
+    ],
+    "40": [
+      "composer_require_dev",
+      "composer_require_dev_fakerphp_faker",
+      "composer_require_dev_laravel_boost",
+      "composer_require_dev_laravel_pail",
+      "composer_require_dev_laravel_pint",
+      "composer_require_dev_laravel_sail",
+      "composer_require_dev_mockery_mockery",
+      "composer_require_dev_nunomaduro_collision",
+      "composer_require_dev_pestphp_pest",
+      "composer_require_dev_pestphp_pest_plugin_laravel"
+    ],
+    "41": [
+      "flowbite",
+      "package_devdependencies_axios",
+      "ref_axios",
+      "resources_js_accessibility",
+      "resources_js_api_useapi",
+      "resources_js_api_useapi_api",
+      "resources_js_app",
+      "resources_js_bootstrap",
+      "resources_js_lib_lazyvendors",
+      "resources_js_lib_lazyvendors_ensureflowbite"
+    ],
+    "42": [
+      "app_http_controllers_retreatcontroller",
+      "app_http_controllers_retreatcontroller_closure_1",
+      "app_http_controllers_retreatcontroller_closure_2",
+      "app_http_controllers_retreatcontroller_closure_3",
+      "app_http_controllers_retreatcontroller_closure_4",
+      "app_http_controllers_retreatcontroller_closure_5",
+      "app_http_controllers_retreatcontroller_closure_6",
+      "app_http_controllers_retreatcontroller_closure_7",
+      "app_http_controllers_retreatcontroller_closure_8"
+    ],
+    "43": [
+      "bootstrap_app",
+      "bootstrap_app_closure_1",
+      "bootstrap_app_closure_2",
+      "bootstrap_app_closure_3",
+      "illuminate_foundation_application",
+      "illuminate_foundation_configuration_exceptions",
+      "illuminate_foundation_configuration_middleware",
+      "invalidargumentexception",
+      "public_index"
+    ],
+    "44": [
+      "composer_allow_plugins_pestphp_pest_plugin",
+      "composer_allow_plugins_php_http_discovery",
+      "composer_config",
+      "composer_config_allow_plugins",
+      "composer_config_optimize_autoloader",
+      "composer_config_platform",
+      "composer_config_preferred_install",
+      "composer_config_sort_packages",
+      "composer_platform_php"
+    ],
+    "45": [
+      "composer_scripts",
+      "composer_scripts_dev",
+      "composer_scripts_post_autoload_dump",
+      "composer_scripts_post_create_project_cmd",
+      "composer_scripts_post_root_package_install",
+      "composer_scripts_post_update_cmd",
+      "composer_scripts_pre_package_uninstall",
+      "composer_scripts_setup",
+      "composer_scripts_test"
+    ],
+    "46": [
+      "docker_compose_prod_override",
+      "docker_compose_prod_override_app_environment",
+      "docker_compose_prod_override_environment_db_host",
+      "docker_compose_prod_override_queue_environment",
+      "docker_compose_prod_override_scheduler_environment",
+      "docker_compose_prod_override_services",
+      "docker_compose_prod_override_services_app",
+      "docker_compose_prod_override_services_queue",
+      "docker_compose_prod_override_services_scheduler"
+    ],
+    "47": [
+      "package_devdependencies_laravel_echo",
+      "package_devdependencies_pusher_js",
+      "ref_laravel_echo",
+      "ref_pusher_js",
+      "resources_js_web_usechannels",
+      "resources_js_web_usechannels_ensureemptystateremoved",
+      "resources_js_web_usechannels_opennotificationsmodal",
+      "resources_js_web_usechannels_prependnotificationtolist",
+      "resources_js_web_usechannels_updatebadge"
+    ],
+    "48": [
+      "docker_compose_prod_app_healthcheck",
+      "docker_compose_prod_healthcheck_interval",
+      "docker_compose_prod_healthcheck_retries",
+      "docker_compose_prod_healthcheck_start_period",
+      "docker_compose_prod_healthcheck_test",
+      "docker_compose_prod_healthcheck_timeout",
+      "docker_compose_prod_mysql_healthcheck",
+      "docker_compose_prod_nginx_healthcheck"
+    ],
+    "49": [
+      "resources_js_liturgia",
+      "resources_js_liturgia_content",
+      "resources_js_liturgia_date",
+      "resources_js_liturgia_escapehtml",
+      "resources_js_liturgia_reading",
+      "resources_js_liturgia_render",
+      "resources_js_liturgia_skeleton"
+    ],
+    "50": [
+      "app_models_retreatattendancerecord",
+      "app_models_retreatattendancerecord_retreatattendancerecord",
+      "app_models_retreatattendancerecord_retreatattendancerecord_attendee",
+      "app_models_retreatattendancerecord_retreatattendancerecord_casts",
+      "app_models_retreatattendancerecord_retreatattendancerecord_marker",
+      "app_models_retreatattendancerecord_retreatattendancerecord_session"
+    ],
+    "51": [
+      "app_services_geoipservice",
+      "app_services_geoipservice_geoipservice",
+      "app_services_geoipservice_geoipservice_locate",
+      "stevebauman_location_facades_location",
+      "torann_geoip_location",
+      "torann_geoip_services_abstractservice"
+    ],
+    "52": [
+      "composer_autoload",
+      "composer_autoload_files",
+      "composer_autoload_psr_4",
+      "composer_psr_4_app",
+      "composer_psr_4_database_factories",
+      "composer_psr_4_database_seeders"
+    ],
+    "53": [
+      "database_migrations_0001_01_01_000000_create_users_table",
+      "database_migrations_0001_01_01_000000_create_users_table_closure_1",
+      "database_migrations_0001_01_01_000000_create_users_table_closure_2",
+      "database_migrations_0001_01_01_000000_create_users_table_closure_3",
+      "database_migrations_0001_01_01_000000_create_users_table_down",
+      "database_migrations_0001_01_01_000000_create_users_table_up"
+    ],
+    "54": [
+      "database_migrations_0001_01_01_000002_create_jobs_table",
+      "database_migrations_0001_01_01_000002_create_jobs_table_closure_1",
+      "database_migrations_0001_01_01_000002_create_jobs_table_closure_2",
+      "database_migrations_0001_01_01_000002_create_jobs_table_closure_3",
+      "database_migrations_0001_01_01_000002_create_jobs_table_down",
+      "database_migrations_0001_01_01_000002_create_jobs_table_up"
+    ],
+    "55": [
+      "docker_compose_prod_app_env_file",
+      "docker_compose_prod_env_file_path",
+      "docker_compose_prod_env_file_required",
+      "docker_compose_prod_mysql_env_file",
+      "docker_compose_prod_queue_env_file",
+      "docker_compose_prod_scheduler_env_file"
+    ],
+    "56": [
+      "docker_compose_prod_mysql_entrypoint",
+      "docker_compose_prod_mysql_image",
+      "docker_compose_prod_mysql_networks",
+      "docker_compose_prod_mysql_restart",
+      "docker_compose_prod_mysql_volumes",
+      "docker_compose_prod_services_mysql"
+    ],
+    "57": [
+      "docker_compose_prod_queue_command",
+      "docker_compose_prod_queue_image",
+      "docker_compose_prod_queue_networks",
+      "docker_compose_prod_queue_restart",
+      "docker_compose_prod_queue_volumes",
+      "docker_compose_prod_services_queue"
+    ],
+    "58": [
+      "docker_mysql_production_entrypoint",
+      "docker_mysql_production_entrypoint_mysql_database",
+      "docker_mysql_production_entrypoint_mysql_password",
+      "docker_mysql_production_entrypoint_mysql_root_password",
+      "docker_mysql_production_entrypoint_mysql_user",
+      "docker_mysql_production_entrypoint_sh__entry"
+    ],
+    "59": [
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_clear_vite_hot",
+      "package_scripts_dev",
+      "package_scripts_prebuild",
+      "package_scripts_predev"
+    ],
+    "60": [
+      "resources_js_accessibility_accessibilitymanagerservice",
+      "resources_js_accessibility_accessibilitymanagerservice_applystate",
+      "resources_js_accessibility_accessibilitymanagerservice_constructor",
+      "resources_js_accessibility_accessibilitymanagerservice_init",
+      "resources_js_accessibility_accessibilitymanagerservice_settheme",
+      "resources_js_accessibility_accessibilitymanagerservice_togglehighcontrast"
+    ],
+    "61": [
+      "testar_push",
+      "testar_push_print_error",
+      "testar_push_print_header",
+      "testar_push_print_info",
+      "testar_push_print_success",
+      "testar_push_sh__entry"
+    ],
+    "62": [
+      "tests_feature_auth_logintest",
+      "tests_feature_auth_logintest_closure_1",
+      "tests_feature_auth_logintest_closure_2",
+      "tests_feature_auth_logintest_closure_3",
+      "tests_feature_auth_logintest_closure_4",
+      "tests_feature_auth_logintest_createloginuser"
+    ],
+    "63": [
+      "config_logging",
+      "monolog_handler_nullhandler",
+      "monolog_handler_streamhandler",
+      "monolog_handler_syslogudphandler",
+      "monolog_processor_psrlogmessageprocessor"
+    ],
+    "64": [
+      "database_migrations_0001_01_01_000001_create_cache_table",
+      "database_migrations_0001_01_01_000001_create_cache_table_closure_1",
+      "database_migrations_0001_01_01_000001_create_cache_table_closure_2",
+      "database_migrations_0001_01_01_000001_create_cache_table_down",
+      "database_migrations_0001_01_01_000001_create_cache_table_up"
+    ],
+    "65": [
+      "database_migrations_2026_08_17_100000_add_is_active_to_users_table",
+      "database_migrations_2026_08_17_100000_add_is_active_to_users_table_closure_1",
+      "database_migrations_2026_08_17_100000_add_is_active_to_users_table_closure_2",
+      "database_migrations_2026_08_17_100000_add_is_active_to_users_table_down",
+      "database_migrations_2026_08_17_100000_add_is_active_to_users_table_up"
+    ],
+    "66": [
+      "database_migrations_2026_08_20_140000_create_pastoral_groups_table",
+      "database_migrations_2026_08_20_140000_create_pastoral_groups_table_closure_1",
+      "database_migrations_2026_08_20_140000_create_pastoral_groups_table_closure_2",
+      "database_migrations_2026_08_20_140000_create_pastoral_groups_table_down",
+      "database_migrations_2026_08_20_140000_create_pastoral_groups_table_up"
+    ],
+    "67": [
+      "database_migrations_2026_08_20_150000_create_retreats_table",
+      "database_migrations_2026_08_20_150000_create_retreats_table_closure_1",
+      "database_migrations_2026_08_20_150000_create_retreats_table_closure_2",
+      "database_migrations_2026_08_20_150000_create_retreats_table_down",
+      "database_migrations_2026_08_20_150000_create_retreats_table_up"
+    ],
+    "68": [
+      "database_migrations_2026_08_20_160000_create_gallery_tables",
+      "database_migrations_2026_08_20_160000_create_gallery_tables_closure_1",
+      "database_migrations_2026_08_20_160000_create_gallery_tables_closure_2",
+      "database_migrations_2026_08_20_160000_create_gallery_tables_down",
+      "database_migrations_2026_08_20_160000_create_gallery_tables_up"
+    ],
+    "69": [
+      "database_migrations_2026_08_20_170000_add_care_information_to_retreat_registrations",
+      "database_migrations_2026_08_20_170000_add_care_information_to_retreat_registrations_closure_1",
+      "database_migrations_2026_08_20_170000_add_care_information_to_retreat_registrations_closure_2",
+      "database_migrations_2026_08_20_170000_add_care_information_to_retreat_registrations_down",
+      "database_migrations_2026_08_20_170000_add_care_information_to_retreat_registrations_up"
+    ],
+    "70": [
+      "components_layouts_app_footer",
+      "components_layouts_app_header",
+      "components_layouts_app_sidebar",
+      "resources_views_components_layouts_app_blade"
+    ],
+    "71": [
+      "database_migrations_2025_12_01_133306_create_personal_access_tokens_table",
+      "database_migrations_2025_12_01_133306_create_personal_access_tokens_table_closure_1",
+      "database_migrations_2025_12_01_133306_create_personal_access_tokens_table_down",
+      "database_migrations_2025_12_01_133306_create_personal_access_tokens_table_up"
+    ],
+    "72": [
+      "database_migrations_2026_01_17_131520_create_roles_table",
+      "database_migrations_2026_01_17_131520_create_roles_table_closure_1",
+      "database_migrations_2026_01_17_131520_create_roles_table_down",
+      "database_migrations_2026_01_17_131520_create_roles_table_up"
+    ],
+    "73": [
+      "database_migrations_2026_02_02_180024_notifications_deliveries_table",
+      "database_migrations_2026_02_02_180024_notifications_deliveries_table_closure_1",
+      "database_migrations_2026_02_02_180024_notifications_deliveries_table_down",
+      "database_migrations_2026_02_02_180024_notifications_deliveries_table_up"
+    ],
+    "74": [
+      "database_migrations_2026_02_23_142956_permissions_table",
+      "database_migrations_2026_02_23_142956_permissions_table_closure_1",
+      "database_migrations_2026_02_23_142956_permissions_table_down",
+      "database_migrations_2026_02_23_142956_permissions_table_up"
+    ],
+    "75": [
+      "database_migrations_2026_03_03_162054_create_authentication_log_table",
+      "database_migrations_2026_03_03_162054_create_authentication_log_table_closure_1",
+      "database_migrations_2026_03_03_162054_create_authentication_log_table_down",
+      "database_migrations_2026_03_03_162054_create_authentication_log_table_up"
+    ],
+    "76": [
+      "database_migrations_2026_03_12_120000_create_page_access_logs_table",
+      "database_migrations_2026_03_12_120000_create_page_access_logs_table_closure_1",
+      "database_migrations_2026_03_12_120000_create_page_access_logs_table_down",
+      "database_migrations_2026_03_12_120000_create_page_access_logs_table_up"
+    ],
+    "77": [
+      "database_migrations_2026_08_20_120000_create_posts_table",
+      "database_migrations_2026_08_20_120000_create_posts_table_closure_1",
+      "database_migrations_2026_08_20_120000_create_posts_table_down",
+      "database_migrations_2026_08_20_120000_create_posts_table_up"
+    ],
+    "78": [
+      "database_migrations_2026_08_20_130000_create_events_table",
+      "database_migrations_2026_08_20_130000_create_events_table_closure_1",
+      "database_migrations_2026_08_20_130000_create_events_table_down",
+      "database_migrations_2026_08_20_130000_create_events_table_up"
+    ],
+    "79": [
+      "database_migrations_2026_11_04_000001_create_email_verification_codes_table",
+      "database_migrations_2026_11_04_000001_create_email_verification_codes_table_closure_1",
+      "database_migrations_2026_11_04_000001_create_email_verification_codes_table_down",
+      "database_migrations_2026_11_04_000001_create_email_verification_codes_table_up"
+    ],
+    "80": [
+      "illuminate_foundation_testing_testcase",
+      "tests_testcase",
+      "tests_testcase_testcase",
+      "tests_testcase_testcase_setup"
+    ],
+    "81": [
+      "illuminate_support_facades_broadcast",
+      "routes_channels",
+      "routes_channels_closure_1",
+      "routes_channels_closure_2"
+    ],
+    "82": [
+      "scripts_deploy_hostinger_cleanup",
+      "scripts_deploy_hostinger_sh__entry",
+      "scripts_deploy_hostinger_sh_scripts_deploy_hostinger",
+      "scripts_deploy_hostinger_step"
+    ],
+    "83": [
+      "application",
+      "argvinput",
+      "artisan"
+    ],
+    "84": [
+      "composer_autoload_dev",
+      "composer_autoload_dev_psr_4",
+      "composer_psr_4_tests"
+    ],
+    "85": [
+      "tests_pest",
+      "tests_pest_closure_1",
+      "tests_pest_something"
+    ],
+    "86": [
+      "config_sanctum",
+      "laravel_sanctum_sanctum"
+    ],
+    "87": [
+      "docker_8_0_start_container",
+      "docker_8_0_start_container__entry"
+    ],
+    "88": [
+      "docker_8_1_start_container",
+      "docker_8_1_start_container__entry"
+    ],
+    "89": [
+      "docker_8_2_start_container",
+      "docker_8_2_start_container__entry"
+    ],
+    "90": [
+      "docker_8_3_start_container",
+      "docker_8_3_start_container__entry"
+    ],
+    "91": [
+      "docker_8_4_start_container",
+      "docker_8_4_start_container__entry"
+    ],
+    "92": [
+      "docker_8_5_start_container",
+      "docker_8_5_start_container__entry"
+    ],
+    "93": [
+      "docker_mariadb_create_testing_database",
+      "docker_mariadb_create_testing_database_sh__entry"
+    ],
+    "94": [
+      "docker_mysql_create_testing_database",
+      "docker_mysql_create_testing_database_sh__entry"
+    ],
+    "95": [
+      "docker_prod_entrypoint",
+      "docker_prod_entrypoint_sh__entry"
+    ],
+    "96": [
+      "resources_views_errors_401_blade",
+      "resources_views_errors_401_blade_php_errors_minimal"
+    ],
+    "97": [
+      "resources_views_errors_402_blade",
+      "resources_views_errors_402_blade_php_errors_minimal"
+    ],
+    "98": [
+      "resources_views_errors_403_blade",
+      "resources_views_errors_403_blade_php_errors_minimal"
+    ],
+    "99": [
+      "resources_views_errors_404_blade",
+      "resources_views_errors_404_blade_php_errors_minimal"
+    ],
+    "100": [
+      "resources_views_errors_419_blade",
+      "resources_views_errors_419_blade_php_errors_minimal"
+    ],
+    "101": [
+      "resources_views_errors_429_blade",
+      "resources_views_errors_429_blade_php_errors_minimal"
+    ],
+    "102": [
+      "resources_views_errors_500_blade",
+      "resources_views_errors_500_blade_php_errors_minimal"
+    ],
+    "103": [
+      "resources_views_errors_503_blade",
+      "resources_views_errors_503_blade_php_errors_minimal"
+    ],
+    "104": [
+      "scripts_deploy_hostinger_ps1_scripts_deploy_hostinger",
+      "scripts_deploy_hostinger_show_step"
+    ],
+    "105": [
+      "tests_unit_exampletest",
+      "tests_unit_exampletest_closure_1"
+    ],
+    "106": [
+      "bootstrap_providers"
+    ],
+    "107": [
+      "config_app"
+    ],
+    "108": [
+      "config_auth"
+    ],
+    "109": [
+      "config_authentication_log"
+    ],
+    "110": [
+      "config_broadcasting"
+    ],
+    "111": [
+      "config_filesystems"
+    ],
+    "112": [
+      "config_geoip"
+    ],
+    "113": [
+      "config_mail"
+    ],
+    "114": [
+      "config_parish"
+    ],
+    "115": [
+      "config_permissions"
+    ],
+    "116": [
+      "config_queue"
+    ],
+    "117": [
+      "config_reverb"
+    ],
+    "118": [
+      "config_services"
+    ],
+    "119": [
+      "config_webpush"
+    ],
+    "120": [
+      "public_sw"
+    ],
+    "121": [
+      "resources_views_account_security_blade"
+    ],
+    "122": [
+      "resources_views_auth_forgot_password_blade"
+    ],
+    "123": [
+      "resources_views_auth_reset_password_blade"
+    ],
+    "124": [
+      "resources_views_auth_verify_email_blade"
+    ],
+    "125": [
+      "resources_views_components_input_error_blade"
+    ],
+    "126": [
+      "resources_views_components_layouts_app_footer_blade"
+    ],
+    "127": [
+      "resources_views_components_layouts_app_header_blade"
+    ],
+    "128": [
+      "resources_views_components_layouts_app_sidebar_blade"
+    ],
+    "129": [
+      "resources_views_components_layouts_app_subheader_blade"
+    ],
+    "130": [
+      "resources_views_components_layouts_public_blade"
+    ],
+    "131": [
+      "resources_views_components_modals_notifications_blade"
+    ],
+    "132": [
+      "resources_views_components_modals_settings_blade"
+    ],
+    "133": [
+      "resources_views_components_portal_page_header_blade"
+    ],
+    "134": [
+      "resources_views_errors_layout_blade"
+    ],
+    "135": [
+      "resources_views_errors_minimal_blade"
+    ],
+    "136": [
+      "resources_views_errors_nodata_blade"
+    ],
+    "137": [
+      "resources_views_events_form_blade"
+    ],
+    "138": [
+      "resources_views_events_index_blade"
+    ],
+    "139": [
+      "resources_views_gallery_form_blade"
+    ],
+    "140": [
+      "resources_views_gallery_index_blade"
+    ],
+    "141": [
+      "resources_views_gallery_photos_blade"
+    ],
+    "142": [
+      "resources_views_groups_form_blade"
+    ],
+    "143": [
+      "resources_views_groups_index_blade"
+    ],
+    "144": [
+      "resources_views_home_blade"
+    ],
+    "145": [
+      "resources_views_navigation_message_envio_blade"
+    ],
+    "146": [
+      "resources_views_navigation_usuario_first_access_blade"
+    ],
+    "147": [
+      "resources_views_portal_agenda_blade"
+    ],
+    "148": [
+      "resources_views_portal_album_blade"
+    ],
+    "149": [
+      "resources_views_portal_apoio_blade"
+    ],
+    "150": [
+      "resources_views_portal_dizimo_blade"
+    ],
+    "151": [
+      "resources_views_portal_evento_blade"
+    ],
+    "152": [
+      "resources_views_portal_galeria_blade"
+    ],
+    "153": [
+      "resources_views_portal_home_blade"
+    ],
+    "154": [
+      "resources_views_portal_juventude_blade"
+    ],
+    "155": [
+      "resources_views_portal_liturgia_blade"
+    ],
+    "156": [
+      "resources_views_portal_missas_blade"
+    ],
+    "157": [
+      "resources_views_portal_noticia_blade"
+    ],
+    "158": [
+      "resources_views_portal_noticias_blade"
+    ],
+    "159": [
+      "resources_views_portal_paroquia_blade"
+    ],
+    "160": [
+      "resources_views_portal_pastoral_blade"
+    ],
+    "161": [
+      "resources_views_portal_retiro_blade"
+    ],
+    "162": [
+      "resources_views_portal_servir_blade"
+    ],
+    "163": [
+      "resources_views_posts_form_blade"
+    ],
+    "164": [
+      "resources_views_posts_index_blade"
+    ],
+    "165": [
+      "resources_views_reports_default_blade"
+    ],
+    "166": [
+      "resources_views_retreats_form_blade"
+    ],
+    "167": [
+      "resources_views_retreats_index_blade"
+    ],
+    "168": [
+      "resources_views_retreats_ministries_blade"
+    ],
+    "169": [
+      "resources_views_retreats_registrations_blade"
+    ],
+    "170": [
+      "resources_views_retreats_servant_link_blade"
+    ],
+    "171": [
+      "resources_views_retreats_servants_blade"
+    ],
+    "172": [
+      "resources_views_roles_index_blade"
+    ],
+    "173": [
+      "resources_views_users_create_blade"
+    ],
+    "174": [
+      "resources_views_users_index_blade"
+    ],
+    "175": [
+      "resources_views_welcome_blade"
+    ]
+  },
+  "cohesion": {
+    "0": 0.07960199004975124,
+    "1": 0.06693877551020408,
+    "2": 0.044326241134751775,
+    "3": 0.041666666666666664,
+    "4": 0.07084785133565621,
+    "5": 0.07948717948717948,
+    "6": 0.07657657657657657,
+    "7": 0.08901515151515152,
+    "8": 0.12903225806451613,
+    "9": 0.0735632183908046,
+    "10": 0.11330049261083744,
+    "11": 0.10317460317460317,
+    "12": 0.11965811965811966,
+    "13": 0.10541310541310542,
+    "14": 0.13405797101449277,
+    "15": 0.19047619047619047,
+    "16": 0.17894736842105263,
+    "17": 0.1111111111111111,
+    "18": 0.22794117647058823,
+    "19": 0.1523809523809524,
+    "20": 0.2857142857142857,
+    "21": 0.14285714285714285,
+    "22": 0.26373626373626374,
+    "23": 0.24175824175824176,
+    "24": 0.15384615384615385,
+    "25": 0.15384615384615385,
+    "26": 0.18181818181818182,
+    "27": 0.24242424242424243,
+    "28": 0.18181818181818182,
+    "29": 0.16666666666666666,
+    "30": 0.16666666666666666,
+    "31": 0.16666666666666666,
+    "32": 0.21212121212121213,
+    "33": 0.19696969696969696,
+    "34": 0.2909090909090909,
+    "35": 0.2,
+    "36": 0.18181818181818182,
+    "37": 0.18181818181818182,
+    "38": 0.2222222222222222,
+    "39": 0.2,
+    "40": 0.2,
+    "41": 0.26666666666666666,
+    "42": 0.2222222222222222,
+    "43": 0.2777777777777778,
+    "44": 0.2222222222222222,
+    "45": 0.2222222222222222,
+    "46": 0.2777777777777778,
+    "47": 0.2777777777777778,
+    "48": 0.4642857142857143,
+    "49": 0.42857142857142855,
+    "50": 0.3333333333333333,
+    "51": 0.4,
+    "52": 0.3333333333333333,
+    "53": 0.3333333333333333,
+    "54": 0.3333333333333333,
+    "55": 0.5333333333333333,
+    "56": 0.3333333333333333,
+    "57": 0.3333333333333333,
+    "58": 0.3333333333333333,
+    "59": 0.3333333333333333,
+    "60": 0.5333333333333333,
+    "61": 0.6,
+    "62": 0.4666666666666667,
+    "63": 0.4,
+    "64": 0.4,
+    "65": 0.4,
+    "66": 0.4,
+    "67": 0.4,
+    "68": 0.4,
+    "69": 0.4,
+    "70": 0.5,
+    "71": 0.5,
+    "72": 0.5,
+    "73": 0.5,
+    "74": 0.5,
+    "75": 0.5,
+    "76": 0.5,
+    "77": 0.5,
+    "78": 0.5,
+    "79": 0.5,
+    "80": 0.6666666666666666,
+    "81": 0.5,
+    "82": 0.6666666666666666,
+    "83": 0.6666666666666666,
+    "84": 0.6666666666666666,
+    "85": 0.6666666666666666,
+    "86": 1.0,
+    "87": 1.0,
+    "88": 1.0,
+    "89": 1.0,
+    "90": 1.0,
+    "91": 1.0,
+    "92": 1.0,
+    "93": 1.0,
+    "94": 1.0,
+    "95": 1.0,
+    "96": 1.0,
+    "97": 1.0,
+    "98": 1.0,
+    "99": 1.0,
+    "100": 1.0,
+    "101": 1.0,
+    "102": 1.0,
+    "103": 1.0,
+    "104": 1.0,
+    "105": 1.0,
+    "106": 1.0,
+    "107": 1.0,
+    "108": 1.0,
+    "109": 1.0,
+    "110": 1.0,
+    "111": 1.0,
+    "112": 1.0,
+    "113": 1.0,
+    "114": 1.0,
+    "115": 1.0,
+    "116": 1.0,
+    "117": 1.0,
+    "118": 1.0,
+    "119": 1.0,
+    "120": 1.0,
+    "121": 1.0,
+    "122": 1.0,
+    "123": 1.0,
+    "124": 1.0,
+    "125": 1.0,
+    "126": 1.0,
+    "127": 1.0,
+    "128": 1.0,
+    "129": 1.0,
+    "130": 1.0,
+    "131": 1.0,
+    "132": 1.0,
+    "133": 1.0,
+    "134": 1.0,
+    "135": 1.0,
+    "136": 1.0,
+    "137": 1.0,
+    "138": 1.0,
+    "139": 1.0,
+    "140": 1.0,
+    "141": 1.0,
+    "142": 1.0,
+    "143": 1.0,
+    "144": 1.0,
+    "145": 1.0,
+    "146": 1.0,
+    "147": 1.0,
+    "148": 1.0,
+    "149": 1.0,
+    "150": 1.0,
+    "151": 1.0,
+    "152": 1.0,
+    "153": 1.0,
+    "154": 1.0,
+    "155": 1.0,
+    "156": 1.0,
+    "157": 1.0,
+    "158": 1.0,
+    "159": 1.0,
+    "160": 1.0,
+    "161": 1.0,
+    "162": 1.0,
+    "163": 1.0,
+    "164": 1.0,
+    "165": 1.0,
+    "166": 1.0,
+    "167": 1.0,
+    "168": 1.0,
+    "169": 1.0,
+    "170": 1.0,
+    "171": 1.0,
+    "172": 1.0,
+    "173": 1.0,
+    "174": 1.0,
+    "175": 1.0
+  },
+  "gods": [
+    {
+      "id": "app_models_retreat_retreat",
+      "label": "Retreat",
+      "degree": 67
+    },
+    {
+      "id": "app_models_user_user",
+      "label": "User",
+      "degree": 59
+    },
+    {
+      "id": "app_models_galleryalbum_galleryalbum",
+      "label": "GalleryAlbum",
+      "degree": 26
+    },
+    {
+      "id": "app_models_pastoralgroup_pastoralgroup",
+      "label": "PastoralGroup",
+      "degree": 23
+    },
+    {
+      "id": "app_http_controllers_usercontroller_usercontroller",
+      "label": "UserController",
+      "degree": 20
+    },
+    {
+      "id": "app_models_parishevent_parishevent",
+      "label": "ParishEvent",
+      "degree": 20
+    },
+    {
+      "id": "app_models_post_post",
+      "label": "Post",
+      "degree": 19
+    },
+    {
+      "id": "app_models_role_role",
+      "label": "Role",
+      "degree": 19
+    },
+    {
+      "id": "app_models_retreatministry_retreatministry",
+      "label": "RetreatMinistry",
+      "degree": 18
+    },
+    {
+      "id": "app_http_controllers_pastoralgroupcontroller_pastoralgroupcontroller",
+      "label": "PastoralGroupController",
+      "degree": 18
+    }
+  ],
+  "surprises": [
+    {
+      "source": "{closure#4}()",
+      "target": "User",
+      "source_files": [
+        "tests/Feature/Auth/FirstAccessPasswordTest.php",
+        "app/Models/User.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; bridges separate communities; peripheral node `{closure#4}()` unexpectedly reaches hub `User`"
+    },
+    {
+      "source": "{closure#5}()",
+      "target": "User",
+      "source_files": [
+        "tests/Feature/Auth/FirstAccessPasswordTest.php",
+        "app/Models/User.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; bridges separate communities; peripheral node `{closure#5}()` unexpectedly reaches hub `User`"
+    },
+    {
+      "source": "createFirstAccessUser()",
+      "target": "User",
+      "source_files": [
+        "tests/Feature/Auth/FirstAccessPasswordTest.php",
+        "app/Models/User.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; bridges separate communities; peripheral node `createFirstAccessUser()` unexpectedly reaches hub `User`"
+    },
+    {
+      "source": "servantLinkRetreat()",
+      "target": "Retreat",
+      "source_files": [
+        "tests/Feature/RetreatServantLinkTest.php",
+        "app/Models/Retreat.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "{closure#2}()",
+      "target": "NotificationSent",
+      "source_files": [
+        "tests/Feature/Notifications/CreateNotificationDeliveriesTest.php",
+        "app/Events/NotificationSent.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; peripheral node `{closure#2}()` unexpectedly reaches hub `NotificationSent`"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `User` connect `Community 11` to `Community 32`, `Community 1`, `Community 2`, `Community 0`, `Community 4`, `Community 7`, `Community 8`, `Community 42`, `Community 18`, `Community 19`, `Community 28`, `Community 62`?",
+      "why": "High betweenness centrality (0.081) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `errors::minimal`, `errors::minimal`, `errors::minimal` to the rest of the system?",
+      "why": "22 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 0` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.07960199004975124 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Retreat` connect `Community 0` to `Community 32`, `Community 2`, `Community 34`, `Community 37`, `Community 6`, `Community 38`, `Community 42`, `Community 10`, `Community 20`, `Community 26`?",
+      "why": "High betweenness centrality (0.066) - this node is a cross-community bridge."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 1` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.06693877551020408 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Post` connect `Community 14` to `Community 10`, `Community 34`, `Community 11`, `Community 6`?",
+      "why": "High betweenness centrality (0.015) - this node is a cross-community bridge."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 2` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.044326241134751775 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

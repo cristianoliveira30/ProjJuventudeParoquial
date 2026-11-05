@@ -30,13 +30,13 @@
     @endphp
 
     <header class="relative z-[100] bg-[#210124] text-white shadow-[0_10px_35px_rgba(33,1,36,.12)]">
-        <nav class="mx-auto flex min-h-24 max-w-[1440px] items-center justify-between gap-6 px-5 sm:px-8 xl:px-12" aria-label="Navegação principal">
-            <a href="{{ route('portal.home') }}" class="flex shrink-0 items-center gap-3.5" aria-label="Página inicial da Paróquia São Domingos de Gusmão">
+        <nav class="mx-auto flex min-h-24 max-w-[1440px] items-center justify-between gap-3 px-5 sm:gap-6 sm:px-8 2xl:px-12" aria-label="Navegação principal">
+            <a href="{{ route('portal.home') }}" class="flex min-w-0 shrink items-center gap-2.5 sm:gap-3.5" aria-label="Página inicial da Paróquia São Domingos de Gusmão">
                 <img src="{{ asset('assets/img/Ativo 1.svg') }}" class="h-16 w-16 object-contain" alt="">
-                <span class="font-serif text-lg font-semibold leading-[1.15] sm:text-xl">Paróquia São Domingos<br>de Gusmão</span>
+                <span class="min-w-0 font-serif text-base font-semibold leading-[1.15] sm:text-xl">Paróquia São Domingos<br>de Gusmão</span>
             </a>
 
-            <div class="hidden items-center gap-1 xl:flex">
+            <div class="hidden items-center gap-1 2xl:flex">
                 @foreach(array_slice($portalNav, 0, 2) as $item)
                     @php($isPortalActive = request()->routeIs($item['active'] ?? $item['route'], ...(!isset($item['active']) ? [$item['route'] . '.*'] : [])))
                     <a href="{{ route($item['route']) }}{{ $item['fragment'] ?? '' }}"
@@ -63,19 +63,19 @@
                 @endforeach
             </div>
 
-            <div class="hidden shrink-0 items-center gap-4 xl:flex">
+            <div class="hidden shrink-0 items-center gap-4 2xl:flex">
                 <a href="{{ $adminUrl }}" class="border-b border-white/35 pb-0.5 text-xs font-medium text-white/75 transition hover:border-[#14B8A6] hover:text-white">{{ $adminLabel }}</a>
                 <a href="{{ route('portal.dizimo') }}" class="rounded-xl border border-white/20 bg-[#750D37] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#8d1042] focus:outline-none focus:ring-2 focus:ring-[#14B8A6]">Contribua com o dízimo</a>
             </div>
 
             <button type="button" data-collapse-toggle="public-mobile-menu" aria-controls="public-mobile-menu" aria-expanded="false"
-                class="inline-flex size-11 items-center justify-center rounded-xl border border-white/15 text-white xl:hidden">
+                class="inline-flex size-11 shrink-0 items-center justify-center rounded-xl border border-white/15 text-white 2xl:hidden">
                 <span class="sr-only">Abrir menu</span>
                 <x-bi-list class="size-6" />
             </button>
         </nav>
 
-        <div id="public-mobile-menu" class="hidden border-t border-white/10 bg-[#210124] px-5 pb-6 xl:hidden">
+        <div id="public-mobile-menu" class="hidden border-t border-white/10 bg-[#210124] px-5 pb-6 2xl:hidden">
             <div class="mx-auto grid max-w-[1440px] gap-1 pt-4">
                 @foreach($portalNav as $item)
                     <a href="{{ route($item['route']) }}{{ $item['fragment'] ?? '' }}" class="rounded-lg px-3 py-2.5 text-sm font-medium text-white/85 hover:bg-white/10">{{ $item['label'] }}</a>
@@ -94,7 +94,7 @@
                     <h2 class="font-serif text-xl font-semibold">Horários de Missa</h2>
                     <div class="mt-4 rounded-xl border border-[#B3DEC1] bg-[#E5FCF5]/65 p-4">
                         <p class="text-sm font-semibold">Domingo</p>
-                        <p class="mt-1 text-sm leading-6 text-slate-600">07h30 · 09h00<br>10h30 · 19h00</p>
+                        <p class="mt-1 text-sm leading-6 text-slate-600">Consulte os horários atualizados</p>
                     </div>
                     <a href="{{ route('portal.missas') }}" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#008f83]">Ver todos os horários <x-bi-arrow-right class="size-4" /></a>
                 </div>
@@ -134,15 +134,15 @@
                     <img src="{{ asset('assets/img/Ativo 1.svg') }}" class="h-16 w-16 object-contain" alt="">
                     <p class="font-serif text-xl font-semibold leading-tight">Paróquia São Domingos<br>de Gusmão</p>
                 </div>
-                <div class="mt-6 space-y-2 text-sm leading-6 text-white/65">
+                <div class="mt-6 space-y-2 text-sm leading-6 text-white/75">
                     <p>Av. Celso Malcher, 733 — Terra Firme, Belém - PA, CEP: 66077-000</p>
-                    <p>(91) 3274-4746 / (91) 4104-8553</p>
+                    <p>Padre Francisco Nunes: (91) 3274-4746 / (91) 4104-8553</p>
                     <p>paroquiasdg@hotmail.com</p>
                 </div>
             </div>
             <div>
                 <h2 class="font-serif text-lg font-semibold">Celebrações</h2>
-                <div class="mt-4 grid gap-2 text-sm text-white/65">
+                <div class="mt-4 grid gap-2 text-sm text-white/75">
                     <a href="{{ route('portal.missas') }}" class="hover:text-[#B3DEC1]">Horários de missa</a>
                     <a href="{{ route('portal.liturgia') }}" class="hover:text-[#B3DEC1]">Liturgia diária</a>
                     <a href="{{ route('portal.paroquia') }}#secretaria" class="hover:text-[#B3DEC1]">Confissões</a>
@@ -150,7 +150,7 @@
             </div>
             <div>
                 <h2 class="font-serif text-lg font-semibold">Comunidade</h2>
-                <div class="mt-4 grid gap-2 text-sm text-white/65">
+                <div class="mt-4 grid gap-2 text-sm text-white/75">
                     <a href="{{ route('portal.paroquia') }}#pastorais" class="hover:text-[#B3DEC1]">Pastorais</a>
                     <a href="{{ route('portal.juventude') }}" class="hover:text-[#B3DEC1]">Juventude</a>
                     <a href="{{ route('portal.dizimo') }}" class="hover:text-[#B3DEC1]">Dízimo</a>
@@ -159,7 +159,7 @@
             </div>
             <div>
                 <h2 class="font-serif text-lg font-semibold">Secretaria</h2>
-                <div class="mt-4 grid gap-2 text-sm text-white/65">
+                <div class="mt-4 grid gap-2 text-sm text-white/75">
                     <a href="{{ route('portal.paroquia') }}#secretaria" class="hover:text-[#B3DEC1]">Contato</a>
                     <a href="{{ route('portal.noticias') }}" class="hover:text-[#B3DEC1]">Notícias</a>
                     <a href="{{ $adminUrl }}" class="mt-3 inline-flex items-center gap-2 text-[#B3DEC1]"><x-bi-lock class="size-4" /> {{ $adminLabel }}</a>
@@ -167,12 +167,12 @@
             </div>
         </div>
         <div class="border-t border-white/10">
-            <div class="mx-auto flex max-w-[1440px] flex-col gap-3 px-5 py-5 text-xs text-white/45 sm:px-8 md:flex-row md:items-center md:justify-between xl:px-12">
+            <div class="mx-auto flex max-w-[1440px] flex-col gap-3 px-5 py-5 text-xs text-white/60 sm:px-8 md:flex-row md:items-center md:justify-between 2xl:px-12">
                 <p>© {{ date('Y') }} Paróquia São Domingos de Gusmão.</p>
                 <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
                     <p>Uma comunidade de fé, encontro e missão.</p>
                     <span class="hidden h-3 w-px bg-white/15 sm:block" aria-hidden="true"></span>
-                    <div class="flex items-center gap-2 text-white/30 transition hover:text-white/60 focus-within:text-white/70">
+                    <div class="flex items-center gap-2 text-white/60 transition hover:text-white/80 focus-within:text-white/80">
                         <span>Trabalho voluntário feito por {{ config('parish.volunteer_author.name') }}</span>
                         <a href="{{ config('parish.volunteer_author.github_url') }}" target="_blank" rel="noopener noreferrer" class="rounded p-1 transition hover:text-[#B3DEC1] focus:outline-none focus:ring-2 focus:ring-[#B3DEC1]/50" aria-label="GitHub de {{ config('parish.volunteer_author.name') }}"><x-bi-github class="size-3.5" /></a>
                         <a href="{{ config('parish.volunteer_author.linkedin_url') }}" target="_blank" rel="noopener noreferrer" class="rounded p-1 transition hover:text-[#B3DEC1] focus:outline-none focus:ring-2 focus:ring-[#B3DEC1]/50" aria-label="LinkedIn de {{ config('parish.volunteer_author.name') }}"><x-bi-linkedin class="size-3.5" /></a>
