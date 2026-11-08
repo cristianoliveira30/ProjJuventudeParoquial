@@ -21,6 +21,16 @@ it('updates the first access password and marks it as verified', function () {
         $this->markTestSkipped('The local PHP runtime does not have pdo_sqlite; this test runs under Sail.');
     }
 
+    Schema::dropIfExists('sessions');
+    Schema::create('sessions', function (Blueprint $table) {
+        $table->string('id')->primary();
+        $table->unsignedBigInteger('user_id')->nullable();
+    });
+    Schema::dropIfExists('personal_access_tokens');
+    Schema::create('personal_access_tokens', function (Blueprint $table) {
+        $table->id();
+        $table->morphs('tokenable');
+    });
     Schema::dropIfExists('users');
     Schema::create('users', function (Blueprint $table) {
         $table->id();

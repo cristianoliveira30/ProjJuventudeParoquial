@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -26,6 +24,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $this->normalizeIdentity($request);
         $allowedRoles = $this->allowedRoleSiglas($request->user());
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -94,13 +93,14 @@ class UserController extends Controller
 
     public function updateAdmin(Request $request, User $user)
     {
+        $this->normalizeIdentity($request);
         $this->ensureCanManage($request->user(), $user);
         $allowedRoles = $this->allowedRoleSiglas($request->user());
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user)],
             'username' => ['required', 'string', 'max:80', 'regex:/^[a-zA-Z0-9._-]+$/', Rule::unique('users', 'username')->ignore($user)],
-            'role_id' => ['required', Rule::exists('roles', 'id')->whereIn('sigla', $allowedRoles)],
+            'role_id' => [Rule::requiredIf(! $user->is($request->user())), 'nullable', Rule::exists('roles', 'id')->whereIn('sigla', $allowedRoles)],
         ]);
 
         if ($user->is($request->user())) {
@@ -124,7 +124,7 @@ class UserController extends Controller
         $user->update(['is_active' => ! $user->is_active]);
 
         if (! $user->is_active) {
-            $this->revokeUserAccess($user);
+            $user->revokeAccess();
         }
 
         return back()->with('success', $user->is_active ? 'Usuário ativado.' : 'Usuário desativado.');
@@ -140,7 +140,7 @@ class UserController extends Controller
             'password' => $temporaryPassword,
             'password_verify' => false,
         ]);
-        $this->revokeUserAccess($user);
+        $user->revokeAccess();
 
         return back()->with([
             'success' => 'Senha redefinida. O usuário deverá criar uma nova senha no próximo acesso.',
@@ -177,7 +177,7 @@ class UserController extends Controller
             'password' => $validated['password'],
             'password_verify' => true,
         ]);
-        $this->revokeUserAccess($request->user(), $request->session()->getId());
+        $request->user()->revokeAccess($request->session()->getId());
 
         return back()->with('success', 'Senha alterada com sucesso.');
     }
@@ -196,13 +196,14 @@ class UserController extends Controller
             'password' => $validated['password'],
             'password_verify' => true,
         ]);
-        $this->revokeUserAccess($request->user(), $request->session()->getId());
+        $request->user()->revokeAccess($request->session()->getId());
 
         return redirect()->route('home')->with('success', 'Senha definida com sucesso.');
     }
 
     public function updateProfile(Request $request)
     {
+        $this->normalizeIdentity($request);
         $user = $request->user();
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -236,6 +237,14 @@ class UserController extends Controller
         return back()->with('success', 'Dados da conta atualizados.');
     }
 
+    private function normalizeIdentity(Request $request): void
+    {
+        $request->merge(array_filter([
+            'email' => $request->has('email') ? Str::lower(trim((string) $request->input('email'))) : null,
+            'username' => $request->has('username') ? Str::lower(trim((string) $request->input('username'))) : null,
+        ], fn ($value) => $value !== null));
+    }
+
     private function parishRoles(User $actor)
     {
         return Role::query()->whereIn('sigla', $this->allowedRoleSiglas($actor))->orderBy('name')->get();
@@ -255,20 +264,6 @@ class UserController extends Controller
             403,
             'Somente um administrador pode gerenciar outra conta administrativa.'
         );
-    }
-
-    private function revokeUserAccess(User $user, ?string $exceptSessionId = null): void
-    {
-        if (Schema::hasTable('personal_access_tokens')) {
-            $user->tokens()->delete();
-        }
-
-        if (Schema::hasTable('sessions')) {
-            DB::table('sessions')
-                ->where('user_id', $user->id)
-                ->when($exceptSessionId, fn ($query) => $query->where('id', '!=', $exceptSessionId))
-                ->delete();
-        }
     }
 
     private function temporaryPassword(): string

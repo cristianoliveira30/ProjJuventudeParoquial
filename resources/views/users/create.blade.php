@@ -13,7 +13,7 @@
             </span>
         </div>
 
-        <form action="{{ route('user.store') }}" method="POST" class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_19rem]">
+        <form action="{{ route('user.store') }}" method="POST" onsubmit="this.querySelector('button[type=submit]').disabled = true" class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_19rem]">
             @csrf
 
             <section class="rounded-[1.25rem] border border-slate-200 bg-white p-5 shadow-[0_10px_35px_rgba(33,1,36,.05)] dark:border-slate-800 dark:bg-slate-900 sm:p-7">

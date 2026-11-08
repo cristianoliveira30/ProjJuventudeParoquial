@@ -26,6 +26,10 @@ class RetreatRegistration extends Model
     {
         return [
             'birth_date' => 'date',
+            'allergies' => 'encrypted',
+            'medical_conditions' => 'encrypted',
+            'medications' => 'encrypted',
+            'dietary_restrictions' => 'encrypted',
             'consented_at' => 'datetime',
             'health_data_consented_at' => 'datetime',
         ];

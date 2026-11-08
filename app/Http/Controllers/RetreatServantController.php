@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Retreat;
 use App\Models\RetreatServant;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -16,7 +15,7 @@ class RetreatServantController extends Controller
         abort_unless($retreat->servantRegistrationStatus() === Retreat::SERVANT_LINK_OPEN, 404);
 
         $request->merge(['email' => strtolower(trim((string) $request->input('email')))]);
-        $isMinor = $this->isMinor($request->input('birth_date'), $retreat);
+        $isMinor = $retreat->isMinorOn($request->input('birth_date'));
         $lastPreviousYear = $retreat->starts_at->year - 1;
 
         $validated = $request->validate([
@@ -66,7 +65,7 @@ class RetreatServantController extends Controller
 
     public function index(Request $request, Retreat $retreat)
     {
-        $this->ensureCanManage($request, $retreat);
+        abort_unless($retreat->canBeManagedBy($request->user()), 403, 'Você só pode acessar servos de retiros sob sua responsabilidade.');
 
         $query = trim((string) $request->input('q'));
         $status = (string) $request->input('status', 'all');
@@ -97,7 +96,7 @@ class RetreatServantController extends Controller
 
     public function update(Request $request, Retreat $retreat, RetreatServant $servant)
     {
-        $this->ensureCanManage($request, $retreat);
+        abort_unless($retreat->canBeManagedBy($request->user()), 403, 'Você só pode acessar servos de retiros sob sua responsabilidade.');
 
         $validated = $request->validate([
             'status' => ['required', Rule::in(array_keys(RetreatServant::STATUSES))],
@@ -122,23 +121,5 @@ class RetreatServantController extends Controller
         $servant->update($validated);
 
         return back()->with('success', 'Dados do servo atualizados.');
-    }
-
-    private function ensureCanManage(Request $request, Retreat $retreat): void
-    {
-        abort_if(
-            $request->user()->role?->sigla === 'COORD' && $retreat->coordinator_id !== $request->user()->id,
-            403,
-            'Você só pode acessar servos de retiros sob sua responsabilidade.'
-        );
-    }
-
-    private function isMinor(mixed $birthDate, Retreat $retreat): bool
-    {
-        try {
-            return Carbon::createFromFormat('Y-m-d', (string) $birthDate)->diffInYears($retreat->starts_at) < 18;
-        } catch (\Throwable) {
-            return false;
-        }
     }
 }

@@ -43,6 +43,9 @@ class ParishAccessSeeder extends Seeder
                 'notifications.send',
                 'retreats.view',
                 'retreats.registrations',
+                'rooms.view',
+                'rooms.request',
+                'rooms.manage',
             ])->pluck('id')
         );
 
@@ -70,6 +73,8 @@ class ParishAccessSeeder extends Seeder
                 'gallery.create',
                 'gallery.update',
                 'gallery.photos',
+                'rooms.view',
+                'rooms.request',
             ])->pluck('id')
         );
 
@@ -89,6 +94,8 @@ class ParishAccessSeeder extends Seeder
                 'gallery.create',
                 'gallery.update',
                 'gallery.photos',
+                'rooms.view',
+                'rooms.request',
             ])->pluck('id')
         );
 

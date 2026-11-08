@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\EmailVerificationCode;
 use Database\Factories\UserFactory;
@@ -32,6 +33,16 @@ class User extends Authenticatable
             'expires_at' => now()->addMinutes(10),
         ]);
         $this->notify(new EmailVerificationCode($code));
+    }
+
+    public function revokeAccess(?string $exceptSessionId = null): void
+    {
+        $this->tokens()->delete();
+
+        DB::table('sessions')
+            ->where('user_id', $this->id)
+            ->when($exceptSessionId, fn ($query) => $query->where('id', '!=', $exceptSessionId))
+            ->delete();
     }
 
     public function emailVerificationCodes()

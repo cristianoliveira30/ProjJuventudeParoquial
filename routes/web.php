@@ -1,12 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\NoStoreHtml;
 use App\Http\Middleware\TrackPageAccess;
-use App\Models\ParishEvent;
-use App\Models\Retreat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,8 +25,8 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware(['auth', 'active.user'])->group(function () {
     Route::get('/verificar-email', [AuthController::class, 'showEmailVerification'])->name('email.verify');
-    Route::post('/verificar-email', [AuthController::class, 'verifyEmail'])->name('email.verify.submit');
-    Route::post('/verificar-email/reenviar', [AuthController::class, 'resendEmailVerification'])->name('email.verify.resend');
+    Route::post('/verificar-email', [AuthController::class, 'verifyEmail'])->middleware('throttle:5,1')->name('email.verify.submit');
+    Route::post('/verificar-email/reenviar', [AuthController::class, 'resendEmailVerification'])->middleware('throttle:3,10')->name('email.verify.resend');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
@@ -46,25 +45,9 @@ Route::middleware(['auth', 'active.user', 'first.access.lock', TrackPageAccess::
     require __DIR__.'/modules/groups.php';
     require __DIR__.'/modules/retreats.php';
     require __DIR__.'/modules/gallery.php';
+    require __DIR__.'/modules/rooms.php';
 
-    Route::get('/home', function (Request $request) {
-        $nextRetreat = $request->user()->can('retreats.view')
-            ? Retreat::query()
-                ->when($request->user()->role?->sigla === 'COORD', fn ($query) => $query->where('coordinator_id', $request->user()->id))
-                ->upcoming()
-                ->withCount('registrations')
-                ->orderBy('starts_at')
-                ->first()
-            : null;
-
-        return view('home', [
-            'page' => 'home',
-            'encounters' => $request->user()->can('events.view')
-                ? ParishEvent::query()->upcoming()->orderBy('starts_at')->take(3)->get()
-                : collect(),
-            'nextRetreat' => $nextRetreat,
-        ]);
-    })->name('home');
+    Route::get('/home', HomeController::class)->name('home');
     Route::get('/conta/seguranca', [UserController::class, 'showSecurity'])->name('account.security');
     Route::put('/conta/senha', [UserController::class, 'updatePassword'])->name('account.password.update');
     Route::get('/perfis-de-acesso', [RoleController::class, 'index'])->middleware('can:roles.manage')->name('roles.index');

@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Http\Controllers\WebPushController;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -49,6 +50,11 @@ class SendWebPushForUser implements ShouldQueue
         $json = json_encode($data, JSON_UNESCAPED_UNICODE);
 
         foreach ($subs as $s) {
+            if (! preg_match(WebPushController::ENDPOINT_PATTERN, $s->endpoint)) {
+                $s->delete(); // assinatura antiga, de antes da validação
+                continue;
+            }
+
             $subscription = Subscription::create([
                 'endpoint' => $s->endpoint,
                 'publicKey' => $s->public_key,
@@ -66,7 +72,7 @@ class SendWebPushForUser implements ShouldQueue
             } catch (\Throwable $e) {
                 Log::warning('WebPush falhou', [
                     'user_id' => $this->userId,
-                    'endpoint' => $s->endpoint,
+                    'endpoint_host' => parse_url($s->endpoint, PHP_URL_HOST),
                     'error' => $e->getMessage(),
                 ]);
             }

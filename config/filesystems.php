@@ -40,8 +40,10 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            // Grava direto em public/storage (sem symlink): em hospedagem compartilhada o
+            // `storage:link` não roda no deploy e as imagens enviadas ficavam inacessíveis.
+            'root' => public_path('storage'),
+            'url' => '/storage',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,

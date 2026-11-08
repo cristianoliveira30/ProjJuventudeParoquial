@@ -61,7 +61,7 @@ class RetreatController extends Controller
 
     public function edit(Request $request, Retreat $retreat)
     {
-        $this->ensureCanManage($request, $retreat);
+        abort_unless($retreat->canBeManagedBy($request->user()), 403, 'Você só pode gerenciar retiros sob sua responsabilidade.');
 
         return view('retreats.form', [
             'retreat' => $retreat,
@@ -71,7 +71,7 @@ class RetreatController extends Controller
 
     public function update(Request $request, Retreat $retreat)
     {
-        $this->ensureCanManage($request, $retreat);
+        abort_unless($retreat->canBeManagedBy($request->user()), 403, 'Você só pode gerenciar retiros sob sua responsabilidade.');
         $retreat->fill($this->validatedData($request, $retreat));
         $this->storeCoverImage($request, $retreat);
         $retreat->save();
@@ -81,7 +81,7 @@ class RetreatController extends Controller
 
     public function togglePublication(Request $request, Retreat $retreat)
     {
-        $this->ensureCanManage($request, $retreat);
+        abort_unless($retreat->canBeManagedBy($request->user()), 403, 'Você só pode gerenciar retiros sob sua responsabilidade.');
         $request->validate(['published' => ['required', 'boolean']]);
         $retreat->update(['published_at' => $request->boolean('published') ? now() : null]);
 
@@ -92,7 +92,7 @@ class RetreatController extends Controller
 
     public function destroy(Request $request, Retreat $retreat)
     {
-        $this->ensureCanManage($request, $retreat);
+        abort_unless($retreat->canBeManagedBy($request->user()), 403, 'Você só pode gerenciar retiros sob sua responsabilidade.');
 
         if ($retreat->cover_image) {
             Storage::disk('public')->delete($retreat->cover_image);
@@ -151,15 +151,6 @@ class RetreatController extends Controller
         return Retreat::query()->when(
             $request->user()->role?->sigla === 'COORD',
             fn ($query) => $query->where('coordinator_id', $request->user()->id)
-        );
-    }
-
-    private function ensureCanManage(Request $request, Retreat $retreat): void
-    {
-        abort_if(
-            $request->user()->role?->sigla === 'COORD' && $retreat->coordinator_id !== $request->user()->id,
-            403,
-            'Você só pode gerenciar retiros sob sua responsabilidade.'
         );
     }
 

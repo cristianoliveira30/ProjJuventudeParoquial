@@ -35,4 +35,7 @@ return [
     'gallery.publish' => 'Publicar ou retirar álbuns do portal',
     'gallery.photos' => 'Enviar e organizar fotos',
     'gallery.delete' => 'Excluir álbuns da galeria',
+    'rooms.view' => 'Ver a agenda das salas',
+    'rooms.request' => 'Solicitar reserva de sala',
+    'rooms.manage' => 'Aprovar reservas e gerenciar salas',
 ];

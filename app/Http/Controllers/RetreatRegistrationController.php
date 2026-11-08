@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Retreat;
 use App\Models\RetreatRegistration;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
@@ -16,7 +15,7 @@ class RetreatRegistrationController extends Controller
         abort_unless($retreat->isRegistrationOpen(), 404);
         $request->merge(['email' => strtolower(trim((string) $request->input('email')))]);
 
-        $isMinor = $this->isMinor($request->input('birth_date'), $retreat);
+        $isMinor = $retreat->isMinorOn($request->input('birth_date'));
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:180'],
             'birth_date' => ['required', 'date', 'before:today'],
@@ -66,7 +65,7 @@ class RetreatRegistrationController extends Controller
 
     public function index(Request $request, Retreat $retreat)
     {
-        $this->ensureCanManage($request, $retreat);
+        abort_unless($retreat->canBeManagedBy($request->user()), 403, 'Você só pode acessar inscrições de retiros sob sua responsabilidade.');
         $query = trim((string) $request->input('q'));
         $status = $request->input('status', 'all');
 
@@ -90,7 +89,7 @@ class RetreatRegistrationController extends Controller
 
     public function update(Request $request, Retreat $retreat, RetreatRegistration $registration)
     {
-        $this->ensureCanManage($request, $retreat);
+        abort_unless($retreat->canBeManagedBy($request->user()), 403, 'Você só pode acessar inscrições de retiros sob sua responsabilidade.');
         $validated = $request->validate([
             'status' => ['required', Rule::in(array_keys(RetreatRegistration::STATUSES))],
             'internal_notes' => ['nullable', 'string', 'max:2000'],
@@ -98,24 +97,5 @@ class RetreatRegistrationController extends Controller
         $registration->update($validated);
 
         return back()->with('success', 'Situação da inscrição atualizada.');
-    }
-
-    private function ensureCanManage(Request $request, Retreat $retreat): void
-    {
-        abort_if(
-            $request->user()->role?->sigla === 'COORD' && $retreat->coordinator_id !== $request->user()->id,
-            403,
-            'Você só pode acessar inscrições de retiros sob sua responsabilidade.'
-        );
-    }
-
-    private function isMinor(mixed $birthDate, Retreat $retreat): bool
-    {
-        try {
-            return Carbon::createFromFormat('Y-m-d', (string) $birthDate)
-                ->diffInYears($retreat->starts_at) < 18;
-        } catch (\Throwable) {
-            return false;
-        }
     }
 }

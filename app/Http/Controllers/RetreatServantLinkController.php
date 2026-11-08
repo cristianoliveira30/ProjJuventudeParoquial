@@ -10,7 +10,7 @@ class RetreatServantLinkController extends Controller
 {
     public function show(Request $request, Retreat $retreat)
     {
-        $this->ensureCanManage($request, $retreat);
+        abort_unless($retreat->canBeManagedBy($request->user()), 403, 'Você só pode gerenciar retiros sob sua responsabilidade.');
         $this->ensureToken($retreat);
 
         return view('retreats.servant-link', compact('retreat'));
@@ -18,7 +18,7 @@ class RetreatServantLinkController extends Controller
 
     public function update(Request $request, Retreat $retreat)
     {
-        $this->ensureCanManage($request, $retreat);
+        abort_unless($retreat->canBeManagedBy($request->user()), 403, 'Você só pode gerenciar retiros sob sua responsabilidade.');
         $data = $request->validate([
             'servant_registration_enabled' => ['required', 'boolean'],
             'servant_registration_opens_at' => ['nullable', 'date', 'before:servant_registration_closes_at'],
@@ -32,7 +32,7 @@ class RetreatServantLinkController extends Controller
 
     public function regenerate(Request $request, Retreat $retreat)
     {
-        $this->ensureCanManage($request, $retreat);
+        abort_unless($retreat->canBeManagedBy($request->user()), 403, 'Você só pode gerenciar retiros sob sua responsabilidade.');
         $retreat->update(['servant_registration_token' => Str::random(64)]);
 
         return back()->with('success', 'Novo link gerado. O endereço anterior foi invalidado imediatamente.');
@@ -53,10 +53,5 @@ class RetreatServantLinkController extends Controller
         if (! $retreat->servant_registration_token) {
             $retreat->update(['servant_registration_token' => Str::random(64)]);
         }
-    }
-
-    private function ensureCanManage(Request $request, Retreat $retreat): void
-    {
-        abort_if($request->user()->role?->sigla === 'COORD' && $retreat->coordinator_id !== $request->user()->id, 403);
     }
 }

@@ -101,10 +101,12 @@ class AuthController extends Controller
     public function sendResetLink(Request $request)
     {
         $request->validate(['email' => ['required', 'email']]);
-        $status = Password::sendResetLink($request->only('email'));
-        return $status === Password::RESET_LINK_SENT
-            ? back()->with('status', 'Se o e-mail estiver cadastrado, enviaremos um link de recuperação.')
-            : back()->withErrors(['email' => 'Não foi possível enviar o link agora.']);
+        // Depois da resposta: o tempo é igual para e-mail cadastrado ou não.
+        $email = $request->only('email');
+        dispatch(fn () => Password::sendResetLink($email))->afterResponse();
+
+        // Mesma resposta exista o e-mail ou não, para não revelar quem está cadastrado.
+        return back()->with('status', 'Se o e-mail estiver cadastrado, enviaremos um link de recuperação.');
     }
 
     public function showResetPassword(Request $request, string $token)
@@ -124,6 +126,7 @@ class AuthController extends Controller
                 'password_verify' => true,
                 'email_verified_at' => $user->email_verified_at ?: now(),
             ])->save();
+            $user->revokeAccess();
         });
         return $status === Password::PASSWORD_RESET
             ? redirect()->route('login')->with('status', 'Senha redefinida. Faça login com a nova senha.')

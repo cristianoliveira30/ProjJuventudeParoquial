@@ -171,18 +171,21 @@
     @can('users.update')
         @foreach($users as $user)
             @continue(auth()->user()->role?->sigla !== 'ADMIN' && $user->role?->sigla === 'ADMIN')
-            <dialog id="user-dialog-{{ $user->id }}" class="w-[calc(100%-2rem)] max-w-xl rounded-[1.25rem] bg-white p-0 text-[#210124] shadow-2xl backdrop:bg-[#210124]/55 backdrop:backdrop-blur-sm dark:bg-slate-900 dark:text-white">
-                <form action="{{ route('user.update', $user) }}" method="POST">
+            <dialog id="user-dialog-{{ $user->id }}" @if((int) old('_edit_user') === $user->id && $errors->any()) data-open-on-load @endif class="w-[calc(100%-2rem)] max-w-xl rounded-[1.25rem] bg-white p-0 text-[#210124] shadow-2xl backdrop:bg-[#210124]/55 backdrop:backdrop-blur-sm dark:bg-slate-900 dark:text-white">
+                @php($hasErrors = (int) old('_edit_user') === $user->id && $errors->any())
+                <form action="{{ route('user.update', $user) }}" method="POST" onsubmit="this.querySelector('button:not([type=button])').disabled = true">
                     @csrf
                     @method('PUT')
+                    <input type="hidden" name="_edit_user" value="{{ $user->id }}">
                     <div class="flex items-center justify-between border-b border-slate-100 px-5 py-4 dark:border-slate-800">
                         <div><h2 class="font-bold">Editar usuário</h2><p class="mt-0.5 text-xs text-slate-500">{{ $user->name }}</p></div>
                         <button type="button" data-close-user="{{ $user->id }}" class="inline-flex size-9 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Fechar"><x-bi-x-lg class="size-4" /></button>
                     </div>
+                    @if($hasErrors)<div class="mx-5 mt-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-xs text-red-700 dark:border-red-900/60 dark:bg-red-950/30 dark:text-red-300"><ul class="list-disc space-y-1 pl-4">@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul></div>@endif
                     <div class="grid gap-4 p-5 sm:grid-cols-2">
-                        <label class="sm:col-span-2"><span class="mb-1.5 block text-xs font-semibold">Nome completo</span><input name="name" value="{{ $user->name }}" required class="block min-h-11 w-full rounded-xl border-slate-300 text-sm focus:border-[#14B8A6] focus:ring-[#14B8A6] dark:border-slate-700 dark:bg-slate-950"></label>
-                        <label><span class="mb-1.5 block text-xs font-semibold">E-mail</span><input type="email" name="email" value="{{ $user->email }}" required class="block min-h-11 w-full rounded-xl border-slate-300 text-sm focus:border-[#14B8A6] focus:ring-[#14B8A6] dark:border-slate-700 dark:bg-slate-950"></label>
-                        <label><span class="mb-1.5 block text-xs font-semibold">Usuário</span><input name="username" value="{{ $user->username }}" required class="block min-h-11 w-full rounded-xl border-slate-300 text-sm focus:border-[#14B8A6] focus:ring-[#14B8A6] dark:border-slate-700 dark:bg-slate-950"></label>
+                        <label class="sm:col-span-2"><span class="mb-1.5 block text-xs font-semibold">Nome completo</span><input name="name" value="{{ $hasErrors ? old('name') : $user->name }}" required class="block min-h-11 w-full rounded-xl border-slate-300 text-sm focus:border-[#14B8A6] focus:ring-[#14B8A6] dark:border-slate-700 dark:bg-slate-950"></label>
+                        <label><span class="mb-1.5 block text-xs font-semibold">E-mail</span><input type="email" name="email" value="{{ $hasErrors ? old('email') : $user->email }}" required class="block min-h-11 w-full rounded-xl border-slate-300 text-sm focus:border-[#14B8A6] focus:ring-[#14B8A6] dark:border-slate-700 dark:bg-slate-950"></label>
+                        <label><span class="mb-1.5 block text-xs font-semibold">Usuário</span><input name="username" value="{{ $hasErrors ? old('username') : $user->username }}" required class="block min-h-11 w-full rounded-xl border-slate-300 text-sm focus:border-[#14B8A6] focus:ring-[#14B8A6] dark:border-slate-700 dark:bg-slate-950"></label>
                         <label class="sm:col-span-2"><span class="mb-1.5 block text-xs font-semibold">Perfil de acesso</span><select name="role_id" required @disabled($user->is(auth()->user())) class="block min-h-11 w-full rounded-xl border-slate-300 text-sm focus:border-[#14B8A6] focus:ring-[#14B8A6] disabled:cursor-not-allowed disabled:bg-slate-100 dark:border-slate-700 dark:bg-slate-950 dark:disabled:bg-slate-800">@unless($roles->contains('id', $user->role_id))<option value="" selected disabled>Escolha um perfil paroquial</option>@endunless @foreach($roles as $role)<option value="{{ $role->id }}" @selected($user->role_id === $role->id)>{{ $role->name }}</option>@endforeach</select>@if(! $roles->contains('id', $user->role_id))<p class="mt-1.5 text-[11px] font-medium text-amber-600">O perfil atual é legado e precisa ser substituído.</p>@elseif($user->is(auth()->user()))<input type="hidden" name="role_id" value="{{ $user->role_id }}"><p class="mt-1.5 text-[11px] text-slate-500">Seu próprio perfil não pode ser alterado aqui.</p>@endif</label>
                     </div>
                     <div class="flex justify-end gap-3 border-t border-slate-100 px-5 py-4 dark:border-slate-800"><button type="button" data-close-user="{{ $user->id }}" class="min-h-10 rounded-xl border border-slate-300 px-4 text-xs font-semibold dark:border-slate-700">Cancelar</button><button class="min-h-10 rounded-xl bg-[#750D37] px-4 text-xs font-semibold text-white hover:bg-[#5f0b2e]">Salvar alterações</button></div>
@@ -197,6 +200,7 @@
                 document.querySelectorAll('[data-open-user]').forEach(button => button.addEventListener('click', () => document.getElementById(`user-dialog-${button.dataset.openUser}`)?.showModal()));
                 document.querySelectorAll('[data-close-user]').forEach(button => button.addEventListener('click', () => document.getElementById(`user-dialog-${button.dataset.closeUser}`)?.close()));
                 document.querySelectorAll('dialog[id^="user-dialog-"]').forEach(dialog => dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); }));
+                document.querySelector('dialog[data-open-on-load]')?.showModal();
                 document.querySelector('[data-copy-password]')?.addEventListener('click', async () => {
                     const password = document.getElementById('temporary-password')?.textContent?.trim();
                     if (!password) return;

@@ -16,6 +16,16 @@ function prepareParishAccessSchema(): void
 {
     Schema::dropIfExists('permission_role');
     Schema::dropIfExists('permissions');
+    Schema::dropIfExists('sessions');
+    Schema::create('sessions', function (Blueprint $table) {
+        $table->string('id')->primary();
+        $table->unsignedBigInteger('user_id')->nullable();
+    });
+    Schema::dropIfExists('personal_access_tokens');
+    Schema::create('personal_access_tokens', function (Blueprint $table) {
+        $table->id();
+        $table->morphs('tokenable');
+    });
     Schema::dropIfExists('users');
     Schema::dropIfExists('roles');
 

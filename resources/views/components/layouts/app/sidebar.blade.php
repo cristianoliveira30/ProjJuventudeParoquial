@@ -10,6 +10,7 @@
         ['label' => 'Pastorais', 'icon' => 'person-hearts', 'route' => 'groups.index', 'permission' => 'groups.view'],
         ['label' => 'Relatórios', 'icon' => 'bar-chart', 'route' => 'report.default'],
         ['label' => 'Galeria', 'icon' => 'images', 'route' => 'gallery.index', 'permission' => 'gallery.view'],
+        ['label' => 'Salas', 'icon' => 'door-open', 'route' => 'rooms.index', 'permission' => 'rooms.view'],
     ];
 @endphp
 

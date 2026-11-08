@@ -218,6 +218,9 @@ test('the parish portal only displays content intended for the public', function
         'email' => 'jovem@example.com',
         'status' => 'pending',
         'guardian_name' => 'Maria Responsável',
-        'allergies' => 'Alergia a amendoim',
     ]);
+
+    $registration = \App\Models\RetreatRegistration::where('email', 'jovem@example.com')->firstOrFail();
+    expect($registration->allergies)->toBe('Alergia a amendoim')
+        ->and(DB::table('retreat_registrations')->where('id', $registration->id)->value('allergies'))->not->toBe('Alergia a amendoim');
 });

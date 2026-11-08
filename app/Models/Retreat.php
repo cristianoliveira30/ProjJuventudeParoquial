@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -41,6 +42,20 @@ class Retreat extends Model
             'servant_registration_opens_at' => 'datetime',
             'servant_registration_closes_at' => 'datetime',
         ];
+    }
+
+    public function canBeManagedBy(User $user): bool
+    {
+        return $user->role?->sigla !== 'COORD' || $this->coordinator_id === $user->id;
+    }
+
+    public function isMinorOn(mixed $birthDate): bool
+    {
+        try {
+            return Carbon::createFromFormat('Y-m-d', (string) $birthDate)->diffInYears($this->starts_at) < 18;
+        } catch (\Throwable) {
+            return false;
+        }
     }
 
     public function coordinator()

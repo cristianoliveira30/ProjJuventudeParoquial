@@ -12,7 +12,7 @@ class RetreatMinistryController extends Controller
 {
     public function index(Request $request, Retreat $retreat)
     {
-        $this->ensureCanManage($request, $retreat);
+        abort_unless($retreat->canBeManagedBy($request->user()), 403, 'Você só pode gerenciar retiros sob sua responsabilidade.');
         $retreat->load(['ministries' => fn ($query) => $query->withCount(['preferredServants', 'assignedServants'])]);
 
         return view('retreats.ministries', compact('retreat'));
@@ -20,7 +20,7 @@ class RetreatMinistryController extends Controller
 
     public function store(Request $request, Retreat $retreat)
     {
-        $this->ensureCanManage($request, $retreat);
+        abort_unless($retreat->canBeManagedBy($request->user()), 403, 'Você só pode gerenciar retiros sob sua responsabilidade.');
         $data = $this->validatedData($request, $retreat);
         $data['slug'] = $this->uniqueSlug($retreat, $data['name']);
         $data['sort_order'] = ((int) $retreat->ministries()->max('sort_order')) + 1;
@@ -31,7 +31,7 @@ class RetreatMinistryController extends Controller
 
     public function update(Request $request, Retreat $retreat, RetreatMinistry $ministry)
     {
-        $this->ensureCanManage($request, $retreat);
+        abort_unless($retreat->canBeManagedBy($request->user()), 403, 'Você só pode gerenciar retiros sob sua responsabilidade.');
         $this->ensureBelongsToRetreat($retreat, $ministry);
         $data = $this->validatedData($request, $retreat, $ministry);
         $data['slug'] = $this->uniqueSlug($retreat, $data['name'], $ministry->id);
@@ -42,7 +42,7 @@ class RetreatMinistryController extends Controller
 
     public function toggle(Request $request, Retreat $retreat, RetreatMinistry $ministry)
     {
-        $this->ensureCanManage($request, $retreat);
+        abort_unless($retreat->canBeManagedBy($request->user()), 403, 'Você só pode gerenciar retiros sob sua responsabilidade.');
         $this->ensureBelongsToRetreat($retreat, $ministry);
         $request->validate(['active' => ['required', 'boolean']]);
         $active = $request->boolean('active');
@@ -58,7 +58,7 @@ class RetreatMinistryController extends Controller
 
     public function destroy(Request $request, Retreat $retreat, RetreatMinistry $ministry)
     {
-        $this->ensureCanManage($request, $retreat);
+        abort_unless($retreat->canBeManagedBy($request->user()), 403, 'Você só pode gerenciar retiros sob sua responsabilidade.');
         $this->ensureBelongsToRetreat($retreat, $ministry);
 
         if ($ministry->preferredServants()->exists() || $ministry->assignedServants()->exists()) {
@@ -93,11 +93,6 @@ class RetreatMinistryController extends Controller
         }
 
         return $slug;
-    }
-
-    private function ensureCanManage(Request $request, Retreat $retreat): void
-    {
-        abort_if($request->user()->role?->sigla === 'COORD' && $retreat->coordinator_id !== $request->user()->id, 403);
     }
 
     private function ensureBelongsToRetreat(Retreat $retreat, RetreatMinistry $ministry): void

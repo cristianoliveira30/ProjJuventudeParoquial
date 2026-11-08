@@ -212,3 +212,24 @@ html.black .popover-flowbite {
 .popover-flowbite::-webkit-scrollbar-thumb { background: var(--popover-scroll-thumb) !important; border-radius: 9999px !important; }
 .popover-flowbite::-webkit-scrollbar-thumb:hover { background: var(--popover-scroll-thumb-hover) !important; }
 .popover-flowbite [data-popper-arrow] { display: none !important; }
+
+/* Campos de formulário visíveis no modo claro: as classes border-slate-200/300 dos
+   formulários ficavam quase invisíveis sobre fundo branco. Sem @layer de propósito,
+   para vencer os utilitários. */
+input:where(:not([type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="hidden"], [type="submit"], [type="button"], [type="color"])),
+select,
+textarea {
+    border-color: #94a3b8;
+}
+
+.dark input:where(:not([type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="hidden"], [type="submit"], [type="button"], [type="color"])),
+.dark select,
+.dark textarea {
+    border-color: #475569;
+}
+
+input:where(:not([type="checkbox"], [type="radio"], [type="file"], [type="hidden"], [type="submit"], [type="button"])):focus,
+select:focus,
+textarea:focus {
+    border-color: #14b8a6;
+}

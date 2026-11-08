@@ -54,7 +54,7 @@ it('requires an endpoint when subscribing to web push', function () {
 it('returns unauthenticated when subscribing to web push without a user', function () {
     $this->withoutMiddleware()
         ->postJson(route('webpush.subscribe'), [
-            'endpoint' => 'https://push.example/subscription',
+            'endpoint' => 'https://fcm.googleapis.com/fcm/send/abc',
             'keys' => [
                 'p256dh' => 'public-key',
                 'auth' => 'auth-secret',

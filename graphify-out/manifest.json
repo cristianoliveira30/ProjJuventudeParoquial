@@ -872,10 +872,10 @@
     "semantic_hash": "660c1cc29cbc56acc3e90e97e17bcb9d"
   },
   "resources/views/components/layouts/public.blade.php": {
-    "mtime": 1793829086.3965878,
-    "seen": 1793848372.1025887,
-    "ast_hash": "2909a67b81c9233cc65ace6ac99d2c51",
-    "semantic_hash": "2909a67b81c9233cc65ace6ac99d2c51"
+    "mtime": 1793849570.8897371,
+    "seen": 1794097230.7136097,
+    "ast_hash": "007f0366151eadac5dd593295a468992",
+    "semantic_hash": "007f0366151eadac5dd593295a468992"
   },
   "resources/views/components/modals/notifications.blade.php": {
     "mtime": 1793205656.797804,
@@ -1028,16 +1028,16 @@
     "semantic_hash": "6c42f591660aad0cd8ff0e79d7b39aaa"
   },
   "resources/views/portal/album.blade.php": {
-    "mtime": 1793205656.8038025,
-    "seen": 1793848372.10386,
-    "ast_hash": "37dbb8a4e791f7c4d480f9eda1a79070",
-    "semantic_hash": "37dbb8a4e791f7c4d480f9eda1a79070"
+    "mtime": 1793849570.893602,
+    "seen": 1794097230.7136474,
+    "ast_hash": "dd5ea8d498e0fdfdf0321f3dbbeb0ef3",
+    "semantic_hash": "dd5ea8d498e0fdfdf0321f3dbbeb0ef3"
   },
   "resources/views/portal/apoio.blade.php": {
-    "mtime": 1793827796.180297,
-    "seen": 1793848372.1039064,
-    "ast_hash": "66918dbce01d3d3e70ac1e83075804ef",
-    "semantic_hash": "66918dbce01d3d3e70ac1e83075804ef"
+    "mtime": 1793849570.893602,
+    "seen": 1794097230.7136486,
+    "ast_hash": "80b24b9ab5a56b29e3292104a3b5dbe8",
+    "semantic_hash": "80b24b9ab5a56b29e3292104a3b5dbe8"
   },
   "resources/views/portal/dizimo.blade.php": {
     "mtime": 1793205656.8038025,
@@ -1052,16 +1052,16 @@
     "semantic_hash": "489e4c5050577e06a55f43cac5ebf394"
   },
   "resources/views/portal/galeria.blade.php": {
-    "mtime": 1793205656.8038025,
-    "seen": 1793848372.104032,
-    "ast_hash": "e076e56a9f5b518712d9c746fd841450",
-    "semantic_hash": "e076e56a9f5b518712d9c746fd841450"
+    "mtime": 1793849570.893602,
+    "seen": 1794097230.7136524,
+    "ast_hash": "b6572b1928c888b392a937825f716ce4",
+    "semantic_hash": "b6572b1928c888b392a937825f716ce4"
   },
   "resources/views/portal/home.blade.php": {
-    "mtime": 1793827796.180525,
-    "seen": 1793848372.1040742,
-    "ast_hash": "6390890aae7edcc6ef6a9a9d8791e7ae",
-    "semantic_hash": "6390890aae7edcc6ef6a9a9d8791e7ae"
+    "mtime": 1793849570.893602,
+    "seen": 1794097230.7136536,
+    "ast_hash": "4160b90b999518281e443e910c50a4c0",
+    "semantic_hash": "4160b90b999518281e443e910c50a4c0"
   },
   "resources/views/portal/juventude.blade.php": {
     "mtime": 1793205656.8038025,
@@ -1112,10 +1112,10 @@
     "semantic_hash": "27799b2146d766196940dc634eee55a5"
   },
   "resources/views/portal/servir.blade.php": {
-    "mtime": 1793205656.8038025,
-    "seen": 1793848372.1044495,
-    "ast_hash": "590add0bf2cc7dce5ae93e3efcb65b26",
-    "semantic_hash": "590add0bf2cc7dce5ae93e3efcb65b26"
+    "mtime": 1793849570.893602,
+    "seen": 1794097230.7136655,
+    "ast_hash": "e3b3ab82a41b8e112a15076b4e66d64f",
+    "semantic_hash": "e3b3ab82a41b8e112a15076b4e66d64f"
   },
   "resources/views/posts/form.blade.php": {
     "mtime": 1793205656.8038025,
@@ -1446,5 +1446,47 @@
     "seen": 1793848372.1067739,
     "ast_hash": "2f3a9c689a86455a36525588c96372b2",
     "semantic_hash": "2f3a9c689a86455a36525588c96372b2"
+  },
+  "docker/pgsql/create-testing-database.sql": {
+    "mtime": 1793205656.7162185,
+    "seen": 1794097230.7135723,
+    "ast_hash": "0cfb92db5810a07bbce6e776d3513ca6",
+    "semantic_hash": "0cfb92db5810a07bbce6e776d3513ca6"
+  },
+  "README.md": {
+    "mtime": 1793827796.1728497,
+    "seen": 1794097230.7137363,
+    "ast_hash": "4edeb72d6a0a9fda729abae8382be283",
+    "semantic_hash": "4edeb72d6a0a9fda729abae8382be283"
+  },
+  "docs/DEBUG.md": {
+    "mtime": 1793205656.717133,
+    "seen": 1794097230.7137372,
+    "ast_hash": "140f26bb95ce7e0be2cb3322c815a3f7",
+    "semantic_hash": "140f26bb95ce7e0be2cb3322c815a3f7"
+  },
+  "docs/DEPLOY_RAPIDO_HOSTINGER.md": {
+    "mtime": 1793827796.1766043,
+    "seen": 1794097230.7137382,
+    "ast_hash": "2c6f6b4af18ef4dd212877d616a1bdbc",
+    "semantic_hash": "2c6f6b4af18ef4dd212877d616a1bdbc"
+  },
+  "docs/GITHUB_ACTIONS_WORKFLOW.md": {
+    "mtime": 1793827796.1767838,
+    "seen": 1794097230.7137392,
+    "ast_hash": "c9759d70e012776c7158d2fc798bbf6f",
+    "semantic_hash": "c9759d70e012776c7158d2fc798bbf6f"
+  },
+  "docs/HOSTINGER_DEPLOY.md": {
+    "mtime": 1793827796.1768982,
+    "seen": 1794097230.7137403,
+    "ast_hash": "c7afc24cd7547105f39308b8ede23c86",
+    "semantic_hash": "c7afc24cd7547105f39308b8ede23c86"
+  },
+  "tests/README.md": {
+    "mtime": 1793827785.6914802,
+    "seen": 1794097230.713741,
+    "ast_hash": "aa0ef982f62f8d8a1cc99d5c229b5777",
+    "semantic_hash": "aa0ef982f62f8d8a1cc99d5c229b5777"
   }
 }

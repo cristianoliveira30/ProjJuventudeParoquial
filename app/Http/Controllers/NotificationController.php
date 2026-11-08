@@ -19,7 +19,8 @@ class NotificationController extends Controller
         $query = NotificationDeliveries::query()
             ->where('user_id', $userId)
             ->with('notification')
-            ->orderByDesc('created_at');
+            ->orderByDesc('created_at')
+            ->limit(50);
 
         $notifications = $query->get();
 
@@ -124,8 +125,10 @@ class NotificationController extends Controller
                 });
             });
         } catch (\Throwable $e) {
+            report($e);
+
             return back()
-                ->withErrors(['error' => 'Erro ao criar notificação: ' . $e->getMessage()])
+                ->withErrors(['error' => 'Erro ao criar notificação. Tente novamente.'])
                 ->withInput();
         }
 

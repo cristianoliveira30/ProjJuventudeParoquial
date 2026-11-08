@@ -19,7 +19,7 @@ class RetreatServant extends Model
 
     protected function casts(): array
     {
-        return ['birth_date' => 'date', 'previous_retreat_year' => 'integer', 'consented_at' => 'datetime', 'health_data_consented_at' => 'datetime', 'approved_at' => 'datetime'];
+        return ['allergies' => 'encrypted', 'medical_conditions' => 'encrypted', 'medications' => 'encrypted', 'dietary_restrictions' => 'encrypted', 'birth_date' => 'date', 'previous_retreat_year' => 'integer', 'consented_at' => 'datetime', 'health_data_consented_at' => 'datetime', 'approved_at' => 'datetime'];
     }
 
     public function retreat()

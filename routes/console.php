@@ -11,3 +11,5 @@ Artisan::command('inspire', function () {
 
 Schedule::call(fn () => DB::table('page_access_logs')->where('created_at', '<', now()->subDays(90))->delete())
     ->daily();
+
+Schedule::command('users:prune-inactive')->daily();
