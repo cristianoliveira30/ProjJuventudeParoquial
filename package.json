@@ -23,7 +23,6 @@
         "ag-grid-community": "^35.1.0",
         "apexcharts": "^5.3.6",
         "bootstrap-icons": "^1.13.1",
-        "dexie": "^4.2.1",
         "flowbite": "^4.0.1",
         "jspdf": "^4.0.0",
         "jspdf-autotable": "^5.0.2",

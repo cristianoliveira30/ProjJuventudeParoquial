@@ -1,6 +1,7 @@
 $ErrorActionPreference = 'Stop'
 
-$Remote = 'u401198718@149.62.37.88'
+$Remote = $env:DEPLOY_REMOTE
+if (-not $Remote) { throw 'Defina a variavel de ambiente DEPLOY_REMOTE (usuario@host).' }
 $Port = '65002'
 $RemoteDir = 'domains/sistemasapex.com.br/public_html/paroquiasaodomingos'
 $ProjectRoot = Resolve-Path (Join-Path $PSScriptRoot '..')

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REMOTE="u401198718@149.62.37.88"
+REMOTE="${DEPLOY_REMOTE:?Defina DEPLOY_REMOTE=usuario@host}"
 PORT="65002"
 REMOTE_DIR="domains/sistemasapex.com.br/public_html/paroquiasaodomingos"
 ARCHIVE_DIR="artifacts"

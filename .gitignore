@@ -25,3 +25,7 @@ yarn-error.log
 /.zed
 documentation
 graphify-out/
+
+# certificados locais (gerar com docker/nginx/certs/README.md)
+docker/nginx/certs/*.key
+docker/nginx/certs/*.crt
